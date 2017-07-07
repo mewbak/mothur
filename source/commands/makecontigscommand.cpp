@@ -2258,8 +2258,8 @@ vector<int> MakeContigsCommand::assembleFragments(vector< vector<double> >&qual_
         //flip the reverse reads
         if (hasQuality) {
 					if(qwindowsize != 0){
-						fQual->stripQualWindowAverage(fSeq, 1, qwindowsize, qwindowaverage, FALSE);
-						rQual->stripQualWindowAverage(rSeq, 1, qwindowsize, qwindowaverage, FALSE);
+						fQual->stripQualWindowAverage(fSeq, 1, qwindowsize, qwindowaverage, false);
+						rQual->stripQualWindowAverage(rSeq, 1, qwindowsize, qwindowaverage, false);
 					}
 					rQual->flipQScores();
 				}

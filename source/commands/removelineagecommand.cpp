@@ -271,9 +271,9 @@ RemoveLineageCommand::RemoveLineageCommand(string option)  {
             
             if ((constaxonomy == "") && (taxfile == "")) {
                 taxfile = current->getTaxonomyFile();
-                if (taxfile != "") { m->mothurOut("Using " + taxfile + " as input file for the taxonomy parameter."); m->mothurOutEndLine(); }
+                if (taxfile != "") { m->mothurOut("Using " + taxfile + " as input file for the taxonomy parameter.\n"); }
                 else {
-                    m->mothurOut("You have no current taxonomy file and did not provide a constaxonomy file. The taxonomy or constaxonomy parameter is required."); m->mothurOutEndLine(); abort = true; }
+                    m->mothurOut("You have no current taxonomy file and did not provide a constaxonomy file. The taxonomy or constaxonomy parameter is required.\n"); abort = true; }
 			}
 
 			
@@ -283,11 +283,11 @@ RemoveLineageCommand::RemoveLineageCommand(string option)  {
             else { current->setCountFile(countfile); }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
             
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
             
 			string usedDups = "true";
@@ -299,7 +299,7 @@ RemoveLineageCommand::RemoveLineageCommand(string option)  {
 			dups = util.isTrue(temp);
 			
 			taxons = validParameter.valid(parameters, "taxon");
-			if (taxons == "not found") { taxons = "";  m->mothurOut("No taxons given, please correct."); m->mothurOutEndLine();  abort = true;  }
+			if (taxons == "not found") { taxons = "";  m->mothurOut("No taxons given, please correct.\n");  abort = true;  }
 			else { 
 				//rip off quotes
 				if (taxons[0] == '\'') {  taxons = taxons.substr(1); }
@@ -308,7 +308,7 @@ RemoveLineageCommand::RemoveLineageCommand(string option)  {
 			util.splitAtChar(taxons, listOfTaxons, '-');
             if (m->getDebug()) { string taxonString = util.getStringFromVector(listOfTaxons, ", "); m->mothurOut("[DEBUG]: " + taxonString + "\n."); }
 			
-			if ((fastafile == "") && (constaxonomy == "") && (namefile == "") && (groupfile == "") && (alignfile == "") && (listfile == "") && (taxfile == "") && (countfile == ""))  { m->mothurOut("You must provide one of the following: fasta, name, group, count, alignreport, taxonomy, constaxonomy, shared or listfile."); m->mothurOutEndLine(); abort = true; }
+			if ((fastafile == "") && (constaxonomy == "") && (namefile == "") && (groupfile == "") && (alignfile == "") && (listfile == "") && (taxfile == "") && (countfile == ""))  { m->mothurOut("You must provide one of the following: fasta, name, group, count, alignreport, taxonomy, constaxonomy, shared or listfile.\n"); abort = true; }
             
             if ((constaxonomy != "") && ((fastafile != "") || (namefile != "") || (groupfile != "") || (alignfile != "") || (taxfile != "") || (countfile != ""))) {
                 m->mothurOut("[ERROR]: can only use constaxonomy file with a list or shared file, aborting.\n");  abort = true;
@@ -324,11 +324,11 @@ RemoveLineageCommand::RemoveLineageCommand(string option)  {
             
             if ((sharedfile != "") || (listfile != "")) {
                 label = validParameter.valid(parameters, "label");
-                if (label == "not found") { label = ""; m->mothurOut("You did not provide a label, I will use the first label in your inputfile."); m->mothurOutEndLine(); label=""; }
+                if (label == "not found") { label = ""; m->mothurOut("You did not provide a label, I will use the first label in your inputfile.\n"); label=""; }
             }
 
 		
-			if ((usedDups != "") && (namefile == "")) {  m->mothurOut("You may only use dups with the name option."); m->mothurOutEndLine();  abort = true; }			
+			if ((usedDups != "") && (namefile == "")) {  m->mothurOut("You may only use dups with the name option.\n");  abort = true; }			
 			
 			if (countfile == "") {
                 if ((namefile == "") && ((fastafile != "") || (taxfile != ""))){
@@ -381,7 +381,7 @@ int RemoveLineageCommand::execute(){
 		
 		if (outputNames.size() != 0) {
 			m->mothurOutEndLine();
-			m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+			m->mothurOut("Output File Names: \n");
 			for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
 			m->mothurOutEndLine();
 			
@@ -470,7 +470,7 @@ int RemoveLineageCommand::readFasta(){
 		in.close();	
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your fasta file contains only sequences from " + taxons + "."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your fasta file contains only sequences from " + taxons + ".\n");  }
 		outputNames.push_back(outputFileName); outputTypes["fasta"].push_back(outputFileName); 
 		
 		return 0;
@@ -549,7 +549,7 @@ int RemoveLineageCommand::readList(){
             list = input.getListVector();
 		}
 		
-		if (wroteSomething == false) {  m->mothurOut("Your list file contains only sequences from " + taxons + "."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your list file contains only sequences from " + taxons + ".\n");  }
 				
 		return 0;
 
@@ -628,7 +628,7 @@ int RemoveLineageCommand::readName(){
 		in.close();
 		out.close();
 
-		if (wroteSomething == false) {  m->mothurOut("Your name file contains only sequences from " + taxons + "."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your name file contains only sequences from " + taxons + ".\n");  }
 		outputNames.push_back(outputFileName); outputTypes["name"].push_back(outputFileName);
 				
 		return 0;
@@ -686,7 +686,7 @@ int RemoveLineageCommand::readCount(){
             ct.printTable(outputFileName);
         }
 		
-		if (wroteSomething == false) {  m->mothurOut("Your group file contains only sequences from " + taxons + "."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your group file contains only sequences from " + taxons + ".\n");  }
 		outputTypes["count"].push_back(outputFileName); outputNames.push_back(outputFileName);
         
 		return 0;
@@ -749,10 +749,10 @@ int RemoveLineageCommand::readConsList(){
         }
 		out.close();
 		
-		if (wroteSomething == false) { m->mothurOut("Your file only contains OTUs from " + taxons + "."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) { m->mothurOut("Your file only contains OTUs from " + taxons + ".\n");  }
 		outputNames.push_back(outputFileName); outputTypes["list"].push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " OTUs from your list file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " OTUs from your list file.\n");
         
 		return 0;
         
@@ -817,10 +817,10 @@ int RemoveLineageCommand::getListVector(){
 		for (it = userLabels.begin(); it != userLabels.end(); it++) {
 			m->mothurOut("Your file does not include the label " + *it);
 			if (processedLabels.count(lastLabel) != 1) {
-				m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". I will use " + lastLabel + ".\n");
 				needToRun = true;
 			}else {
-				m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". Please refer to " + lastLabel + ".\n");
 			}
 		}
 		
@@ -873,9 +873,9 @@ int RemoveLineageCommand::readShared(){
         lookup->print(out);
 		out.close();
         
-        if (wroteSomething == false) { m->mothurOut("Your file only contains OTUs from " + taxons + "."); m->mothurOutEndLine();  }
+        if (wroteSomething == false) { m->mothurOut("Your file only contains OTUs from " + taxons + ".\n");  }
         
-		m->mothurOut("Removed " + toString(numRemoved) + " OTUs from your shared file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(numRemoved) + " OTUs from your shared file.\n");
         
         return 0;
     }
@@ -937,10 +937,10 @@ SharedRAbundVectors* RemoveLineageCommand::getShared(){
 		for (it = userLabels.begin(); it != userLabels.end(); it++) {
 			m->mothurOut("Your file does not include the label " + *it);
 			if (processedLabels.count(lastLabel) != 1) {
-				m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". I will use " + lastLabel + ".\n");
 				needToRun = true;
 			}else {
-				m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". Please refer to " + lastLabel + ".\n");
 			}
 		}
 		
@@ -995,7 +995,7 @@ int RemoveLineageCommand::readGroup(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your group file contains only sequences from " + taxons + "."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your group file contains only sequences from " + taxons + ".\n");  }
 		outputNames.push_back(outputFileName); outputTypes["group"].push_back(outputFileName);
 		
 		return 0;
@@ -1051,7 +1051,7 @@ int RemoveLineageCommand::readTax(){
 		in.close();
 		out.close();
 		
-		if (!wroteSomething) { m->mothurOut("Your taxonomy file contains only sequences from " + taxons + "."); m->mothurOutEndLine();  }
+		if (!wroteSomething) { m->mothurOut("Your taxonomy file contains only sequences from " + taxons + ".\n");  }
 		outputNames.push_back(outputFileName); outputTypes["taxonomy"].push_back(outputFileName);
 			
 		return 0;
@@ -1116,7 +1116,7 @@ int RemoveLineageCommand::readConsTax(){
 		in.close();
 		out.close();
 		
-		if (names.size() == 0) { m->mothurOut("Your constaxonomy file contains OTUs only from " + taxons + "."); m->mothurOutEndLine();  }
+		if (names.size() == 0) { m->mothurOut("Your constaxonomy file contains OTUs only from " + taxons + ".\n");  }
 		outputNames.push_back(outputFileName); outputTypes["constaxonomy"].push_back(outputFileName);
         
 		return 0;
@@ -1230,7 +1230,7 @@ int RemoveLineageCommand::readAlign(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your align file contains only sequences from " + taxons + "."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your align file contains only sequences from " + taxons + ".\n");  }
 		outputNames.push_back(outputFileName); outputTypes["alignreport"].push_back(outputFileName);
 		
 		return 0;

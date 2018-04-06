@@ -235,9 +235,9 @@ RemoveSeqsCommand::RemoveSeqsCommand(string option)  {
 			if (accnosfile == "not open") { abort = true; }
 			else if (accnosfile == "not found") {  
 				accnosfile = current->getAccnosFile();
-				if (accnosfile != "") {  m->mothurOut("Using " + accnosfile + " as input file for the accnos parameter."); m->mothurOutEndLine(); }
+				if (accnosfile != "") {  m->mothurOut("Using " + accnosfile + " as input file for the accnos parameter.\n"); }
 				else { 
-					m->mothurOut("You have no valid accnos file and accnos is required."); m->mothurOutEndLine(); 
+					m->mothurOut("You have no valid accnos file and accnos is required.\n"); 
 					abort = true;
 				}  
 			}else { current->setAccnosFile(accnosfile); }	
@@ -294,14 +294,14 @@ RemoveSeqsCommand::RemoveSeqsCommand(string option)  {
             else { current->setCountFile(countfile); }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
             
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
 			
-			if ((fastqfile == "") && (countfile == "") && (fastafile == "") && (namefile == "") && (groupfile == "") && (alignfile == "") && (listfile == "") && (taxfile == "") && (qualfile == ""))  { m->mothurOut("You must provide at least one of the following: fasta, name, group, taxonomy, quality, alignreport, fastq or list."); m->mothurOutEndLine(); abort = true; }
+			if ((fastqfile == "") && (countfile == "") && (fastafile == "") && (namefile == "") && (groupfile == "") && (alignfile == "") && (listfile == "") && (taxfile == "") && (qualfile == ""))  { m->mothurOut("You must provide at least one of the following: fasta, name, group, taxonomy, quality, alignreport, fastq or list.\n"); abort = true; }
 			
             if (countfile == "") {
                 if ((fastafile != "") && (namefile == "")) {
@@ -357,7 +357,7 @@ int RemoveSeqsCommand::execute(){
 	
 		if (outputNames.size() != 0) {
 			m->mothurOutEndLine();
-			m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+			m->mothurOut("Output File Names: \n");
 			for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
 			m->mothurOutEndLine();
 			
@@ -459,10 +459,10 @@ int RemoveSeqsCommand::readFasta(){
 		in.close();	
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputTypes["fasta"].push_back(outputFileName);  outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your fasta file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your fasta file.\n");
 		
 		return 0;
 		
@@ -520,10 +520,10 @@ int RemoveSeqsCommand::readFastq(){
 		out.close();
 		
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputTypes["fasta"].push_back(outputFileName);  outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your fastq file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your fastq file.\n");
 
 		
 		return 0;
@@ -602,10 +602,10 @@ int RemoveSeqsCommand::readQual(){
 		out.close();
 		
 		
-		if (wroteSomething == false) { m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) { m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputNames.push_back(outputFileName);  outputTypes["qfile"].push_back(outputFileName); 
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your quality file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your quality file.\n");
 		
 		return 0;
 		
@@ -671,10 +671,10 @@ int RemoveSeqsCommand::readCount(){
         }
 
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputTypes["count"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your count file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your count file.\n");
         
 		return 0;
 	}
@@ -765,9 +765,9 @@ int RemoveSeqsCommand::readList(){
 		}
 		
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your list file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your list file.\n");
 		
 		return 0;
 
@@ -864,10 +864,10 @@ int RemoveSeqsCommand::readName(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputTypes["name"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your name file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your name file.\n");
 		
 		return 0;
 	}
@@ -919,10 +919,10 @@ int RemoveSeqsCommand::readGroup(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputTypes["group"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your group file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your group file.\n");
 
 		
 		return 0;
@@ -978,10 +978,10 @@ int RemoveSeqsCommand::readTax(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputTypes["taxonomy"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your taxonomy file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your taxonomy file.\n");
 		
 		return 0;
 	}
@@ -1060,10 +1060,10 @@ int RemoveSeqsCommand::readAlign(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only sequences from the .accnos file.\n");  }
 		outputTypes["alignreport"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Removed " + toString(removedCount) + " sequences from your alignreport file."); m->mothurOutEndLine();
+		m->mothurOut("Removed " + toString(removedCount) + " sequences from your alignreport file.\n");
 
 		
 		return 0;

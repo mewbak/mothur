@@ -52,7 +52,7 @@ Classify(), kmerSize(ksize), confidenceThreshold(cutoff), iters(i) {
 			phyloTree = new PhyloTree(phyloTreeTest, phyloTreeName);
             maxLevel = phyloTree->getMaxLevel();
 			
-			m->mothurOut("DONE."); m->mothurOutEndLine();
+			m->mothurOut("DONE.\n");
 			
 			genusNodes = phyloTree->getGenusNodes(); 
 			genusTotals = phyloTree->getGenusTotals();
@@ -75,7 +75,7 @@ Classify(), kmerSize(ksize), confidenceThreshold(cutoff), iters(i) {
 				
 				phyloTree->printTreeNodes(phyloTreeName);
 							
-				m->mothurOut("DONE."); m->mothurOutEndLine();
+				m->mothurOut("DONE.\n");
 				
 				m->mothurOut("Calculating template probabilities...     "); cout.flush();
 				
@@ -163,8 +163,8 @@ Classify(), kmerSize(ksize), confidenceThreshold(cutoff), iters(i) {
 		generateWordPairDiffArr();
         if (m->getDebug()) { m->mothurOut("[DEBUG]: done generateWordPairDiffArr\n"); }
 			
-		m->mothurOut("DONE."); m->mothurOutEndLine();
-		m->mothurOut("It took " + toString(time(NULL) - start) + " seconds get probabilities. "); m->mothurOutEndLine();
+		m->mothurOut("DONE.\n");
+		m->mothurOut("It took " + toString(time(NULL) - start) + " seconds get probabilities. \n");
 	}
 	catch(exception& e) {
 		m->errorOut(e, "Bayesian", "Bayesian");
@@ -218,7 +218,7 @@ string Bayesian::getTaxonomy(Sequence* seq, string& simpleTax, bool& flipped) {
 			}  
 		}
 		
-		if (queryKmers.size() == 0) {  m->mothurOut(seq->getName() + " is bad. It has no kmers of length " + toString(kmerSize) + "."); m->mothurOutEndLine(); simpleTax = "unknown;";  return "unknown;"; }
+		if (queryKmers.size() == 0) {  m->mothurOut(seq->getName() + " is bad. It has no kmers of length " + toString(kmerSize) + ".\n"); simpleTax = "unknown;";  return "unknown;"; }
 		
 		
 		int index = getMostProbableTaxonomy(queryKmers);

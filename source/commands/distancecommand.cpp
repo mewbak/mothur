@@ -152,12 +152,12 @@ DistanceCommand::DistanceCommand(string option) {
 			fastafile = validParameter.validFile(parameters, "fasta");
 			if (fastafile == "not found") { 				
 				fastafile = current->getFastaFile(); 
-				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); 
+				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); 
 					ifstream inFASTA;
 					util.openInputFile(fastafile, inFASTA);
 					alignDB = SequenceDB(inFASTA); 
 					inFASTA.close();
-				}else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				}else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else if (fastafile == "not open") { abort = true; }	
 			else{
 				ifstream inFASTA;
@@ -210,11 +210,11 @@ DistanceCommand::DistanceCommand(string option) {
 			output = validParameter.valid(parameters, "output");		if(output == "not found"){	output = "column"; }
             if (output == "phylip") { output = "lt";  }
 			
-			if (((column != "") && (oldfastafile == "")) || ((column == "") && (oldfastafile != ""))) { m->mothurOut("If you provide column or oldfasta, you must provide both."); m->mothurOutEndLine(); abort=true; }
+			if (((column != "") && (oldfastafile == "")) || ((column == "") && (oldfastafile != ""))) { m->mothurOut("If you provide column or oldfasta, you must provide both.\n"); abort=true; }
 			
-			if ((column != "") && (oldfastafile != "") && (output != "column")) { m->mothurOut("You have provided column and oldfasta, indicating you want to append distances to your column file. Your output must be in column format to do so."); m->mothurOutEndLine(); abort=true; }
+			if ((column != "") && (oldfastafile != "") && (output != "column")) { m->mothurOut("You have provided column and oldfasta, indicating you want to append distances to your column file. Your output must be in column format to do so.\n"); abort=true; }
 			
-			if ((output != "column") && (output != "lt") && (output != "square")) { m->mothurOut(output + " is not a valid output form. Options are column, lt and square. I will use column."); m->mothurOutEndLine(); output = "column"; }
+			if ((output != "column") && (output != "lt") && (output != "square")) { m->mothurOut(output + " is not a valid output form. Options are column, lt and square. I will use column.\n"); output = "column"; }
 
 		}
 				
@@ -243,7 +243,7 @@ int DistanceCommand::execute(){
 		
 		numSeqs = alignDB.getNumSeqs();
 		
-		if (!alignDB.sameLength()) {  m->mothurOut("[ERROR]: your sequences are not the same length, aborting."); m->mothurOutEndLine(); return 0; }
+		if (!alignDB.sameLength()) {  m->mothurOut("[ERROR]: your sequences are not the same length, aborting.\n"); return 0; }
 		
 		string outputFile;
         map<string, string> variables; 
@@ -320,8 +320,8 @@ int DistanceCommand::execute(){
 		m->mothurOut(outputFile+"\n\n");
 		
 		if (util.isTrue(compress)) {
-			m->mothurOut("Compressing..."); m->mothurOutEndLine();
-			m->mothurOut("(Replacing " + outputFile + " with " + outputFile + ".gz)"); m->mothurOutEndLine();
+			m->mothurOut("Compressing...\n");
+			m->mothurOut("(Replacing " + outputFile + " with " + outputFile + ".gz)\n");
 			system(("gzip -v " + outputFile).c_str());
 			outputNames.push_back(outputFile + ".gz");
 		}else { outputNames.push_back(outputFile); }
@@ -709,7 +709,7 @@ bool DistanceCommand::sanityCheck() {
 		}
 		in2.close();
 		
-		if (fastaAlignLength != oldfastaAlignLength) { m->mothurOut("fasta files do not have the same alignment length."); m->mothurOutEndLine(); return false;  }
+		if (fastaAlignLength != oldfastaAlignLength) { m->mothurOut("fasta files do not have the same alignment length.\n"); return false;  }
 		
         //read fasta file and save names as well as adding them to the alignDB
         set<string> namesOldFasta;

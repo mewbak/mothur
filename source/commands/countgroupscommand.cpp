@@ -174,26 +174,26 @@ CountGroupsCommand::CountGroupsCommand(string option)  {
             else { 
                 current->setCountFile(countfile); 
                 CountTable ct;
-                if (!ct.testGroups(countfile)) { m->mothurOut("[ERROR]: Your count file does not have any group information, aborting."); m->mothurOutEndLine(); abort=true; }
+                if (!ct.testGroups(countfile)) { m->mothurOut("[ERROR]: Your count file does not have any group information, aborting.\n"); abort=true; }
             }
             
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
 
 			
 			if ((sharedfile == "") && (groupfile == "") && (countfile == "")) { 
 				//give priority to shared, then group
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					groupfile = current->getGroupFile(); 
-					if (groupfile != "") { m->mothurOut("Using " + groupfile + " as input file for the group parameter."); m->mothurOutEndLine(); }
+					if (groupfile != "") { m->mothurOut("Using " + groupfile + " as input file for the group parameter.\n"); }
 					else { 
 						countfile = current->getCountFile(); 
-                        if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                        if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                         else { 
-                            m->mothurOut("You have no current groupfile, countfile or sharedfile and one is required."); m->mothurOutEndLine(); abort = true;
+                            m->mothurOut("You have no current groupfile, countfile or sharedfile and one is required.\n"); abort = true;
                         }
 					}
 				}
@@ -236,11 +236,11 @@ int CountGroupsCommand::execute(){
 			for (int i = 0; i < Groups.size(); i++) {
                 int num = groupMap.getNumSeqs(Groups[i]);
                 total += num;
-				m->mothurOut(Groups[i] + " contains " + toString(num) + "."); m->mothurOutEndLine();
+				m->mothurOut(Groups[i] + " contains " + toString(num) + ".\n");
                 out << Groups[i] << '\t' << num << endl;
 			}
             out.close();
-            m->mothurOut("\nTotal seqs: " + toString(total) + "."); m->mothurOutEndLine();
+            m->mothurOut("\nTotal seqs: " + toString(total) + ".\n");
 		}
         
         if (m->getControl_pressed()) { return 0; }
@@ -265,12 +265,12 @@ int CountGroupsCommand::execute(){
 			for (int i = 0; i < Groups.size(); i++) {
                 int num = ct.getGroupCount(Groups[i]);
                 total += num;
-				m->mothurOut(Groups[i] + " contains " + toString(num) + "."); m->mothurOutEndLine();
+				m->mothurOut(Groups[i] + " contains " + toString(num) + ".\n");
                 out << Groups[i] << '\t' << num << endl;
 			}
             out.close();
             
-            m->mothurOut("\nTotal seqs: " + toString(total) + "."); m->mothurOutEndLine();
+            m->mothurOut("\nTotal seqs: " + toString(total) + ".\n");
 		}
 		
 		if (m->getControl_pressed()) { return 0; }
@@ -294,12 +294,12 @@ int CountGroupsCommand::execute(){
 			for (int i = 0; i < groups.size(); i++) {
                 int num = lookup->getNumSeqs(groups[i]);
                 total += num;
-				m->mothurOut(groups[i] + " contains " + toString(num) + "."); m->mothurOutEndLine();
+				m->mothurOut(groups[i] + " contains " + toString(num) + ".\n");
                 out << groups[i] << '\t' << num << endl;
 			}
             out.close();
 			
-            m->mothurOut("\nTotal seqs: " + toString(total) + "."); m->mothurOutEndLine();
+            m->mothurOut("\nTotal seqs: " + toString(total) + ".\n");
 		}
 			
         m->mothurOut("\nOutput File Names: \n"); 

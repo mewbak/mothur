@@ -143,8 +143,8 @@ SummarySharedCommand::SummarySharedCommand(string option)  {
 			else if (sharedfile == "not found") { 
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else { current->setSharedFile(sharedfile); }
 			
 			
@@ -188,7 +188,7 @@ SummarySharedCommand::SummarySharedCommand(string option)  {
             output = validParameter.valid(parameters, "output");
             if(output == "not found"){	output = "lt"; }
             else { createPhylip = true; }
-			if ((output != "lt") && (output != "square")) { m->mothurOut(output + " is not a valid output form. Options are lt and square. I will use lt."); m->mothurOutEndLine(); output = "lt"; }
+			if ((output != "lt") && (output != "square")) { m->mothurOut(output + " is not a valid output form. Options are lt and square. I will use lt.\n"); output = "lt"; }
             
             temp = validParameter.valid(parameters, "subsample");		if (temp == "not found") { temp = "F"; }
 			if (util.isNumeric1(temp)) { util.mothurConvert(temp, subsampleSize); subsample = true; }
@@ -378,7 +378,7 @@ int SummarySharedCommand::execute(){
                 Groups = lookup->getNamesGroups();
             }
             
-            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine(); m->setControl_pressed(true);  return 0; }
+            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n"); m->setControl_pressed(true);  return 0; }
         }
 
 		

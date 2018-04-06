@@ -271,12 +271,12 @@ MakeBiomCommand::MakeBiomCommand(string option) {
                 //is there are current file available for either of these?
                 //give priority to shared, then relabund
                 sharedfile = current->getSharedFile();
-                if (sharedfile != "") {  inputFileName = sharedfile; fileFormat="sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+                if (sharedfile != "") {  inputFileName = sharedfile; fileFormat="sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
                 else {
                     relabundfile = current->getRelAbundFile();
-                    if (relabundfile != "") {  inputFileName = relabundfile; fileFormat="relabund"; m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter."); m->mothurOutEndLine(); }
+                    if (relabundfile != "") {  inputFileName = relabundfile; fileFormat="relabund"; m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter.\n"); }
                     else {
-                        m->mothurOut("No valid current files. You must provide a shared or relabund."); m->mothurOutEndLine(); abort = true;
+                        m->mothurOut("No valid current files. You must provide a shared or relabund.\n"); abort = true;
                     }
                 }
             }
@@ -318,16 +318,16 @@ MakeBiomCommand::MakeBiomCommand(string option) {
 			
             if (picrustOtuFile != "") {
                 picrust=true;
-                if (contaxonomyfile == "") {  m->mothurOut("[ERROR]: the constaxonomy parameter is required with the picrust parameter, aborting."); m->mothurOutEndLine(); abort = true;  }
-                if (referenceTax == "") {  m->mothurOut("[ERROR]: the reftaxonomy parameter is required with the picrust parameter, aborting."); m->mothurOutEndLine(); abort = true;  }
+                if (contaxonomyfile == "") {  m->mothurOut("[ERROR]: the constaxonomy parameter is required with the picrust parameter, aborting.\n"); abort = true;  }
+                if (referenceTax == "") {  m->mothurOut("[ERROR]: the reftaxonomy parameter is required with the picrust parameter, aborting.\n"); abort = true;  }
             }else { picrust=false; }
             
-            if ((contaxonomyfile != "") && (labels.size() > 1)) { m->mothurOut("[ERROR]: the contaxonomy parameter cannot be used with multiple labels."); m->mothurOutEndLine(); abort = true; }
+            if ((contaxonomyfile != "") && (labels.size() > 1)) { m->mothurOut("[ERROR]: the contaxonomy parameter cannot be used with multiple labels.\n"); abort = true; }
             
 			format = validParameter.valid(parameters, "matrixtype");				if (format == "not found") { format = "sparse"; }
 			
 			if ((format != "sparse") && (format != "dense")) {
-				m->mothurOut(format + " is not a valid option for the matrixtype parameter. Options are sparse and dense."); m->mothurOutEndLine(); abort = true; 
+				m->mothurOut(format + " is not a valid option for the matrixtype parameter. Options are sparse and dense.\n"); abort = true; 
 			}
 		}
         

@@ -144,11 +144,11 @@ FilterSeqsCommand::FilterSeqsCommand(string option)  {
 				fasta = current->getFastaFile(); 
 				if (fasta != "") { 
                     fastafileNames.push_back(fasta);  
-                    m->mothurOut("Using " + fasta + " as input file for the fasta parameter."); m->mothurOutEndLine();
+                    m->mothurOut("Using " + fasta + " as input file for the fasta parameter.\n");
                     string simpleName = util.getSimpleName(fasta);
                     filterFileName += simpleName.substr(0, simpleName.find_first_of('.'));
                 }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}
 			else { 
 				util.splitAtDash(fasta, fastafileNames);
@@ -159,9 +159,9 @@ FilterSeqsCommand::FilterSeqsCommand(string option)  {
 					bool ignore = false;
 					if (fastafileNames[i] == "current") { 
 						fastafileNames[i] = current->getFastaFile(); 
-						if (fastafileNames[i] != "") {  m->mothurOut("Using " + fastafileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+						if (fastafileNames[i] != "") {  m->mothurOut("Using " + fastafileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							fastafileNames.erase(fastafileNames.begin()+i);
 							i--;
@@ -179,7 +179,7 @@ FilterSeqsCommand::FilterSeqsCommand(string option)  {
                 }
 				
 				//make sure there is at least one valid file left
-				if (fastafileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (fastafileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 			
 			if (!abort) {
@@ -235,7 +235,7 @@ int FilterSeqsCommand::execute() {
 		inFASTA.close();
 		
 		////////////create filter/////////////////
-		m->mothurOut("Creating Filter... "); m->mothurOutEndLine();
+		m->mothurOut("Creating Filter... \n");
 		
 		filter = createFilter();
 		
@@ -258,7 +258,7 @@ int FilterSeqsCommand::execute() {
 				
 		////////////run filter/////////////////
 		
-		m->mothurOut("Running Filter... "); m->mothurOutEndLine();
+		m->mothurOut("Running Filter... \n");
 		
 		filterSequences();
 		

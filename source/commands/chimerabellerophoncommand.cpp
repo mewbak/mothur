@@ -119,8 +119,8 @@ ChimeraBellerophonCommand::ChimeraBellerophonCommand(string option)  {
 			if (fastafile == "not found") { 				
 				//if there is a current fasta file, use it
 				string filename = current->getFastaFile(); 
-				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else { 
 				util.splitAtDash(fastafile, fastaFileNames);
 				
@@ -130,9 +130,9 @@ ChimeraBellerophonCommand::ChimeraBellerophonCommand(string option)  {
 					bool ignore = false;
 					if (fastaFileNames[i] == "current") { 
 						fastaFileNames[i] = current->getFastaFile(); 
-						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							fastaFileNames.erase(fastaFileNames.begin()+i);
 							i--;
@@ -146,7 +146,7 @@ ChimeraBellerophonCommand::ChimeraBellerophonCommand(string option)  {
 				}
 				
 				//make sure there is at least one valid file left
-				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 			
 			//if the user changes the output directory command factory will send this info to us in the output parameter 
@@ -179,7 +179,7 @@ int ChimeraBellerophonCommand::execute(){
 		
 		for (int i = 0; i < fastaFileNames.size(); i++) {
 			
-			m->mothurOut("Checking sequences from " + fastaFileNames[i] + " ..." ); m->mothurOutEndLine();
+			m->mothurOut("Checking sequences from " + fastaFileNames[i] + " ...\n" );
 			
 			long start = time(NULL);	
 			
@@ -207,7 +207,7 @@ int ChimeraBellerophonCommand::execute(){
 						
 			if (m->getControl_pressed()) { util.mothurRemove(accnosFileName); util.mothurRemove(outputFileName); for (int i = 0; i < outputNames.size(); i++) {	util.mothurRemove(outputNames[i]);	} outputTypes.clear(); delete chimera;	return 0;	}
 			
-			m->mothurOutEndLine(); m->mothurOut("It took " + toString(time(NULL) - start) + " secs to check " + toString(numSeqs) + " sequences.");	m->mothurOutEndLine(); m->mothurOutEndLine();
+			m->mothurOut("\nIt took " + toString(time(NULL) - start) + " secs to check " + toString(numSeqs) + " sequences.\n\n");
 			
 			outputNames.push_back(outputFileName);  outputTypes["chimera"].push_back(outputFileName);
 			outputNames.push_back(accnosFileName);  outputTypes["accnos"].push_back(accnosFileName);

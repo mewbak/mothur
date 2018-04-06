@@ -142,9 +142,9 @@ ParseListCommand::ParseListCommand(string option)  {
 			if (listfile == "not open") { abort = true; }
 			else if (listfile == "not found") { 
 				listfile = current->getListFile(); 
-				if (listfile != "") {  m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+				if (listfile != "") {  m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
 				else { 
-					m->mothurOut("No valid current list file. You must provide a list file."); m->mothurOutEndLine(); 
+					m->mothurOut("No valid current list file. You must provide a list file.\n"); 
 					abort = true;
 						
 				}
@@ -172,15 +172,15 @@ ParseListCommand::ParseListCommand(string option)  {
                 ct.readTable(countfile, true, false);
                 if (!ct.hasGroupInfo()) { 
                     abort = true;
-                    m->mothurOut("[ERROR]: The parse.list command requires group info to be present in your countfile, quitting."); m->mothurOutEndLine();
+                    m->mothurOut("[ERROR]: The parse.list command requires group info to be present in your countfile, quitting.\n");
                 }
                     
             }
             
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }else if ((groupfile == "") && (countfile == "")) {
-                m->mothurOut("[ERROR]: you must provide one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you must provide one of the following: group or count.\n"); abort=true;
             }
 			
 			//check for optional parameter and set defaults
@@ -228,7 +228,7 @@ int ParseListCommand::execute(){
 			
 			if(allLines == 1 || labels.count(list->getLabel()) == 1){
 					
-					m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(list->getLabel()+"\n"); 
 					parse(list);
 										
 					processedLabels.insert(list->getLabel());
@@ -240,7 +240,7 @@ int ParseListCommand::execute(){
 					
 					list = input.getListVector(lastLabel); //get new list vector to process
 					
-					m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(list->getLabel()+"\n"); 
 					parse(list);
 					
 					processedLabels.insert(list->getLabel());
@@ -269,10 +269,10 @@ int ParseListCommand::execute(){
 		for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 			m->mothurOut("Your file does not include the label " + *it); 
 			if (processedLabels.count(lastLabel) != 1) {
-				m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". I will use " + lastLabel + ".\n");
 				needToRun = true;
 			}else {
-				m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". Please refer to " + lastLabel + ".\n");
 			}
 
 		}
@@ -288,7 +288,7 @@ int ParseListCommand::execute(){
 			if (list != NULL) {	delete list;	}
 			list = input.getListVector(lastLabel); //get new list vector to process
 			
-			m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+			m->mothurOut(list->getLabel()+"\n"); 
 			parse(list);		
 			
 			delete list;
@@ -366,7 +366,7 @@ int ParseListCommand::parse(ListVector* thisList) {
                 if (groupfile != "") {
                     string group = groupMap->getGroup(names[j]);
 				
-                    if (group == "not found") { m->mothurOut(names[j] + " is not in your groupfile. please correct."); m->mothurOutEndLine(); exit(1); }
+                    if (group == "not found") { m->mothurOut(names[j] + " is not in your groupfile. please correct.\n"); exit(1); }
 				
                     itGroup = groupBins.find(group);
                     if(itGroup == groupBins.end()) {

@@ -129,8 +129,8 @@ KruskalWallisCommand::KruskalWallisCommand(string option)  {
 			else if (sharedfile == "not found") {
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile();
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else { current->setSharedFile(sharedfile); }
             
             //get shared file, it is required
@@ -139,8 +139,8 @@ KruskalWallisCommand::KruskalWallisCommand(string option)  {
 			else if (designfile == "not found") {
 				//if there is a current shared file, use it
 				designfile = current->getDesignFile();
-				if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current design file and the design parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter.\n"); }
+				else { 	m->mothurOut("You have no current design file and the design parameter is required.\n"); abort = true; }
 			}else { current->setDesignFile(designfile); }
             
             //if the user changes the output directory command factory will send this info to us in the output parameter
@@ -241,10 +241,10 @@ int KruskalWallisCommand::execute(){
         for (it = userLabels.begin(); it != userLabels.end(); it++) {
             m->mothurOut("Your file does not include the label " + *it);
             if (processedLabels.count(lastLabel) != 1) {
-                m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". I will use " + lastLabel + ".\n");
                 needToRun = true;
             }else {
-                m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". Please refer to " + lastLabel + ".\n");
             }
         }
         

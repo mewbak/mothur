@@ -330,7 +330,7 @@ SharedOrderVector* SharedListVector::getSharedOrderVector(){
                 if (m->getControl_pressed()) { return order; }
                 if (groupMode == "group") {
                     string groupName = groupmap->getGroup(binNames[i]);
-                    if(groupName == "not found") {	m->mothurOut("Error: Sequence '" + binNames[i] + "' was not found in the group file, please correct."); m->mothurOutEndLine();  exit(1); }
+                    if(groupName == "not found") {	m->mothurOut("Error: Sequence '" + binNames[i] + "' was not found in the group file, please correct.\n");  exit(1); }
                     if (util.inUsersGroups(groupName, groups)) { order->push_back(i, binSize, groupName);  }//i represents what bin you are in
                 }else {
                     vector<int> groupAbundances = countTable->getGroupCounts(binNames[i]);
@@ -377,7 +377,7 @@ SharedRAbundVectors* SharedListVector::getSharedRAbundVector() {
             for (int j = 0; j < binNames.size(); j++) { 
                 if (groupMode == "group") {
                     string group = groupmap->getGroup(binNames[j]);
-                    if(group == "not found") {	m->mothurOut("Error: Sequence '" + binNames[j] + "' was not found in the group file, please correct."); m->mothurOutEndLine();  exit(1); }
+                    if(group == "not found") {	m->mothurOut("Error: Sequence '" + binNames[j] + "' was not found in the group file, please correct.\n");  exit(1); }
                     it = finder.find(group);
                     if (it != finder.end()) { it->second->set(i, it->second->get(i) + 1); } //i represents what bin you are in
                 }else{

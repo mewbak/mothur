@@ -86,7 +86,7 @@ MergeFileCommand::MergeFileCommand(string option)  {
 			if (inputDir == "not found"){	inputDir = "";		}
 			
 			string fileList = validParameter.valid(parameters, "input");
-			if(fileList == "not found") { m->mothurOut("you must enter two or more file names"); m->mothurOutEndLine();  abort=true;  }
+			if(fileList == "not found") { m->mothurOut("you must enter two or more file names\n");  abort=true;  }
 			else{ 	util.splitAtDash(fileList, fileNames);	}
 			
 			//if the user changes the output directory command factory will send this info to us in the output parameter 
@@ -96,7 +96,7 @@ MergeFileCommand::MergeFileCommand(string option)  {
 			numInputFiles = fileNames.size();
 			ifstream testFile;
 			if(numInputFiles == 0){
-				m->mothurOut("you must enter two or more file names and you entered " + toString(fileNames.size()) +  " file names"); m->mothurOutEndLine();
+				m->mothurOut("you must enter two or more file names and you entered " + toString(fileNames.size()) +  " file names\n");
 				abort=true;  
 			}
 			else{
@@ -113,7 +113,7 @@ MergeFileCommand::MergeFileCommand(string option)  {
 			}   
 			
 			outputFileName = validParameter.valid(parameters, "output");			
-			if (outputFileName == "not found") { m->mothurOut("you must enter an output file name"); m->mothurOutEndLine();  abort=true;  }
+			if (outputFileName == "not found") { m->mothurOut("you must enter an output file name\n");  abort=true;  }
 			else if (outputDir != "") { outputFileName = outputDir + util.getSimpleName(outputFileName);  }
 		}
 			

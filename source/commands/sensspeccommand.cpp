@@ -155,8 +155,8 @@ SensSpecCommand::SensSpecCommand(string option)  {
 			listFile = validParameter.validFile(parameters, "list");
 			if (listFile == "not found") {
 				listFile = current->getListFile();
-				if (listFile != "") { m->mothurOut("Using " + listFile + " as input file for the list parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current list file and the list parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (listFile != "") { m->mothurOut("Using " + listFile + " as input file for the list parameter.\n"); }
+				else { 	m->mothurOut("You have no current list file and the list parameter is required.\n"); abort = true; }
 			}
 			else if (listFile == "not open") { abort = true; }
 			else { current->setListFile(listFile); }
@@ -185,26 +185,26 @@ SensSpecCommand::SensSpecCommand(string option)  {
 			if ((phylipfile == "") && (columnfile == "")) { //is there are current file available for either of these?
 				//give priority to column, then phylip
 				columnfile = current->getColumnFile();
-				if (columnfile != "") {  distFile = columnfile; format = "column";  m->mothurOut("Using " + columnfile + " as input file for the column parameter."); m->mothurOutEndLine(); }
+				if (columnfile != "") {  distFile = columnfile; format = "column";  m->mothurOut("Using " + columnfile + " as input file for the column parameter.\n"); }
 				else {
 					phylipfile = current->getPhylipFile();
-					if (phylipfile != "") {  distFile = phylipfile; format = "phylip"; m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter."); m->mothurOutEndLine(); }
+					if (phylipfile != "") {  distFile = phylipfile; format = "phylip"; m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter.\n"); }
 					else {
-						m->mothurOut("No valid current files. You must provide a phylip or column file."); m->mothurOutEndLine();
+						m->mothurOut("No valid current files. You must provide a phylip or column file.\n");
 						abort = true;
 					}
 				}
-			}else if ((phylipfile != "") && (columnfile != "")) { m->mothurOut("When executing a sens.spec command you must enter ONLY ONE of the following: phylip or column."); m->mothurOutEndLine(); abort = true; }
+			}else if ((phylipfile != "") && (columnfile != "")) { m->mothurOut("When executing a sens.spec command you must enter ONLY ONE of the following: phylip or column.\n"); abort = true; }
 
             if (columnfile != "") {
                 if ((namefile == "") && (countfile == "")){
                     namefile = current->getNameFile();
-                    if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+                    if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
                     else {
                         countfile = current->getCountFile();
-                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                         else {
-                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format."); m->mothurOutEndLine();
+                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format.\n");
                             abort = true;
                         }	
                     }	
@@ -212,7 +212,7 @@ SensSpecCommand::SensSpecCommand(string option)  {
             }
 
 			if ((namefile == "") && (phylipfile != "")) {
-                m->mothurOut("[WARNING]: there is no reason to include a name file with a phylip file. Ignoring..."); m->mothurOutEndLine(); abort = false;
+                m->mothurOut("[WARNING]: there is no reason to include a name file with a phylip file. Ignoring...\n"); abort = false;
             }
 
 			//if the user changes the output directory command factory will send this info to us in the output parameter
@@ -366,10 +366,10 @@ int SensSpecCommand::processListFile(){
 		for (it = userLabels.begin(); it != userLabels.end(); it++) {
 			m->mothurOut("Your file does not include the label " + *it);
 			if (processedLabels.count(lastLabel) != 1) {
-				m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". I will use " + lastLabel + ".\n");
 				needToRun = true;
 			}else {
-				m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". Please refer to " + lastLabel + ".\n");
 			}
 		}
 

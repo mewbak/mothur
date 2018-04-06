@@ -169,12 +169,12 @@ CatchAllCommand::CatchAllCommand(string option)  {
 				//give priority to shared, then sabund
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					sabundfile = current->getSabundFile(); 
-					if (sabundfile != "") {  m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter."); m->mothurOutEndLine(); }
+					if (sabundfile != "") {  m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter.\n"); }
 					else { 
-						m->mothurOut("No valid current files. You must provide a sabund or shared file before you can use the catchall command."); m->mothurOutEndLine(); 
+						m->mothurOut("No valid current files. You must provide a sabund or shared file before you can use the catchall command.\n"); 
 						abort = true;
 					}
 				}
@@ -263,7 +263,7 @@ int CatchAllCommand::execute() {
 		
 		for (int p = 0; p < inputFileNames.size(); p++) {
 			if (inputFileNames.size() > 1) {
-				m->mothurOutEndLine(); m->mothurOut("Processing group " + Groups[p]); m->mothurOutEndLine(); m->mothurOutEndLine();
+				m->mothurOut("\nProcessing group " + Groups[p] + "\n\n");
 			}
 			
 			InputData input(inputFileNames[p], "sabund", nullVector);
@@ -292,7 +292,7 @@ int CatchAllCommand::execute() {
 				
 						
 				if(allLines == 1 || labels.count(sabund->getLabel()) == 1){
-						m->mothurOut(sabund->getLabel());  m->mothurOutEndLine();
+						m->mothurOut(sabund->getLabel() + "\n");
 						
 						//create catchall input file from mothur's inputfile
 						string filename = process(sabund, inputFileNames[p]);
@@ -354,7 +354,7 @@ int CatchAllCommand::execute() {
 						delete sabund;		
 						sabund = (input.getSAbundVector(lastLabel));
 						
-						m->mothurOut(sabund->getLabel());  m->mothurOutEndLine();
+						m->mothurOut(sabund->getLabel()+ "\n");
 						
 
 						//create catchall input file from mothur's inputfile
@@ -428,10 +428,10 @@ int CatchAllCommand::execute() {
 			for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 				m->mothurOut("Your file does not include the label " + *it); 
 				if (processedLabels.count(lastLabel) != 1) {
-					m->mothurOut(". I will use " + lastLabel + ".");  m->mothurOutEndLine();
+					m->mothurOut(". I will use " + lastLabel + ".\n");  
 					needToRun = true;
 				}else {
-					m->mothurOut(". Please refer to " + lastLabel + ".");  m->mothurOutEndLine();
+					m->mothurOut(". Please refer to " + lastLabel + ".\n");  
 				}
 			}
 			

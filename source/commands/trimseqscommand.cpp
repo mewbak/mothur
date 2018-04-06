@@ -227,8 +227,8 @@ TrimSeqsCommand::TrimSeqsCommand(string option)  {
 			fastaFile = validParameter.validFile(parameters, "fasta");
 			if (fastaFile == "not found") { 				
 				fastaFile = current->getFastaFile(); 
-				if (fastaFile != "") { m->mothurOut("Using " + fastaFile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFile != "") { m->mothurOut("Using " + fastaFile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else if (fastaFile == "not open") { abort = true; }	
 			else { current->setFastaFile(fastaFile); }
 			
@@ -295,7 +295,7 @@ TrimSeqsCommand::TrimSeqsCommand(string option)  {
 			else if (countfile == "not found") { countfile = ""; }
 			else { current->setCountFile(countfile); }
 			
-            if ((countfile != "") && (nameFile != "")) { m->mothurOut("You must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if ((countfile != "") && (nameFile != "")) { m->mothurOut("You must enter ONLY ONE of the following: count or name.\n"); abort = true; }
 			
 			temp = validParameter.valid(parameters, "qthreshold");	if (temp == "not found") { temp = "0"; }
 			util.mothurConvert(temp, qThreshold);
@@ -340,15 +340,15 @@ TrimSeqsCommand::TrimSeqsCommand(string option)  {
 			processors = current->setProcessors(temp);
 			
 			if(allFiles && (oligoFile == "")){
-				m->mothurOut("You selected allfiles, but didn't enter an oligos.  Ignoring the allfiles request."); m->mothurOutEndLine();
+				m->mothurOut("You selected allfiles, but didn't enter an oligos.  Ignoring the allfiles request.\n");
 			}
 			if((qAverage != 0 && qThreshold != 0) && qFileName == ""){
-				m->mothurOut("You didn't provide a quality file name, quality criteria will be ignored."); m->mothurOutEndLine();
+				m->mothurOut("You didn't provide a quality file name, quality criteria will be ignored.\n");
 				qAverage=0;
 				qThreshold=0;
 			}
 			if(!flip && oligoFile=="" && !maxLength && !minLength && (maxAmbig==-1) && !maxHomoP && qFileName == ""){		
-				m->mothurOut("You didn't set any options... quiting command."); m->mothurOutEndLine();
+				m->mothurOut("You didn't set any options... quiting command.\n");
 				abort = true;
 			}
 			
@@ -1224,7 +1224,7 @@ int TrimSeqsCommand::setLines(string filename, string qfilename) {
             
             if (firstSeqNames.size() != 0) { 
                 for (map<string, int>::iterator it = firstSeqNames.begin(); it != firstSeqNames.end(); it++) {
-                    m->mothurOut(it->first + " is in your fasta file and not in your quality file, not using quality file."); m->mothurOutEndLine();
+                    m->mothurOut(it->first + " is in your fasta file and not in your quality file, not using quality file.\n");
                 }
                 qFileName = "";
                 return processors;
@@ -1273,7 +1273,7 @@ int TrimSeqsCommand::setLines(string filename, string qfilename) {
                 qfileFilePos = util.setFilePosFasta(qfilename, numQualSeqs); 
                 
                 if (numFastaSeqs != numQualSeqs) {
-                    m->mothurOut("[ERROR]: You have " + toString(numFastaSeqs) + " sequences in your fasta file, but " + toString(numQualSeqs) + " sequences in your quality file."); m->mothurOutEndLine(); m->setControl_pressed(true); 
+                    m->mothurOut("[ERROR]: You have " + toString(numFastaSeqs) + " sequences in your fasta file, but " + toString(numQualSeqs) + " sequences in your quality file.\n"); m->setControl_pressed(true); 
                 }
             }
         
@@ -1354,7 +1354,7 @@ bool TrimSeqsCommand::getOligos(){
 					
 					//check for repeat barcodes
 					map<string, int>::iterator itPrime = primers.find(oligo);
-					if (itPrime != primers.end()) { m->mothurOut("primer " + oligo + " is in your oligos file already."); m->mothurOutEndLine();  }
+					if (itPrime != primers.end()) { m->mothurOut("primer " + oligo + " is in your oligos file already.\n");  }
 					
                     if (m->getDebug()) {  if (group != "") { m->mothurOut("[DEBUG]: reading group " + group + ".\n"); }else{ m->mothurOut("[DEBUG]: no group for primer " + oligo + ".\n"); }  }
                     
@@ -1388,7 +1388,7 @@ bool TrimSeqsCommand::getOligos(){
 					
 					//check for repeat barcodes
                     string tempPair = oligo+roligo;
-                    if (uniquePrimers.count(tempPair) != 0) { m->mothurOut("primer pair " + newPrimer.forward + " " + newPrimer.reverse + " is in your oligos file already."); m->mothurOutEndLine();  }
+                    if (uniquePrimers.count(tempPair) != 0) { m->mothurOut("primer pair " + newPrimer.forward + " " + newPrimer.reverse + " is in your oligos file already.\n");  }
                     else { uniquePrimers.insert(tempPair); }
 					
                     if (m->getDebug()) {  if (group != "") { m->mothurOut("[DEBUG]: reading group " + group + ".\n"); }else{ m->mothurOut("[DEBUG]: no group for primer pair " + newPrimer.forward + " " + newPrimer.reverse + ".\n"); }  }
@@ -1435,7 +1435,7 @@ bool TrimSeqsCommand::getOligos(){
                         
                         //check for repeat barcodes
                         string tempPair = oligo+reverseBarcode;
-                        if (uniqueBarcodes.count(tempPair) != 0) { m->mothurOut("barcode pair " + newPair.forward + " " + newPair.reverse +  " is in your oligos file already, disregarding."); m->mothurOutEndLine();  }
+                        if (uniqueBarcodes.count(tempPair) != 0) { m->mothurOut("barcode pair " + newPair.forward + " " + newPair.reverse +  " is in your oligos file already, disregarding.\n");  }
                         else { uniqueBarcodes.insert(tempPair); }
                         
                         pairedBarcodes[indexPairedBarcode]=newPair; indexPairedBarcode++;
@@ -1443,7 +1443,7 @@ bool TrimSeqsCommand::getOligos(){
                     }else {				
                         //check for repeat barcodes
                         map<string, int>::iterator itBar = barcodes.find(oligo);
-                        if (itBar != barcodes.end()) { m->mothurOut("barcode " + oligo + " is in your oligos file already."); m->mothurOutEndLine();  }
+                        if (itBar != barcodes.end()) { m->mothurOut("barcode " + oligo + " is in your oligos file already.\n");  }
                         
                         barcodes[oligo]=indexBarcode; indexBarcode++;
                         barcodeNameVector.push_back(group);
@@ -1453,7 +1453,7 @@ bool TrimSeqsCommand::getOligos(){
 				}else if(type == "SPACER"){
 					spacer.push_back(oligo);
 				}
-				else{	m->mothurOut("[WARNING]: " + type + " is not recognized as a valid type. Choices are forward, reverse, and barcode. Ignoring " + oligo + "."); m->mothurOutEndLine(); }
+				else{	m->mothurOut("[WARNING]: " + type + " is not recognized as a valid type. Choices are forward, reverse, and barcode. Ignoring " + oligo + ".\n"); }
 			}
 			util.gobble(inOligos);
 		}	
@@ -1461,7 +1461,7 @@ bool TrimSeqsCommand::getOligos(){
 		
         if (hasPairedBarcodes || hasPrimer) {
             pairedOligos = true;
-            if ((primers.size() != 0) || (barcodes.size() != 0) || (linker.size() != 0) || (spacer.size() != 0) || (revPrimer.size() != 0)) { m->setControl_pressed(true);  m->mothurOut("[ERROR]: cannot mix paired primers and barcodes with non paired or linkers and spacers, quitting."); m->mothurOutEndLine();  return 0; }
+            if ((primers.size() != 0) || (barcodes.size() != 0) || (linker.size() != 0) || (spacer.size() != 0) || (revPrimer.size() != 0)) { m->setControl_pressed(true);  m->mothurOut("[ERROR]: cannot mix paired primers and barcodes with non paired or linkers and spacers, quitting.\n");  return 0; }
         }
         
 		if(barcodeNameVector.size() == 0 && primerNameVector[0] == ""){	allFiles = false;	}
@@ -1498,7 +1498,7 @@ bool TrimSeqsCommand::getOligos(){
 		}
 
 		if (allBlank) {
-			m->mothurOut("[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile."); m->mothurOutEndLine();
+			m->mothurOut("[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile.\n");
 			allFiles = false;
 			return false;
 		}

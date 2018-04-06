@@ -152,9 +152,9 @@ ClusterDoturCommand::ClusterDoturCommand(string option)  {
 			if (phylipfile == "not open") { abort = true; }
 			else if (phylipfile == "not found") { 
 				phylipfile = current->getPhylipFile(); 
-				if (phylipfile != "") {  m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter."); m->mothurOutEndLine(); }
+				if (phylipfile != "") {  m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter.\n"); }
 				else { 
-					m->mothurOut("You need to provide a phylip file with the cluster.classic command."); m->mothurOutEndLine(); 
+					m->mothurOut("You need to provide a phylip file with the cluster.classic command.\n"); 
 					abort = true; 
 				}	
 			}else { current->setPhylipFile(phylipfile); }	
@@ -171,7 +171,7 @@ ClusterDoturCommand::ClusterDoturCommand(string option)  {
 			else if (countfile == "not found") { countfile = ""; }
 			else { current->setCountFile(countfile); }
 			
-            if ((countfile != "") && (namefile != "")) { m->mothurOut("When executing a cluster.classic command you must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if ((countfile != "") && (namefile != "")) { m->mothurOut("When executing a cluster.classic command you must enter ONLY ONE of the following: count or name.\n"); abort = true; }
             
 			string temp;
 			temp = validParameter.valid(parameters, "precision");
@@ -195,7 +195,7 @@ ClusterDoturCommand::ClusterDoturCommand(string option)  {
 				else if (method == "nearest") { tag = "nn"; }
 				else if (method == "average") { tag = "an"; }
 				else if (method == "weighted") { tag = "wn"; }
-			}else { m->mothurOut("Not a valid clustering method.  Valid clustering algorithms are furthest, nearest, average, weighted."); m->mothurOutEndLine(); abort = true; }
+			}else { m->mothurOut("Not a valid clustering method.  Valid clustering algorithms are furthest, nearest, average, weighted.\n"); abort = true; }
 		}
 	}
 	catch(exception& e) {
@@ -320,7 +320,7 @@ int ClusterDoturCommand::execute(){
 		m->mothurOut("\nOutput File Names: \n"); 
 		for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i] +"\n"); 	} m->mothurOutEndLine();
 
-		m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to cluster"); m->mothurOutEndLine();
+		m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to cluster\n");
 
 		return 0;
 	}

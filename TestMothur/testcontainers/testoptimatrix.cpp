@@ -19,8 +19,8 @@ TestOptiMatrix::TestOptiMatrix() {  //setup
     columnFile = data.getSubsetFNGDistFile();
     
     string inputString = "fasta=" + filenames[0] + ", output=lt";
-    m->mothurOut("/******************************************/"); m->mothurOutEndLine();
-    m->mothurOut("Running command: dist.seqs(" + inputString + ")"); m->mothurOutEndLine();
+    m->mothurOut("/******************************************/\n");
+    m->mothurOut("Running command: dist.seqs(" + inputString + ")\n");
     current->setMothurCalling(true);
     
     Command* dist2Command = new DistanceCommand(inputString);
@@ -32,7 +32,7 @@ TestOptiMatrix::TestOptiMatrix() {  //setup
     current->setMothurCalling(false);
     
     phylipFile = outputFilenames["phylip"][0];
-    m->mothurOut("/******************************************/"); m->mothurOutEndLine();
+    m->mothurOut("/******************************************/\n");
     
     blastFile = m->getTestFilePath() + "bap.100.blast";
 }

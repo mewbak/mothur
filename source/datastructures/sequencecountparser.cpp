@@ -147,7 +147,7 @@ int SequenceCountParser::getNumSeqs(string g){
 		
 		it = seqs.find(g);
 		if(it == seqs.end()) {
-			m->mothurOut("[ERROR]: " + g + " is not a valid group, please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: " + g + " is not a valid group, please correct.\n");
 		}else {
 			num = (it->second).size();
 		}
@@ -185,7 +185,7 @@ vector<Sequence> SequenceCountParser::getSeqs(string g){
 		
 		it = seqs.find(g);
 		if(it == seqs.end()) {
-			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct.\n");
 		}else {
 			seqForThisGroup = it->second;
             if (m->getDebug()) {  m->mothurOut("[DEBUG]: group " + g + " fasta file has " + toString(seqForThisGroup.size()) + " sequences.");  }
@@ -207,7 +207,7 @@ int SequenceCountParser::getSeqs(string g, string filename, string tag, string t
 		
 		it = seqs.find(g);
 		if(it == seqs.end()) {
-			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct.\n");
 		}else {
 
 			ofstream out;
@@ -231,7 +231,7 @@ int SequenceCountParser::getSeqs(string g, string filename, string tag, string t
 					
 					if (itCount == countForThisGroup.end()){
 						error = 1;
-						m->mothurOut("[ERROR]: " + seqForThisGroup[i].getName() + " is in your fastafile, but is not in your count file, please correct."); m->mothurOutEndLine();
+						m->mothurOut("[ERROR]: " + seqForThisGroup[i].getName() + " is in your fastafile, but is not in your count file, please correct.\n");
 					}else {
                         seqPriorityNode temp(itCount->second, seqForThisGroup[i].getUnaligned(), seqForThisGroup[i].getName());
 						nameVector.push_back(temp);
@@ -279,7 +279,7 @@ map<string, int> SequenceCountParser::getCountTable(string g){
 		
 		it = countTablePerGroup.find(g);
 		if(it == countTablePerGroup.end()) {
-			m->mothurOut("[ERROR]: No countTable available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No countTable available for group " + g + ", please correct.\n");
 		}else {
 			countForThisGroup = it->second;
             if (m->getDebug()) {  m->mothurOut("[DEBUG]: group " + g + " count file has " + toString(countForThisGroup.size()) + " unique sequences.");  }
@@ -301,7 +301,7 @@ int SequenceCountParser::getCountTable(string g, string filename){
 		
 		it = countTablePerGroup.find(g);
 		if(it == countTablePerGroup.end()) {
-			m->mothurOut("[ERROR]: No countTable available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No countTable available for group " + g + ", please correct.\n");
 		}else {
 			countForThisGroup = it->second;
 			

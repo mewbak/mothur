@@ -194,8 +194,8 @@ SplitAbundCommand::SplitAbundCommand(string option)  {
 			if (fastafile == "not open") { abort = true; }
 			else if (fastafile == "not found") { 				
 				fastafile = current->getFastaFile(); 
-				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else { current->setFastaFile(fastafile); }	
 			
 			groupfile = validParameter.validFile(parameters, "group");
@@ -216,34 +216,34 @@ SplitAbundCommand::SplitAbundCommand(string option)  {
             }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
 			
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
             
 			groups = validParameter.valid(parameters, "groups");		
 			if (groups == "not found") { groups = ""; }
 			else { util.splitAtDash(groups, Groups); if (Groups.size() != 0) { if (Groups[0]== "all") { Groups.clear(); } } }
 			
-			if (((groupfile == "") && (countfile == ""))&& (groups != "")) {  m->mothurOut("You cannot select groups without a valid group or count file, I will disregard your groups selection. "); m->mothurOutEndLine(); groups = "";  Groups.clear(); }
+			if (((groupfile == "") && (countfile == ""))&& (groups != "")) {  m->mothurOut("You cannot select groups without a valid group or count file, I will disregard your groups selection. \n"); groups = "";  Groups.clear(); }
 			
             if (countfile != "") {
-                if (!ct.hasGroupInfo()) { m->mothurOut("You cannot pick groups without group info in your count file; I will disregard your groups selection."); m->mothurOutEndLine(); groups = "";  Groups.clear(); }
+                if (!ct.hasGroupInfo()) { m->mothurOut("You cannot pick groups without group info in your count file; I will disregard your groups selection.\n"); groups = "";  Groups.clear(); }
             }
             
 			//do you have all files needed
 			if ((listfile == "") && (namefile == "") && (countfile == "")) { 
 				namefile = current->getNameFile(); 
-				if (namefile != "") { m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+				if (namefile != "") { m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
 				else { 				
 					listfile = current->getListFile(); 
-					if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+					if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
 					else { 	
                         countfile  = current->getCountFile(); 
-                        if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
-                        else { 	m->mothurOut("You have no current list, count or namefile and one is required."); m->mothurOutEndLine(); abort = true; }
+                        if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
+                        else { 	m->mothurOut("You have no current list, count or namefile and one is required.\n"); abort = true; }
                     }
 				}
 			}
@@ -263,7 +263,7 @@ SplitAbundCommand::SplitAbundCommand(string option)  {
 			temp = validParameter.valid(parameters, "cutoff");				if (temp == "not found") { temp = "0"; }
 			util.mothurConvert(temp, cutoff); 
 
-			if (cutoff == 0) {  m->mothurOut("You must provide a cutoff to qualify what is abundant for the split.abund command. "); m->mothurOutEndLine(); abort = true;  }
+			if (cutoff == 0) {  m->mothurOut("You must provide a cutoff to qualify what is abundant for the split.abund command. \n"); abort = true;  }
 		}
 
 	}
@@ -303,7 +303,7 @@ int SplitAbundCommand::execute(){
 				
 				if(allLines == 1 || labels.count(list->getLabel()) == 1){
 						
-						m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+						m->mothurOut(list->getLabel()+"\n"); 
 						splitList(list);
 											
 						processedLabels.insert(list->getLabel());
@@ -316,7 +316,7 @@ int SplitAbundCommand::execute(){
 						delete list;
 						list = input.getListVector(lastLabel); //get new list vector to process
 						
-						m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+						m->mothurOut(list->getLabel()+"\n"); 
 						splitList(list);
 						
 						processedLabels.insert(list->getLabel());
@@ -341,10 +341,10 @@ int SplitAbundCommand::execute(){
 			for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 				m->mothurOut("Your file does not include the label " + *it); 
 				if (processedLabels.count(lastLabel) != 1) {
-					m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". I will use " + lastLabel + ".\n");
 					needToRun = true;
 				}else {
-					m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". Please refer to " + lastLabel + ".\n");
 				}
 
 			}
@@ -356,7 +356,7 @@ int SplitAbundCommand::execute(){
 				if (list != NULL) {	delete list;	}
 				list = input.getListVector(lastLabel); //get new list vector to process
 				
-				m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+				m->mothurOut(list->getLabel()+"\n"); 
 				splitList(list);		
 				
 				delete list;
@@ -606,7 +606,7 @@ int SplitAbundCommand::writeList(ListVector* thisList, string tag, int numRareBi
                                 groupBins[group+rareAbund] +=  "," + names[j];
                             }
                         }else if(group == "not found") {
-                            m->mothurOut(names[j] + " is not in your groupfile. Ignoring."); m->mothurOutEndLine();
+                            m->mothurOut(names[j] + " is not in your groupfile. Ignoring.\n");
                         }
                     }else {
                         vector<string> thisSeqsGroups = ct.getGroups(names[j]);
@@ -958,7 +958,7 @@ int SplitAbundCommand::writeNames() { //namefile
 							outputStrings[group+rareAbund] = names[i] + '\t' + names[i];
 						}else {   outputStrings[group+rareAbund] += "," + names[i]; }
 					}else if(group == "not found") {
-						m->mothurOut(names[i] + " is not in your groupfile. Ignoring."); m->mothurOutEndLine();
+						m->mothurOut(names[i] + " is not in your groupfile. Ignoring.\n");
 					}
 				}
 				
@@ -1112,7 +1112,7 @@ int SplitAbundCommand::parseGroup(string tag) { //namefile
 					string group = groupMap.getGroup(names[i]);
 				
 					if (group == "not found") { 
-						m->mothurOut(names[i] + " is not in your groupfile, ignoring, please correct."); m->mothurOutEndLine();
+						m->mothurOut(names[i] + " is not in your groupfile, ignoring, please correct.\n");
 					}else {
 						if (rareNames.count(itName->first) != 0) { //you are a rare name
 							rout << names[i] << '\t' << group << endl;
@@ -1225,7 +1225,7 @@ int SplitAbundCommand::parseFasta(string tag) { //namefile
 					itNames = nameMap.find(seq.getName());
 					
 					if (itNames == nameMap.end()) {
-						m->mothurOut(seq.getName() + " is not in your names or list file, ignoring."); m->mothurOutEndLine();
+						m->mothurOut(seq.getName() + " is not in your names or list file, ignoring.\n");
 					}else{
 						if (rareNames.count(seq.getName()) != 0) { //you are a rare name
 							seq.printSequence(rout);
@@ -1274,7 +1274,7 @@ int SplitAbundCommand::parseFasta(string tag) { //namefile
 					map<string, string>::iterator itNames = nameMap.find(seq.getName());
 					
 					if (itNames == nameMap.end()) {
-						m->mothurOut(seq.getName() + " is not in your names or list file, ignoring."); m->mothurOutEndLine();
+						m->mothurOut(seq.getName() + " is not in your names or list file, ignoring.\n");
 					}else{
 						vector<string> names;
 						util.splitAtComma(itNames->second, names);  //parses bin into individual sequence names
@@ -1295,7 +1295,7 @@ int SplitAbundCommand::parseFasta(string tag) { //namefile
                                     util.openOutputFileAppend(files[group+rareAbund], out);
                                     seq.printSequence(out); out.close();
                                 }else if(group == "not found") {
-                                    m->mothurOut(seq.getName() + " is not in your groupfile. Ignoring."); m->mothurOutEndLine();
+                                    m->mothurOut(seq.getName() + " is not in your groupfile. Ignoring.\n");
                                 }
                             }
                         }else {

@@ -190,49 +190,23 @@ ClassifySvmSharedCommand::ClassifySvmSharedCommand(string option) {
             //check for parameters
             //get shared file, it is required
             sharedfile = validParameter.validFile(parameters, "shared");
-            if (sharedfile == "not open") {
-                sharedfile = "";
-                abort = true;
-            }
+            if (sharedfile == "not open") { sharedfile = ""; abort = true; }
             else if (sharedfile == "not found") {
                 //if there is a current shared file, use it
                 sharedfile = current->getSharedFile();
-                if (sharedfile != "") {
-                    m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.");
-                    m->mothurOutEndLine();
-                }
-                else {
-                    m->mothurOut("You have no current sharedfile and the shared parameter is required.");
-                    m->mothurOutEndLine();
-                    abort = true;
-                }
-            }
-            else {
-                current->setSharedFile(sharedfile);
-            }
+                if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+                else { m->mothurOut("[ERROR]: You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
+            }else{ current->setSharedFile(sharedfile); }
 
             //get design file, it is required
             designfile = validParameter.validFile(parameters, "design");
-            if (designfile == "not open") {
-                sharedfile = "";
-                abort = true;
-            }
+            if (designfile == "not open") { sharedfile = ""; abort = true; }
             else if (designfile == "not found") {
                 //if there is a current shared file, use it
                 designfile = current->getDesignFile();
-                if (designfile != "") {
-                    m->mothurOut("Using " + designfile + " as input file for the design parameter.");
-                    m->mothurOutEndLine();
-                }
-                else {
-                    m->mothurOut("You have no current designfile and the design parameter is required.");
-                    m->mothurOutEndLine();
-                    abort = true;
-                }
-            }
-            else {
-                current->setDesignFile(designfile);
-            }
+                if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter.\n"); }
+                else { m->mothurOut("[ERROR]: You have no current designfile and the design parameter is required.\n"); abort = true; }
+            }else{ current->setDesignFile(designfile); }
 
             //if the user changes the output directory command factory will send this info to us in the output parameter
             outputDir = validParameter.valid(parameters, "outputdir");
@@ -498,10 +472,10 @@ int ClassifySvmSharedCommand::execute() {
     for (it = userLabels.begin(); it != userLabels.end(); it++) {
       m->mothurOut("Your file does not include the label " + *it);
       if (processedLabels.count(lastLabel) != 1) {
-        m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+        m->mothurOut(". I will use " + lastLabel + ".\n");
         needToRun = true;
       }else {
-        m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+        m->mothurOut(". Please refer to " + lastLabel + ".\n");
       }
     }
 
@@ -521,7 +495,7 @@ int ClassifySvmSharedCommand::execute() {
     }
 
       m->mothurOutEndLine();
-      m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+      m->mothurOut("Output File Names: \n");
       for (int i = 0; i < outputNames.size(); i++) {    m->mothurOut(outputNames[i]); m->mothurOutEndLine();    }
       m->mothurOutEndLine();
 
@@ -619,7 +593,7 @@ void ClassifySvmSharedCommand::processSharedAndDesignData(vector<SharedRAbundVec
         if ( stdthreshold > 0.0 ) {
             FeatureVector removedFeatureVector = applyStdThreshold(stdthreshold, labeledObservationVector, featureVector);
             if (removedFeatureVector.size() > 0) {
-                m->mothurOut(toString(removedFeatureVector.size()) + " OTUs were below the stdthreshold of " + toString(stdthreshold) + " and were removed"); m->mothurOutEndLine();
+                m->mothurOut(toString(removedFeatureVector.size()) + " OTUs were below the stdthreshold of " + toString(stdthreshold) + " and were removed\n");
                 if ( outputFilter.debug() ) {
                     m->mothurOut("the following OTUs were below the standard deviation threshold of " + toString(stdthreshold) ); m->mothurOutEndLine();
                     for (FeatureVector::iterator i = removedFeatureVector.begin(); i != removedFeatureVector.end(); i++) {
@@ -631,11 +605,11 @@ void ClassifySvmSharedCommand::processSharedAndDesignData(vector<SharedRAbundVec
 
         // apply [0,1] standardization
         if ( transformName == "zeroone") {
-            m->mothurOut("transforming data to lie within range [0,1]"); m->mothurOutEndLine();
+            m->mothurOut("transforming data to lie within range [0,1]\n");
             transformZeroOne(labeledObservationVector);
         }
         else {
-            m->mothurOut("transforming data to have zero mean and unit variance"); m->mothurOutEndLine();
+            m->mothurOut("transforming data to have zero mean and unit variance\n");
             transformZeroMeanUnitVariance(labeledObservationVector);
         }
 
@@ -662,7 +636,7 @@ void ClassifySvmSharedCommand::processSharedAndDesignData(vector<SharedRAbundVec
             int n = 0;
             int rfeRoundCount = rankedFeatureList.front().getRank();
             m->mothurOut("ordered features:" ); m->mothurOutEndLine();
-            m->mothurOut("index\tOTU\trank"); m->mothurOutEndLine();
+            m->mothurOut("index\tOTU\trank\n");
             outputFile << setw(5)  << "index"
                        << setw(12) << "OTU"
                        << setw(5)  << "rank"

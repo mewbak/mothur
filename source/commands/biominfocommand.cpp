@@ -145,7 +145,7 @@ BiomInfoCommand::BiomInfoCommand(string option)  {
             if (label == "not found") { label = "userLabel"; }
             
             output = validParameter.valid(parameters, "output");		if(output == "not found"){	output = "detail"; }
-            if ((output != "simple") && (output != "detail")) { m->mothurOut(output + " is not a valid output form. Options are simple and detail. I will use detail."); m->mothurOutEndLine(); output = "detail"; }
+            if ((output != "simple") && (output != "detail")) { m->mothurOut(output + " is not a valid output form. Options are simple and detail. I will use detail.\n"); output = "detail"; }
             
             string temp = validParameter.valid(parameters, "relabund");		if (temp == "not found"){	temp = "false";			}
             relabund = util.isTrue(temp);
@@ -156,7 +156,7 @@ BiomInfoCommand::BiomInfoCommand(string option)  {
             basis = validParameter.valid(parameters, "basis");
             if (basis == "not found") { basis = "otu"; }
             
-            if ((basis != "otu") && (basis != "sequence")) { m->mothurOut("Invalid option for basis. basis options are otu and sequence, using otu."); m->mothurOutEndLine(); }
+            if ((basis != "otu") && (basis != "sequence")) { m->mothurOut("Invalid option for basis. basis options are otu and sequence, using otu.\n"); }
         }
         
     }
@@ -176,7 +176,7 @@ int BiomInfoCommand::execute(){
         
         createFilesFromBiom();
         
-        m->mothurOutEndLine(); m->mothurOut("It took " + toString(time(NULL) - start) + " create mothur files from your biom file.\n");	m->mothurOutEndLine();
+        m->mothurOut("\nIt took " + toString(time(NULL) - start) + " create mothur files from your biom file.\n\n");
         
         if (m->getControl_pressed()) { for (int i = 0; i < outputNames.size(); i++) { util.mothurRemove(outputNames[i]); } }
         
@@ -199,7 +199,7 @@ int BiomInfoCommand::execute(){
         }
         
         m->mothurOutEndLine();
-        m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+        m->mothurOut("Output File Names: \n");
         for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
         m->mothurOutEndLine();
         
@@ -440,7 +440,7 @@ int BiomInfoCommand::createFilesFromBiom() {
             string thisLine = it->second;
             SharedRAbundVectors* lookup = readData(matrixFormat, thisLine, matrixElementType, groupNames, otuNames.size());
             lookup->setOTUNames(otuNames);
-            m->mothurOutEndLine(); m->mothurOut(lookup->getLabel()+"\n"); 
+            m->mothurOut("\n" + lookup->getLabel()+"\n");
             lookup->print(out);
             
             if (conTaxonomy.size() != 0) {

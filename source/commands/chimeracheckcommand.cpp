@@ -129,8 +129,8 @@ ChimeraCheckCommand::ChimeraCheckCommand(string option)  {
 			if (fastafile == "not found") { 				
 				//if there is a current fasta file, use it
 				string filename = current->getFastaFile(); 
-				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else { 
 				util.splitAtDash(fastafile, fastaFileNames);
 				
@@ -140,9 +140,9 @@ ChimeraCheckCommand::ChimeraCheckCommand(string option)  {
 					bool ignore = false;
 					if (fastaFileNames[i] == "current") { 
 						fastaFileNames[i] = current->getFastaFile(); 
-						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							fastaFileNames.erase(fastaFileNames.begin()+i);
 							i--;
@@ -156,7 +156,7 @@ ChimeraCheckCommand::ChimeraCheckCommand(string option)  {
                 }
 				
 				//make sure there is at least one valid file left
-				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 			
 			//if the user changes the output directory command factory will send this info to us in the output parameter 
@@ -173,9 +173,9 @@ ChimeraCheckCommand::ChimeraCheckCommand(string option)  {
 					bool ignore = false;
 					if (nameFileNames[i] == "current") { 
 						nameFileNames[i] = current->getNameFile();
-						if (nameFileNames[i] != "") {  m->mothurOut("Using " + nameFileNames[i] + " as input file for the name parameter where you had given current."); m->mothurOutEndLine(); }
+						if (nameFileNames[i] != "") {  m->mothurOut("Using " + nameFileNames[i] + " as input file for the name parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current namefile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current namefile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							nameFileNames.erase(nameFileNames.begin()+i);
 							i--;
@@ -191,7 +191,7 @@ ChimeraCheckCommand::ChimeraCheckCommand(string option)  {
 				//make sure there is at least one valid file left
 				if (nameFileNames.size() != 0) {
 					if (nameFileNames.size() != fastaFileNames.size()) { 
-						 m->mothurOut("Different number of valid name files and fasta files, aborting command."); m->mothurOutEndLine(); 
+						 m->mothurOut("Different number of valid name files and fasta files, aborting command.\n"); 
 						 abort = true;
 					}
 				}
@@ -227,7 +227,7 @@ int ChimeraCheckCommand::execute(){
 		
 		for (int i = 0; i < fastaFileNames.size(); i++) {
 				
-			m->mothurOut("Checking sequences from " + fastaFileNames[i] + " ..." ); m->mothurOutEndLine();
+			m->mothurOut("Checking sequences from " + fastaFileNames[i] + " ...\n" );
 			
 			long start = time(NULL);	
 			
@@ -251,8 +251,8 @@ int ChimeraCheckCommand::execute(){
 				
 			delete chimera;
 			
-			m->mothurOutEndLine(); m->mothurOut("This method does not determine if a sequence is chimeric, but allows you to make that determination based on the IS values."); m->mothurOutEndLine(); 
-			m->mothurOutEndLine(); m->mothurOut("It took " + toString(time(NULL) - start) + " secs to check " + toString(numSeqs) + " sequences.");	m->mothurOutEndLine(); m->mothurOutEndLine();
+			m->mothurOut("\nThis method does not determine if a sequence is chimeric, but allows you to make that determination based on the IS values.\n"); 
+			m->mothurOut("\nIt took " + toString(time(NULL) - start) + " secs to check " + toString(numSeqs) + " sequences.\n\n");
 
 		}
 		

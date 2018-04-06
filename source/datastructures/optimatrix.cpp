@@ -214,7 +214,7 @@ int OptiMatrix::readPhylip(){
         nameMap.push_back(name);
         singletonIndexSwap[0] = 0;
         
-        if (!util.isContainingOnlyDigits(numTest)) { m->mothurOut("[ERROR]: expected a number and got " + numTest + ", quitting."); m->mothurOutEndLine(); exit(1); }
+        if (!util.isContainingOnlyDigits(numTest)) { m->mothurOut("[ERROR]: expected a number and got " + numTest + ", quitting.\n"); exit(1); }
         else { convert(numTest, nseqs); }
         
         //square test
@@ -554,7 +554,7 @@ int OptiMatrix::readBlast(){
                     blastSingletonIndexSwap[indexB] = indexB;
                 }
             }
-        }else { m->mothurOut("Error in your blast file, cannot read."); m->mothurOutEndLine(); exit(1); }
+        }else { m->mothurOut("Error in your blast file, cannot read.\n"); exit(1); }
         
         
         while(fileHandle){  //let's assume it's a triangular matrix...
@@ -783,7 +783,7 @@ int OptiMatrix::readBlast(){
                     overlapNameMap[newB] = secondName;
                 }
             }
-        }else { m->mothurOut("Error in your blast file, cannot read."); m->mothurOutEndLine(); exit(1); }
+        }else { m->mothurOut("Error in your blast file, cannot read.\n"); exit(1); }
         
         
         while(in){  //let's assume it's a triangular matrix...
@@ -948,7 +948,7 @@ int OptiMatrix::readBlast(){
         dists.clear();
         nameAssignment.clear();
         
-        m->mothurOut(" done."); m->mothurOutEndLine();
+        m->mothurOut(" done.\n");
         
         return 1;
         
@@ -1004,7 +1004,7 @@ int OptiMatrix::readBlastNames(map<string, int>& nameAssignment) {
         
         if (m->getControl_pressed()) { return 0; }
         
-        m->mothurOut(toString(num) + " names read."); m->mothurOutEndLine();
+        m->mothurOut(toString(num) + " names read.\n");
         
         return 0;
         

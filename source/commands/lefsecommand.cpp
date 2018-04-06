@@ -170,8 +170,8 @@ LefseCommand::LefseCommand(string option)  {
 			else if (sharedfile == "not found") {
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile();
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else { current->setSharedFile(sharedfile); }
             
             //get shared file, it is required
@@ -180,8 +180,8 @@ LefseCommand::LefseCommand(string option)  {
 			else if (designfile == "not found") {
 				//if there is a current shared file, use it
 				designfile = current->getDesignFile();
-				if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current design file and the design parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter.\n"); }
+				else { 	m->mothurOut("You have no current design file and the design parameter is required.\n"); abort = true; }
 			}else { current->setDesignFile(designfile); }
             
             //if the user changes the output directory command factory will send this info to us in the output parameter
@@ -244,7 +244,7 @@ LefseCommand::LefseCommand(string option)  {
             
             temp = validParameter.valid(parameters, "strict");
             if (temp == "not found"){	temp = "0";		}
-			if ((temp != "0") && (temp != "1") && (temp != "2")) { m->mothurOut("Invalid strict option: choices are 0, 1 or 2."); m->mothurOutEndLine(); abort=true; }
+			if ((temp != "0") && (temp != "1") && (temp != "2")) { m->mothurOut("Invalid strict option: choices are 0, 1 or 2.\n"); abort=true; }
             else {  util.mothurConvert(temp, strict); }
             
             temp = validParameter.valid(parameters, "minc");
@@ -259,7 +259,7 @@ LefseCommand::LefseCommand(string option)  {
             
             multiClassStrat = validParameter.valid(parameters, "multiclass");
             if (multiClassStrat == "not found"){	multiClassStrat = "onevall";		}
-			if ((multiClassStrat != "onevall") && (multiClassStrat != "onevone")) { m->mothurOut("Invalid multiclass option: choices are onevone or onevall."); m->mothurOutEndLine(); abort=true; }
+			if ((multiClassStrat != "onevall") && (multiClassStrat != "onevone")) { m->mothurOut("Invalid multiclass option: choices are onevone or onevall.\n"); abort=true; }
 		}
 		
 	}
@@ -345,10 +345,10 @@ int LefseCommand::execute(){
         for (it = userLabels.begin(); it != userLabels.end(); it++) {
             m->mothurOut("Your file does not include the label " + *it);
             if (processedLabels.count(lastLabel) != 1) {
-                m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". I will use " + lastLabel + ".\n");
                 needToRun = true;
             }else {
-                m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". Please refer to " + lastLabel + ".\n");
             }
         }
         

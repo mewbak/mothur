@@ -196,31 +196,31 @@ TreeGroupCommand::TreeGroupCommand(string option)  {
 				//is there are current file available for either of these?
 				//give priority to shared, then column, then phylip
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") {  inputfile = sharedfile; format = "sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") {  inputfile = sharedfile; format = "sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					columnfile = current->getColumnFile(); 
-					if (columnfile != "") { inputfile = columnfile; format = "column";  m->mothurOut("Using " + columnfile + " as input file for the column parameter."); m->mothurOutEndLine(); }
+					if (columnfile != "") { inputfile = columnfile; format = "column";  m->mothurOut("Using " + columnfile + " as input file for the column parameter.\n"); }
 					else { 
 						phylipfile = current->getPhylipFile(); 
-						if (phylipfile != "") { inputfile = phylipfile;  format = "phylip";  m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter."); m->mothurOutEndLine(); }
+						if (phylipfile != "") { inputfile = phylipfile;  format = "phylip";  m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter.\n"); }
 						else { 
-							m->mothurOut("No valid current files. You must provide a shared, phylip or column file."); m->mothurOutEndLine(); 
+							m->mothurOut("No valid current files. You must provide a shared, phylip or column file.\n"); 
 							abort = true;
 						}
 					}
 				}
 			}
-			else if ((phylipfile != "") && (columnfile != "")) { m->mothurOut("When running the tree.shared command with a distance file you may not use both the column and the phylip parameters."); m->mothurOutEndLine(); abort = true; }
+			else if ((phylipfile != "") && (columnfile != "")) { m->mothurOut("When running the tree.shared command with a distance file you may not use both the column and the phylip parameters.\n"); abort = true; }
 			
 			if (columnfile != "") {
 				if ((namefile == "") && (countfile == "")){ 
 					namefile = current->getNameFile(); 
-					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
 					else { 
 						countfile = current->getCountFile();
-                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                         else { 
-                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format."); m->mothurOutEndLine(); 
+                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format.\n"); 
                             abort = true; 
                         }	
 					}	
@@ -311,7 +311,7 @@ int TreeGroupCommand::execute(){
 			lastLabel = lookup->getLabel();
             Groups = lookup->getNamesGroups();
 			
-            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine();  return 0; }
+            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n");  return 0; }
 			
 			//create treemap class from groupmap for tree class to use
 			CountTable ct;
@@ -528,7 +528,7 @@ int TreeGroupCommand::makeSimsShared(InputData& input, SharedRAbundVectors*& loo
                 Treenames = Groups;
             }
             
-            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine(); m->setControl_pressed(true); return 0; }
+            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n"); m->setControl_pressed(true); return 0; }
         }
         numGroups = lookup->size();
         

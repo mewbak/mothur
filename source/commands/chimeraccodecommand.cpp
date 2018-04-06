@@ -137,8 +137,8 @@ ChimeraCcodeCommand::ChimeraCcodeCommand(string option)  {
 			fastafile = validParameter.valid(parameters, "fasta");
 			if (fastafile == "not found") { 				//if there is a current fasta file, use it
 				string filename = current->getFastaFile(); 
-				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else { 
 				util.splitAtDash(fastafile, fastaFileNames);
 				
@@ -148,9 +148,9 @@ ChimeraCcodeCommand::ChimeraCcodeCommand(string option)  {
 					bool ignore = false;
 					if (fastaFileNames[i] == "current") { 
 						fastaFileNames[i] = current->getFastaFile(); 
-						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							fastaFileNames.erase(fastaFileNames.begin()+i);
 							i--;
@@ -164,7 +164,7 @@ ChimeraCcodeCommand::ChimeraCcodeCommand(string option)  {
                 }
 				
 				//make sure there is at least one valid file left
-				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 			
 			//if the user changes the output directory command factory will send this info to us in the output parameter 
@@ -215,17 +215,17 @@ int ChimeraCcodeCommand::execute(){
 		
 		for (int s = 0; s < fastaFileNames.size(); s++) {
 				
-			m->mothurOut("Checking sequences from " + fastaFileNames[s] + " ..." ); m->mothurOutEndLine();
+			m->mothurOut("Checking sequences from " + fastaFileNames[s] + " ...\n" );
 		
 			long start = time(NULL);	
 			
 			//set user options
-			if (maskfile == "default") { m->mothurOut("I am using the default 236627 EU009184.1 Shigella dysenteriae str. FBD013."); m->mothurOutEndLine();  }
+			if (maskfile == "default") { m->mothurOut("I am using the default 236627 EU009184.1 Shigella dysenteriae str. FBD013.\n");  }
 
 			chimera = new Ccode(fastaFileNames[s], templatefile, filter, maskfile, window, numwanted, outputDir);	
 			
 			//is your template aligned?
-			if (chimera->getUnaligned()) { m->mothurOut("Your template sequences are different lengths, please correct."); m->mothurOutEndLine(); delete chimera; return 0; }
+			if (chimera->getUnaligned()) { m->mothurOut("Your template sequences are different lengths, please correct.\n"); delete chimera; return 0; }
 			templateSeqsLength = chimera->getLength();
 			
 			if (outputDir == "") { outputDir = util.hasPath(fastaFileNames[s]);  }//if user entered a file with a path then preserve it
@@ -261,7 +261,7 @@ int ChimeraCcodeCommand::execute(){
 			outputNames.push_back(accnosFileName); outputTypes["accnos"].push_back(accnosFileName);
 			 
 						
-			m->mothurOutEndLine(); m->mothurOut("It took " + toString(time(NULL) - start) + " secs to check " + toString(numSeqs) + " sequences.");	m->mothurOutEndLine();
+			m->mothurOut("\nIt took " + toString(time(NULL) - start) + " secs to check " + toString(numSeqs) + " sequences.\n");
 		}
 		
 		
@@ -308,7 +308,7 @@ int ChimeraCcodeCommand::driver(string outputFName, string filename, string accn
 			if (candidateSeq->getName() != "") { //incase there is a commented sequence at the end of a file
 				
 				if (candidateSeq->getAligned().length() != templateSeqsLength) {  
-					m->mothurOut(candidateSeq->getName() + " is not the same length as the template sequences. Skipping."); m->mothurOutEndLine();
+					m->mothurOut(candidateSeq->getName() + " is not the same length as the template sequences. Skipping.\n");
 				}else{
 					//find chimeras
 					chimera->getChimeras(candidateSeq);

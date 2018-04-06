@@ -129,7 +129,7 @@ vector<sim> ChimeraCheckRDP::findIS() {
 		//for each window
 		for (int f = start; f < (seq.length() - start); f+=increment) {
 		
-            if ((f - kmerSize) < 0)  { m->mothurOut("[ERROR]: Sequence " + querySeq->getName() + " is too short for your kmerSize, quitting."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+            if ((f - kmerSize) < 0)  { m->mothurOut("[ERROR]: Sequence " + querySeq->getName() + " is too short for your kmerSize, quitting.\n"); m->setControl_pressed(true); }
 			
             if (m->getControl_pressed()) { return isValues; }
             

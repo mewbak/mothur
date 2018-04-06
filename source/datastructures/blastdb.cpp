@@ -300,7 +300,6 @@ void BlastDB::generateDB() {
 		//cout << formatdbCommand << endl;
 		system(formatdbCommand.c_str());								//	to get the right sequence names, i think. -p F
 																	//	option tells formatdb that seqs are DNA, not prot
-		//m->mothurOut("DONE."); m->mothurOutEndLine();	m->mothurOutEndLine(); cout.flush();
 	}
 	catch(exception& e) {
 		m->errorOut(e, "BlastDB", "generateDB");

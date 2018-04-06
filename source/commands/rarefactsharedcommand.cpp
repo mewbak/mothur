@@ -157,8 +157,8 @@ RareFactSharedCommand::RareFactSharedCommand(string option)  {
 			else if (sharedfile == "not found") { 
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else { current->setSharedFile(sharedfile); }
             
             designfile = validParameter.validFile(parameters, "design");
@@ -315,14 +315,14 @@ int RareFactSharedCommand::process(DesignMap& designMap, string thisSet){
                 vector<string> temp;
                 for (int i = 0; i < lookupGroups.size(); i++) {
                     if (lookup->getNumSeqs(lookupGroups[i]) < subsampleSize) {
-                        m->mothurOut(lookupGroups[i] + " contains " + toString(subset->getNumSeqs(lookupGroups[i])) + ". Eliminating."); m->mothurOutEndLine();
+                        m->mothurOut(lookupGroups[i] + " contains " + toString(subset->getNumSeqs(lookupGroups[i])) + ". Eliminating.\n");
                         temp.push_back(lookupGroups[i]);
                     }else { newGroups.push_back(lookupGroups[i]); }
                 }
                 subset->removeGroups(temp);
             }
             
-            if (subset->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine(); m->setControl_pressed(true); return 0; }
+            if (subset->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n"); m->setControl_pressed(true); return 0; }
         }
         /******************************************************/
         

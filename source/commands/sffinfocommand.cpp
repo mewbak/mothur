@@ -160,9 +160,9 @@ SffInfoCommand::SffInfoCommand(string option)  {
 					bool ignore = false;
 					if (filenames[i] == "current") { 
 						filenames[i] = current->getSFFFile(); 
-						if (filenames[i] != "") {  m->mothurOut("Using " + filenames[i] + " as input file for the sff parameter where you had given current."); m->mothurOutEndLine(); }
+						if (filenames[i] != "") {  m->mothurOut("Using " + filenames[i] + " as input file for the sff parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current sfffile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current sfffile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							filenames.erase(filenames.begin()+i);
 							i--;
@@ -176,7 +176,7 @@ SffInfoCommand::SffInfoCommand(string option)  {
 				}
 				
 				//make sure there is at least one valid file left
-				if (filenames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (filenames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 			
 			accnosName = validParameter.valid(parameters, "accnos");
@@ -190,9 +190,9 @@ SffInfoCommand::SffInfoCommand(string option)  {
 					bool ignore = false;
 					if (accnosFileNames[i] == "current") { 
 						accnosFileNames[i] = current->getAccnosFile(); 
-						if (accnosFileNames[i] != "") {  m->mothurOut("Using " + accnosFileNames[i] + " as input file for the accnos parameter where you had given current."); m->mothurOutEndLine(); }
+						if (accnosFileNames[i] != "") {  m->mothurOut("Using " + accnosFileNames[i] + " as input file for the accnos parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current accnosfile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current accnosfile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							accnosFileNames.erase(accnosFileNames.begin()+i);
 							i--;
@@ -206,7 +206,7 @@ SffInfoCommand::SffInfoCommand(string option)  {
 				}
 				
 				//make sure there is at least one valid file left
-				if (accnosFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (accnosFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
             
             oligosfile = validParameter.valid(parameters, "oligos");
@@ -220,9 +220,9 @@ SffInfoCommand::SffInfoCommand(string option)  {
 					bool ignore = false;
 					if (oligosFileNames[i] == "current") { 
 						oligosFileNames[i] = current->getOligosFile(); 
-						if (oligosFileNames[i] != "") {  m->mothurOut("Using " + oligosFileNames[i] + " as input file for the oligos parameter where you had given current."); m->mothurOutEndLine(); }
+						if (oligosFileNames[i] != "") {  m->mothurOut("Using " + oligosFileNames[i] + " as input file for the oligos parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current oligosfile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current oligosfile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							oligosFileNames.erase(oligosFileNames.begin()+i);
 							i--;
@@ -236,7 +236,7 @@ SffInfoCommand::SffInfoCommand(string option)  {
 				}
 				
 				//make sure there is at least one valid file left
-				if (oligosFileNames.size() == 0) { m->mothurOut("no valid oligos files."); m->mothurOutEndLine(); abort = true; }
+				if (oligosFileNames.size() == 0) { m->mothurOut("no valid oligos files.\n"); abort = true; }
 			}
             
             groupfile = validParameter.valid(parameters, "group");
@@ -250,9 +250,9 @@ SffInfoCommand::SffInfoCommand(string option)  {
 					bool ignore = false;
 					if (groupFileNames[i] == "current") {
 						groupFileNames[i] = current->getGroupFile();
-						if (groupFileNames[i] != "") {  m->mothurOut("Using " + groupFileNames[i] + " as input file for the group parameter where you had given current."); m->mothurOutEndLine(); }
+						if (groupFileNames[i] != "") {  m->mothurOut("Using " + groupFileNames[i] + " as input file for the group parameter where you had given current.\n"); }
 						else {
-							m->mothurOut("You have no current group file, ignoring current."); m->mothurOutEndLine(); ignore=true;
+							m->mothurOut("You have no current group file, ignoring current.\n"); ignore=true;
 							//erase from file list
 							groupFileNames.erase(groupFileNames.begin()+i);
 							i--;
@@ -266,23 +266,23 @@ SffInfoCommand::SffInfoCommand(string option)  {
 				}
 				
 				//make sure there is at least one valid file left
-				if (groupFileNames.size() == 0) { m->mothurOut("no valid group files."); m->mothurOutEndLine(); abort = true; }
+				if (groupFileNames.size() == 0) { m->mothurOut("no valid group files.\n"); abort = true; }
 			}
 
 			if (hasGroup) {
                 split = 2;
-				if (groupFileNames.size() != filenames.size()) { abort = true; m->mothurOut("If you provide a group file, you must have one for each sff file."); m->mothurOutEndLine(); }
+				if (groupFileNames.size() != filenames.size()) { abort = true; m->mothurOut("If you provide a group file, you must have one for each sff file.\n"); }
 			}
             
             if (hasOligos) {
                 split = 2;
-				if (oligosFileNames.size() != filenames.size()) { abort = true; m->mothurOut("If you provide an oligos file, you must have one for each sff file."); m->mothurOutEndLine(); }
+				if (oligosFileNames.size() != filenames.size()) { abort = true; m->mothurOut("If you provide an oligos file, you must have one for each sff file.\n"); }
 			}
             
-            if (hasGroup && hasOligos) { m->mothurOut("You must enter ONLY ONE of the following: oligos or group."); m->mothurOutEndLine(); abort = true;}
+            if (hasGroup && hasOligos) { m->mothurOut("You must enter ONLY ONE of the following: oligos or group.\n"); abort = true;}
             
 			if (hasAccnos) {
-				if (accnosFileNames.size() != filenames.size()) { abort = true; m->mothurOut("If you provide a accnos file, you must have one for each sff file."); m->mothurOutEndLine(); }
+				if (accnosFileNames.size() != filenames.size()) { abort = true; m->mothurOut("If you provide a accnos file, you must have one for each sff file.\n"); }
 			}
 			
 			string temp = validParameter.valid(parameters, "qfile");			if (temp == "not found"){	temp = "T";				}
@@ -337,8 +337,8 @@ SffInfoCommand::SffInfoCommand(string option)  {
 			if ((sfftxtFilename == "") && (filenames.size() == 0)) {  
 				//if there is a current sff file, use it
 				string filename = current->getSFFFile(); 
-				if (filename != "") { filenames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the sff parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("[ERROR]: you must provide a valid sff or sfftxt file."); m->mothurOutEndLine(); abort=true;  }
+				if (filename != "") { filenames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the sff parameter.\n"); }
+				else { 	m->mothurOut("[ERROR]: you must provide a valid sff or sfftxt file.\n"); abort=true;  }
 			}
             
             temp = validParameter.valid(parameters, "checkorient");		if (temp == "not found") { temp = "F"; }
@@ -363,7 +363,7 @@ int SffInfoCommand::execute(){
 			long start = time(NULL);
 			
             filenames[s] = util.getFullPathName(filenames[s]);
-			m->mothurOut("Extracting info from " + filenames[s] + " ..." ); m->mothurOutEndLine();
+			m->mothurOut("Extracting info from " + filenames[s] + " ...\n" );
 			
 			string accnos = "";
 			if (hasAccnos) { accnos = accnosFileNames[s]; }
@@ -400,7 +400,7 @@ int SffInfoCommand::execute(){
 		
 		//report output filenames
 		m->mothurOutEndLine();
-		m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+		m->mothurOut("Output File Names: \n");
 		for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
 		m->mothurOutEndLine();
 
@@ -460,8 +460,8 @@ int SffInfoCommand::extractSffInfo(string input, string accnos, string oligos){
 		int count = 0;
 		
 		//check magic number and version
-		if (header.magicNumber != 779314790) { m->mothurOut("Magic Number is not correct, not a valid .sff file"); m->mothurOutEndLine(); delete oligosObject; if (hasOligos)   { delete trimOligos; if (reorient) { delete  rtrimOligos; } } return count; }
-		if (header.version != "0001") { m->mothurOut("Version is not supported, only support version 0001."); m->mothurOutEndLine(); delete oligosObject; if (hasOligos)   { delete trimOligos; if (reorient) { delete  rtrimOligos; } } return count; }
+		if (header.magicNumber != 779314790) { m->mothurOut("Magic Number is not correct, not a valid .sff file\n"); delete oligosObject; if (hasOligos)   { delete trimOligos; if (reorient) { delete  rtrimOligos; } } return count; }
+		if (header.version != "0001") { m->mothurOut("Version is not supported, only support version 0001.\n"); delete oligosObject; if (hasOligos)   { delete trimOligos; if (reorient) { delete  rtrimOligos; } } return count; }
 	
 		//print common header
 		if (sfftxt) {	printCommonHeader(outSfftxt, header);		}
@@ -649,7 +649,7 @@ int SffInfoCommand::readCommonHeader(ifstream& in, CommonHeader& header){
 			in.seekg(spot);
             
         }else{
-			m->mothurOut("Error reading sff common header."); m->mothurOutEndLine();
+			m->mothurOut("Error reading sff common header.\n");
 		}
         
 		return 0;
@@ -1715,7 +1715,7 @@ int SffInfoCommand::parseSffTxt() {
 		for(int i=0;i<numReads;i++){
 			
 			//sanity check
-			if (inSFF.eof()) { m->mothurOut("[ERROR]: Expected " + toString(numReads) + " but reached end of file at " + toString(i+1) + "."); m->mothurOutEndLine(); break; }
+			if (inSFF.eof()) { m->mothurOut("[ERROR]: Expected " + toString(numReads) + " but reached end of file at " + toString(i+1) + ".\n"); break; }
 			
 			Header header;
 			
@@ -2002,7 +2002,7 @@ bool SffInfoCommand::readOligos(string oligoFile){
         }
         
 		if (allBlank) {
-			m->mothurOut("[WARNING]: your oligos file does not contain any group names.  mothur will not create a split the sff file."); m->mothurOutEndLine();
+			m->mothurOut("[WARNING]: your oligos file does not contain any group names.  mothur will not create a split the sff file.\n");
 			split = 1;
 			return false;
 		}

@@ -115,8 +115,8 @@ MakeGroupCommand::MakeGroupCommand(string option)  {
 			fastaFileName = validParameter.valid(parameters, "fasta");
 			if (fastaFileName == "not found") { 				//if there is a current fasta file, use it
 				string filename = current->getFastaFile(); 
-				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else { 
 				util.splitAtDash(fastaFileName, fastaFileNames);
 				
@@ -127,11 +127,11 @@ MakeGroupCommand::MakeGroupCommand(string option)  {
 					if (fastaFileNames[i] == "current") { 
 						fastaFileNames[i] = current->getFastaFile(); 
 						if (fastaFileNames[i] != "") {  
-							m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); 
+							m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); 
 							filename += util.getRootName(util.getSimpleName(fastaFileNames[i]));
 						}
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							fastaFileNames.erase(fastaFileNames.begin()+i);
 							i--;
@@ -151,7 +151,7 @@ MakeGroupCommand::MakeGroupCommand(string option)  {
 				filename = getOutputFileName("group",variables);  
 				
 				//make sure there is at least one valid file left
-				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 			
 			output = validParameter.valid(parameters, "output");			
@@ -159,10 +159,10 @@ MakeGroupCommand::MakeGroupCommand(string option)  {
 			else{ filename = output; }
 			
 			groups = validParameter.valid(parameters, "groups");			
-			if (groups == "not found") { m->mothurOut("groups is a required parameter for the make.group command."); m->mothurOutEndLine(); abort = true;  }
+			if (groups == "not found") { m->mothurOut("groups is a required parameter for the make.group command.\n"); abort = true;  }
 			else { util.splitAtDash(groups, groupsNames);	}
 
-			if (groupsNames.size() != fastaFileNames.size()) { m->mothurOut("You do not have the same number of valid fastfile files as groups.  This could be because we could not open a fastafile."); m->mothurOutEndLine(); abort = true;  }
+			if (groupsNames.size() != fastaFileNames.size()) { m->mothurOut("You do not have the same number of valid fastfile files as groups.  This could be because we could not open a fastafile.\n"); abort = true;  }
 		}
 	}
 	catch(exception& e) {

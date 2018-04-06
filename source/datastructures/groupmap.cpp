@@ -32,7 +32,7 @@ int GroupMap::addSeq(string name, string group) {
         util.checkName(name);
         it = groupmap.find(name);
         
-        if (it != groupmap.end()) { error = 1; m->mothurOut("Your groupfile contains more than 1 sequence named " + name + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+        if (it != groupmap.end()) { error = 1; m->mothurOut("Your groupfile contains more than 1 sequence named " + name + ", sequence names must be unique. Please correct.\n");  }
         else {
             groupmap[name] = group;	//store data in map
             seqsPerGroup[group]++;  //increment number of seqs in that group
@@ -74,7 +74,7 @@ int GroupMap::readMap() {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your groupfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your groupfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -100,7 +100,7 @@ int GroupMap::readMap() {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your groupfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your groupfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -145,7 +145,7 @@ int GroupMap::readDesignMap() {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -171,7 +171,7 @@ int GroupMap::readDesignMap() {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -220,7 +220,7 @@ int GroupMap::readMap(string filename) {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your group file contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your group file contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -246,7 +246,7 @@ int GroupMap::readMap(string filename) {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your group file contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your group file contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -294,7 +294,7 @@ int GroupMap::readDesignMap(string filename) {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -320,7 +320,7 @@ int GroupMap::readDesignMap(string filename) {
                     util.checkName(seqName);
                     it = groupmap.find(seqName);
                     
-                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+                    if (it != groupmap.end()) { error = 1; m->mothurOut("Your designfile contains more than 1 sequence named " + seqName + ", sequence names must be unique. Please correct.\n");  }
                     else {
                         groupmap[seqName] = seqGroup;	//store data in map
                         seqsPerGroup[seqGroup]++;  //increment number of seqs in that group
@@ -349,7 +349,7 @@ string GroupMap::getGroup(string sequenceName) {
 	}else {
         //look for it in names of groups to see if the user accidently used the wrong file
         if (util.inUsersGroups(sequenceName, namesOfGroups)) {
-            m->mothurOut("[WARNING]: Your group or design file contains a group named " + sequenceName + ".  Perhaps you are used a group file instead of a design file? A common cause of this is using a tree file that relates your groups (created by the tree.shared command) with a group file that assigns sequences to a group."); m->mothurOutEndLine(); 
+            m->mothurOut("[WARNING]: Your group or design file contains a group named " + sequenceName + ".  Perhaps you are used a group file instead of a design file? A common cause of this is using a tree file that relates your groups (created by the tree.shared command) with a group file that assigns sequences to a group.\n"); 
         }
 		return "not found";
 	}
@@ -363,7 +363,7 @@ void GroupMap::setGroup(string sequenceName, string groupN) {
 	util.checkName(sequenceName);
 	it = groupmap.find(sequenceName);
 	
-	if (it != groupmap.end()) {  m->mothurOut("Your groupfile contains more than 1 sequence named " + sequenceName + ", sequence names must be unique. Please correct."); m->mothurOutEndLine();  }
+	if (it != groupmap.end()) {  m->mothurOut("Your groupfile contains more than 1 sequence named " + sequenceName + ", sequence names must be unique. Please correct.\n");  }
 	else {
 		groupmap[sequenceName] = groupN;	//store data in map
 		seqsPerGroup[groupN]++;  //increment number of seqs in that group

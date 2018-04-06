@@ -157,12 +157,12 @@ GetMIMarksPackageCommand::GetMIMarksPackageCommand(string option)  {
             
             if ((groupfile == "") && (oligosfile == "") && (file == "")) {
                 oligosfile = current->getOligosFile();
-                if (oligosfile != "") { inputfile = oligosfile;  m->mothurOut("Using " + oligosfile + " as input file for the oligos parameter."); m->mothurOutEndLine(); }
+                if (oligosfile != "") { inputfile = oligosfile;  m->mothurOut("Using " + oligosfile + " as input file for the oligos parameter.\n"); }
                 else {
                     groupfile = current->getGroupFile();
-                    if (groupfile != "") { inputfile = groupfile;  m->mothurOut("Using " + groupfile + " as input file for the group parameter."); m->mothurOutEndLine(); }
+                    if (groupfile != "") { inputfile = groupfile;  m->mothurOut("Using " + groupfile + " as input file for the group parameter.\n"); }
                     else {
-                        m->mothurOut("[ERROR]: You must provide file, groupfile or oligos file for the get.mimarkspackage command."); m->mothurOutEndLine(); abort = true;
+                        m->mothurOut("[ERROR]: You must provide file, groupfile or oligos file for the get.mimarkspackage command.\n"); abort = true;
                     }
                 }
             }
@@ -741,7 +741,7 @@ set<string> GetMIMarksPackageCommand::createGroupNames(Oligos& oligos) {
         }
         
         if (Groups.size() == 0) {
-            m->mothurOut("[ERROR]: your oligos file does not contain any group names."); m->mothurOutEndLine(); m->setControl_pressed(true);
+            m->mothurOut("[ERROR]: your oligos file does not contain any group names.\n"); m->setControl_pressed(true);
         }
         
         return Groups;

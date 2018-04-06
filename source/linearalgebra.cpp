@@ -225,7 +225,7 @@ double LinearAlgebra::betacf(const double a, const double b, const double x) {
             if (fabs(del-1.0) < EPS) break;
         }
         
-        if (m1 > MAXIT) { m->mothurOut("[ERROR]: a or b too big or MAXIT too small in betacf."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+        if (m1 > MAXIT) { m->mothurOut("[ERROR]: a or b too big or MAXIT too small in betacf.\n"); m->setControl_pressed(true); }
         return h;
         
     }
@@ -931,7 +931,7 @@ double LinearAlgebra::calcKendall(vector< vector<double> >& euclidDists, vector<
 /*********************************************************************************************************************************/
 double LinearAlgebra::calcKendall(vector<double>& x, vector<double>& y, double& sig){
 	try {
-		if (x.size() != y.size()) { m->mothurOut("[ERROR]: vector size mismatch."); m->mothurOutEndLine(); return 0.0; }
+		if (x.size() != y.size()) { m->mothurOut("[ERROR]: vector size mismatch.\n"); return 0.0; }
 		
 		//format data
 		vector<spearmanRank> xscores; 
@@ -1482,7 +1482,7 @@ double LinearAlgebra::choose(double n, double k){
 /*********************************************************************************************************************************/
 double LinearAlgebra::calcSpearman(vector<double>& x, vector<double>& y, double& sig){
 	try {
-		if (x.size() != y.size()) { m->mothurOut("[ERROR]: vector size mismatch."); m->mothurOutEndLine(); return 0.0; }
+		if (x.size() != y.size()) { m->mothurOut("[ERROR]: vector size mismatch.\n"); return 0.0; }
 		
 		//format data
         double sf = 0.0; //f^3 - f where f is the number of ties in x;
@@ -1662,7 +1662,7 @@ double LinearAlgebra::calcSpearmanSig(double n, double sf, double sg, double d){
 /*********************************************************************************************************************************/
 double LinearAlgebra::calcPearson(vector<double>& x, vector<double>& y, double& sig){
 	try {
-		if (x.size() != y.size()) { m->mothurOut("[ERROR]: vector size mismatch."); m->mothurOutEndLine(); return 0.0; }
+		if (x.size() != y.size()) { m->mothurOut("[ERROR]: vector size mismatch.\n"); return 0.0; }
 		
 		//find average X
 		float averageX = 0.0; 

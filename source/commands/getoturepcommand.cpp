@@ -235,8 +235,8 @@ GetOTURepCommand::GetOTURepCommand(string option)  {
 			listfile = validParameter.validFile(parameters, "list");
 			if (listfile == "not found") { 			
 				listfile = current->getListFile(); 
-				if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current list file and the list parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
+				else { 	m->mothurOut("You have no current list file and the list parameter is required.\n"); abort = true; }
 			}
 			else if (listfile == "not open") { abort = true; }	
 			else { current->setListFile(listfile); }
@@ -273,33 +273,33 @@ GetOTURepCommand::GetOTURepCommand(string option)  {
 			
             method = validParameter.valid(parameters, "method");		if (method == "not found"){	method = "distance";	}
 			if ((method != "distance") && (method != "abundance")) {
-				m->mothurOut(method + " is not a valid option for the method parameter. The only options are: distance and abundance, aborting."); m->mothurOutEndLine(); abort = true;
+				m->mothurOut(method + " is not a valid option for the method parameter. The only options are: distance and abundance, aborting.\n"); abort = true;
 			}
             
             if (method == "distance") {
                 if ((phylipfile == "") && (columnfile == "")) { //is there are current file available for either of these?
                     //give priority to column, then phylip
                     columnfile = current->getColumnFile();
-                    if (columnfile != "") {  distFile = columnfile; format = "column"; m->mothurOut("Using " + columnfile + " as input file for the column parameter."); m->mothurOutEndLine(); }
+                    if (columnfile != "") {  distFile = columnfile; format = "column"; m->mothurOut("Using " + columnfile + " as input file for the column parameter.\n"); }
                     else {
                         phylipfile = current->getPhylipFile();
-                        if (phylipfile != "") {  distFile = phylipfile; format = "phylip"; m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter."); m->mothurOutEndLine(); }
+                        if (phylipfile != "") {  distFile = phylipfile; format = "phylip"; m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter.\n"); }
                         else {
-                            m->mothurOut("No valid current files. You must provide a phylip or column file before you can use the get.oturep command."); m->mothurOutEndLine();
+                            m->mothurOut("No valid current files. You must provide a phylip or column file before you can use the get.oturep command.\n");
                             abort = true;
                         }
                     }
-                }else if ((phylipfile != "") && (columnfile != "")) { m->mothurOut("When executing a get.oturep command you must enter ONLY ONE of the following: phylip or column."); m->mothurOutEndLine(); abort = true; }
+                }else if ((phylipfile != "") && (columnfile != "")) { m->mothurOut("When executing a get.oturep command you must enter ONLY ONE of the following: phylip or column.\n"); abort = true; }
                 
                 if (columnfile != "") {
                     if ((namefile == "") && (countfile == "")) {
                         namefile = current->getNameFile();
-                        if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+                        if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
                         else {
                             countfile = current->getCountFile();
-                            if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                            if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                             else {
-                                m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format."); m->mothurOutEndLine();
+                                m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format.\n");
                                 abort = true; 
                             }	
                         }	
@@ -308,28 +308,28 @@ GetOTURepCommand::GetOTURepCommand(string option)  {
             }else if (method == "abundance") {
                 if ((namefile == "") && (countfile == "")) {
 					namefile = current->getNameFile();
-					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
 					else {
 						countfile = current->getCountFile();
-                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                         else {
-                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the abundance method."); m->mothurOutEndLine();
+                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the abundance method.\n");
                             abort = true;
                         }
 					}
 				}
                 if ((phylipfile != "") || (columnfile != "")) {
-                    m->mothurOut("[WARNING]: A phylip or column file is not needed to use the abundance method, ignoring."); m->mothurOutEndLine();
+                    m->mothurOut("[WARNING]: A phylip or column file is not needed to use the abundance method, ignoring.\n");
                     phylipfile = ""; columnfile = "";
                 }
             }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
             
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
 
         
@@ -346,14 +346,14 @@ GetOTURepCommand::GetOTURepCommand(string option)  {
 			sorted = validParameter.valid(parameters, "sorted");		if (sorted == "not found"){	sorted = "";	}
 			if (sorted == "none") { sorted=""; }
 			if ((sorted != "") && (sorted != "name") && (sorted != "bin") && (sorted != "size") && (sorted != "group")) {
-				m->mothurOut(sorted + " is not a valid option for the sorted parameter. The only options are: name, bin, size and group. I will not sort."); m->mothurOutEndLine();
+				m->mothurOut(sorted + " is not a valid option for the sorted parameter. The only options are: name, bin, size and group. I will not sort.\n");
 				sorted = "";
 			}
             
             
 			
 			if ((sorted == "group") && ((groupfile == "")&& !hasGroups)) {
-				m->mothurOut("You must provide a groupfile or have a count file with group info to sort by group. I will not sort."); m->mothurOutEndLine();
+				m->mothurOut("You must provide a groupfile or have a count file with group info to sort by group. I will not sort.\n");
 				sorted = "";
 			}
 			
@@ -361,7 +361,7 @@ GetOTURepCommand::GetOTURepCommand(string option)  {
 			if (groups == "not found") { groups = ""; }
 			else { 
 				if ((groupfile == "") && (!hasGroups)) {
-					m->mothurOut("You must provide a groupfile to use groups."); m->mothurOutEndLine();
+					m->mothurOut("You must provide a groupfile to use groups.\n");
 					abort = true;
 				}else { 
 					util.splitAtDash(groups, Groups);
@@ -375,7 +375,7 @@ GetOTURepCommand::GetOTURepCommand(string option)  {
 			temp = validParameter.valid(parameters, "weighted");		if (temp == "not found") {	 temp = "f"; 	}
 			weighted = util.isTrue(temp);
 			
-			if ((weighted) && (namefile == "")) { m->mothurOut("You cannot set weighted to true unless you provide a namesfile."); m->mothurOutEndLine(); abort = true; }
+			if ((weighted) && (namefile == "")) { m->mothurOut("You cannot set weighted to true unless you provide a namesfile.\n"); abort = true; }
 			
 			temp = validParameter.valid(parameters, "precision");			if (temp == "not found") { temp = "100"; }
 			util.mothurConvert(temp, precision); 
@@ -414,7 +414,7 @@ int GetOTURepCommand::execute(){
             //read in group map info.
             groupMap = new GroupMap(groupfile);
             int error = groupMap->readMap();
-            if (error == 1) { delete groupMap; m->mothurOut("Error reading your groupfile. Proceeding without groupfile."); m->mothurOutEndLine(); groupfile = "";  }
+            if (error == 1) { delete groupMap; m->mothurOut("Error reading your groupfile. Proceeding without groupfile.\n"); groupfile = "";  }
         }
         
         //done with listvector from matrix
@@ -480,10 +480,10 @@ int GetOTURepCommand::execute(){
         for (set<string>::iterator it = userLabels.begin(); it != userLabels.end(); it++) {
             m->mothurOut("Your file does not include the label " + (*it));
             if (processedLabels.count(lastLabel) != 1) {
-                m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". I will use " + lastLabel + ".\n");
                 needToRun = true;
             }else {
-                m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". Please refer to " + lastLabel + ".\n");
             }
         }
         
@@ -568,7 +568,7 @@ int GetOTURepCommand::readDist() {
 			//read distance files
 			if (format == "column") { readMatrix = new ReadColumnMatrix(distFile); }	
 			else if (format == "phylip") { readMatrix = new ReadPhylipMatrix(distFile); }
-			else { m->mothurOut("File format error."); m->mothurOutEndLine(); return 0;  }
+			else { m->mothurOut("File format error.\n"); return 0;  }
 			
 			readMatrix->setCutoff(cutoff);
             
@@ -613,7 +613,7 @@ int GetOTURepCommand::readDist() {
 			//process file and set up indexes
 			if (format == "column") { formatMatrix = new FormatColumnMatrix(distFile); }	
 			else if (format == "phylip") { formatMatrix = new FormatPhylipMatrix(distFile); }
-			else { m->mothurOut("File format error."); m->mothurOutEndLine(); return 0;  }
+			else { m->mothurOut("File format error.\n"); return 0;  }
 			
 			formatMatrix->setCutoff(cutoff);
             
@@ -663,7 +663,7 @@ int GetOTURepCommand::readDist() {
 					nameToIndex[names[j]] = i;
 				}
 			}
-		} else { m->mothurOut("error, no listvector."); m->mothurOutEndLine(); }
+		} else { m->mothurOut("error, no listvector.\n"); }
 
         if (m->getControl_pressed()) { if (large) {  inRow.close(); util.mothurRemove(distFile);  }return 0; }
         
@@ -843,7 +843,7 @@ string GetOTURepCommand::findRep(vector<string> names, string group) {
                             itNameFile = nameFileMap.find(names[i]);
                             
                             if (itNameFile == nameFileMap.end()) {
-                                m->mothurOut("[ERROR]: " + names[i] + " is not in your namefile, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true);
+                                m->mothurOut("[ERROR]: " + names[i] + " is not in your namefile, please correct.\n"); m->setControl_pressed(true);
                             }else{
                                 string name1 = itNameFile->first;
                                 string name2 = itNameFile->second;
@@ -1001,7 +1001,7 @@ int GetOTURepCommand::process(ListVector* processList) {
 				for (int j=0; j<namesInBin.size(); j++) {
                     if (groupfile != "") {
                         string thisgroup = groupMap->getGroup(namesInBin[j]);
-                        if (thisgroup == "not found") { m->mothurOut(namesInBin[j] + " is not in your groupfile, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                        if (thisgroup == "not found") { m->mothurOut(namesInBin[j] + " is not in your groupfile, please correct.\n"); m->setControl_pressed(true); }
                         
                         //add this name to correct group
                         if (util.inUsersGroups(thisgroup, Groups)) { NamesInGroup[thisgroup].push_back(namesInBin[j]);  }
@@ -1116,7 +1116,7 @@ int GetOTURepCommand::processFastaNames(string filename, string label, FastaMap*
 				for (int i = 0; i < names.size(); i++) {
 					string groupName = groupMap->getGroup(names[i]);
 					if (groupName == "not found") {  
-						m->mothurOut(names[i] + " is missing from your group file. Please correct. "); m->mothurOutEndLine();
+						m->mothurOut(names[i] + " is missing from your group file. Please correct. \n");
 						groupError = true;
 					} else {
 						groups[groupName] = groupName;
@@ -1165,7 +1165,7 @@ int GetOTURepCommand::processFastaNames(string filename, string label, FastaMap*
 					reps.push_back(newRep);
 				}
 			}else { 
-				m->mothurOut(rep + " is missing from your fasta or name file, ignoring. Please correct."); m->mothurOutEndLine(); 
+				m->mothurOut(rep + " is missing from your fasta or name file, ignoring. Please correct.\n"); 
 			}
 		}
 		

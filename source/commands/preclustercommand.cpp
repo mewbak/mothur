@@ -176,8 +176,8 @@ PreClusterCommand::PreClusterCommand(string option) {
 			fastafile = validParameter.validFile(parameters, "fasta");
 			if (fastafile == "not found") { 				
 				fastafile = current->getFastaFile(); 
-				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}
 			else if (fastafile == "not open") { abort = true; }	
 			else { current->setFastaFile(fastafile); }
@@ -211,11 +211,11 @@ PreClusterCommand::PreClusterCommand(string option) {
             }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
             
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
 
 			
@@ -655,8 +655,8 @@ int PreClusterCommand::execute(){
                 string inputString = "fasta=" + newFastaFile;
                 if (namefile != "") { inputString += ", name=" + newNamesFile; }
                 m->mothurOutEndLine(); 
-                m->mothurOut("/******************************************/"); m->mothurOutEndLine(); 
-                m->mothurOut("Running command: unique.seqs(" + inputString + ")"); m->mothurOutEndLine(); 
+                m->mothurOut("/******************************************/\n"); 
+                m->mothurOut("Running command: unique.seqs(" + inputString + ")\n"); 
                 current->setMothurCalling(true);
                 
                 Command* uniqueCommand = new DeconvoluteCommand(inputString);
@@ -666,16 +666,16 @@ int PreClusterCommand::execute(){
                 
                 delete uniqueCommand;
                 current->setMothurCalling(false);
-                m->mothurOut("/******************************************/"); m->mothurOutEndLine(); 
+                m->mothurOut("/******************************************/\n"); 
                 
                 util.renameFile(filenames["fasta"][0], newFastaFile);
                 util.renameFile(filenames["name"][0], newNamesFile); 
 			}
             if (m->getControl_pressed()) { for (int i = 0; i < outputNames.size(); i++) {	util.mothurRemove(outputNames[i]); 	}	 return 0; }
-			m->mothurOut("It took " + toString(time(NULL) - start) + " secs to run pre.cluster."); m->mothurOutEndLine(); 
+			m->mothurOut("It took " + toString(time(NULL) - start) + " secs to run pre.cluster.\n"); 
 				
 		}else {
-            if (processors != 1) { m->mothurOut("When using running without group information mothur can only use 1 processor, continuing."); m->mothurOutEndLine(); processors = 1; }
+            if (processors != 1) { m->mothurOut("When using running without group information mothur can only use 1 processor, continuing.\n"); processors = 1; }
 
             preClusterData* params = new preClusterData(fastafile, namefile, groupfile, countfile, NULL, NULL, newMapFile, nullVector);
             params->setVariables(0,0, diffs, topdown, method, align, match, misMatch, gapOpen, gapExtend);
@@ -685,8 +685,8 @@ int PreClusterCommand::execute(){
 		
 			if (m->getControl_pressed()) { for (int i = 0; i < outputNames.size(); i++) {	util.mothurRemove(outputNames[i]); 	}  return 0; }
 	
-			if (numSeqs == 0) { m->mothurOut("Error reading fasta file...please correct."); m->mothurOutEndLine();  return 0;  }
-			if (diffs > length) { m->mothurOut("Error: diffs is greater than your sequence length."); m->mothurOutEndLine();  return 0;  }
+			if (numSeqs == 0) { m->mothurOut("Error reading fasta file...please correct.\n");  return 0;  }
+			if (diffs > length) { m->mothurOut("Error: diffs is greater than your sequence length.\n");  return 0;  }
 			
 			int count = process("", newMapFile, params);
 			outputNames.push_back(newMapFile); outputTypes["map"].push_back(newMapFile);
@@ -698,7 +698,7 @@ int PreClusterCommand::execute(){
 			if (countfile != "") { newNamesFile = newCountFile; }
             print(newFastaFile, newNamesFile, params);
             for (int i = 0; i < params->alignSeqs.size(); i++) {  delete params->alignSeqs[i]; } params->alignSeqs.clear();
-			m->mothurOut("It took " + toString(time(NULL) - start) + " secs to cluster " + toString(numSeqs) + " sequences."); m->mothurOutEndLine(); 
+			m->mothurOut("It took " + toString(time(NULL) - start) + " secs to cluster " + toString(numSeqs) + " sequences.\n"); 
 		}
 				
 		if (m->getControl_pressed()) { for (int i = 0; i < outputNames.size(); i++) {	util.mothurRemove(outputNames[i]); 	}  return 0; }

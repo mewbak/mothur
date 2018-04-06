@@ -306,11 +306,11 @@ GetGroupsCommand::GetGroupsCommand(string option)  {
             else { current->setCountFile(countfile); }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
             
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
 
 			
@@ -319,33 +319,33 @@ GetGroupsCommand::GetGroupsCommand(string option)  {
 				if ((namefile != "") || (fastafile != "") || (listfile != "") || (taxfile != "")) {
 					//give priority to group, then shared
 					groupfile = current->getGroupFile(); 
-					if (groupfile != "") {  m->mothurOut("Using " + groupfile + " as input file for the group parameter."); m->mothurOutEndLine(); }
+					if (groupfile != "") {  m->mothurOut("Using " + groupfile + " as input file for the group parameter.\n"); }
 					else { 
 						sharedfile = current->getSharedFile(); 
-						if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+						if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 						else { 
 							countfile = current->getCountFile(); 
-                            if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                            if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                             else { 
-                                m->mothurOut("You have no current groupfile, countfile or sharedfile and one is required."); m->mothurOutEndLine(); abort = true;
+                                m->mothurOut("You have no current groupfile, countfile or sharedfile and one is required.\n"); abort = true;
                             }
 						}
 					}
 				}else {
 					//give priority to shared, then group
 					sharedfile = current->getSharedFile(); 
-					if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+					if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 					else { 
 						groupfile = current->getGroupFile(); 
-						if (groupfile != "") { m->mothurOut("Using " + groupfile + " as input file for the group parameter."); m->mothurOutEndLine(); }
+						if (groupfile != "") { m->mothurOut("Using " + groupfile + " as input file for the group parameter.\n"); }
 						else { 
 							designfile = current->getDesignFile(); 
-                            if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter."); m->mothurOutEndLine(); }
+                            if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter.\n"); }
                             else { 
                                 countfile = current->getCountFile(); 
-                                if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                                if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                                 else { 
-                                    m->mothurOut("You have no current groupfile, designfile, countfile or sharedfile and one is required."); m->mothurOutEndLine(); abort = true;
+                                    m->mothurOut("You have no current groupfile, designfile, countfile or sharedfile and one is required.\n"); abort = true;
                                 }
 
                             }
@@ -354,10 +354,10 @@ GetGroupsCommand::GetGroupsCommand(string option)  {
 				}
 			}
 			
-			if ((accnosfile == "") && (Groups.size() == 0)) { m->mothurOut("You must provide an accnos file or specify groups using the groups parameter."); m->mothurOutEndLine(); abort = true; }
+			if ((accnosfile == "") && (Groups.size() == 0)) { m->mothurOut("You must provide an accnos file or specify groups using the groups parameter.\n"); abort = true; }
 			
-			if ((phylipfile == "") && (columnfile == "") && (fastafile == "") && (namefile == "") && (countfile == "") && (groupfile == "")  && (designfile == "") && (sharedfile == "") && (listfile == "") && (taxfile == ""))  { m->mothurOut("You must provide at least one of the following: fasta, name, taxonomy, group, shared, design, count, phylip, column or list."); m->mothurOutEndLine(); abort = true; }
-			if (((groupfile == "") && (countfile == "")) && ((namefile != "") || (fastafile != "") || (listfile != "") || (taxfile != "")))  { m->mothurOut("If using a fasta, name, taxonomy, group or list, then you must provide a group or count file."); m->mothurOutEndLine(); abort = true; }
+			if ((phylipfile == "") && (columnfile == "") && (fastafile == "") && (namefile == "") && (countfile == "") && (groupfile == "")  && (designfile == "") && (sharedfile == "") && (listfile == "") && (taxfile == ""))  { m->mothurOut("You must provide at least one of the following: fasta, name, taxonomy, group, shared, design, count, phylip, column or list.\n"); abort = true; }
+			if (((groupfile == "") && (countfile == "")) && ((namefile != "") || (fastafile != "") || (listfile != "") || (taxfile != "")))  { m->mothurOut("If using a fasta, name, taxonomy, group or list, then you must provide a group or count file.\n"); abort = true; }
             
             if (countfile == "") {
                 if ((namefile == "") && ((fastafile != "") || (taxfile != ""))){
@@ -424,7 +424,7 @@ int GetGroupsCommand::execute(){
 		
 		if (outputNames.size() != 0) {
 			m->mothurOutEndLine();
-			m->mothurOut("Output File names: "); m->mothurOutEndLine();
+			m->mothurOut("Output File names: \n");
 			for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
 			m->mothurOutEndLine();
 			
@@ -539,10 +539,10 @@ int GetGroupsCommand::readFasta(){
 		in.close();	
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get.\n");  }
 		outputTypes["fasta"].push_back(outputFileName);  outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your fasta file."); m->mothurOutEndLine();
+		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your fasta file.\n");
 
 		
 		return 0;
@@ -588,13 +588,13 @@ int GetGroupsCommand::readShared(){
 			out.close();
 		}
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file contains only the groups you wish to remove."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file contains only the groups you wish to remove.\n");  }
 		
 		string groupsString = "";
 		for (int i = 0; i < Groups.size()-1; i++) {	groupsString += Groups[i] + ", "; }
 		groupsString += Groups[Groups.size()-1];
 		
-		m->mothurOut("Selected groups: " + groupsString + " from your shared file."); m->mothurOutEndLine();
+		m->mothurOut("Selected groups: " + groupsString + " from your shared file.\n");
 		
 		return 0;
 		
@@ -683,9 +683,9 @@ int GetGroupsCommand::readList(){
 		}
 		
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get.\n");  }
 		
-		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your list file."); m->mothurOutEndLine();
+		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your list file.\n");
 		
 		return 0;
 		
@@ -766,10 +766,10 @@ int GetGroupsCommand::readName(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get.\n");  }
 		outputTypes["name"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your name file."); m->mothurOutEndLine();
+		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your name file.\n");
 
 		return 0;
 	}
@@ -817,10 +817,10 @@ int GetGroupsCommand::readGroup(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get.\n");  }
 		outputTypes["group"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your group file."); m->mothurOutEndLine();
+		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your group file.\n");
 
 		return 0;
 	}
@@ -896,10 +896,10 @@ int GetGroupsCommand::readCount(){
         in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get.\n");  }
 		outputTypes["count"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your count file."); m->mothurOutEndLine();
+		m->mothurOut("Selected " + toString(selectedCount) + " sequences from your count file.\n");
         
 		return 0;
 	}
@@ -931,10 +931,10 @@ int GetGroupsCommand::readDesign(){
 				
         out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain groups from the groups you wish to get."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain groups from the groups you wish to get.\n");  }
 		outputTypes["design"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
-		m->mothurOut("Selected " + toString(numGroupsFound) + " groups from your design file."); m->mothurOutEndLine();
+		m->mothurOut("Selected " + toString(numGroupsFound) + " groups from your design file.\n");
         
 		return 0;
 	}
@@ -986,7 +986,7 @@ int GetGroupsCommand::readTax(){
 		in.close();
 		out.close();
 		
-		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get."); m->mothurOutEndLine();  }
+		if (wroteSomething == false) {  m->mothurOut("Your file does NOT contain sequences from the groups you wish to get.\n");  }
 		outputTypes["taxonomy"].push_back(outputFileName); outputNames.push_back(outputFileName);
 		
 		return 0;
@@ -1019,7 +1019,7 @@ int GetGroupsCommand::readPhylip(){
         string numTest;
         in >> numTest >> name;
         
-        if (!util.isContainingOnlyDigits(numTest)) { m->mothurOut("[ERROR]: expected a number and got " + numTest + ", quitting."); m->mothurOutEndLine(); exit(1); }
+        if (!util.isContainingOnlyDigits(numTest)) { m->mothurOut("[ERROR]: expected a number and got " + numTest + ", quitting.\n"); exit(1); }
         else { convert(numTest, nseqs); }
         
         if (names.count(name) != 0) { rows.insert(row); }
@@ -1125,9 +1125,9 @@ int GetGroupsCommand::readPhylip(){
         inPhylip.close();
         out.close();
         
-        if (count == 0) {  m->mothurOut("Your file does NOT contain distances related to groups or sequences listed in the accnos file."); m->mothurOutEndLine();  }
+        if (count == 0) {  m->mothurOut("Your file does NOT contain distances related to groups or sequences listed in the accnos file.\n");  }
         else if (count != names.size()) {
-            m->mothurOut("[WARNING]: Your accnos file contains " + toString(names.size()) + " groups or sequences, but I only found " + toString(count) + " of them in the phylip file."); m->mothurOutEndLine();
+            m->mothurOut("[WARNING]: Your accnos file contains " + toString(names.size()) + " groups or sequences, but I only found " + toString(count) + " of them in the phylip file.\n");
             //rewrite with new number
             util.renameFile(outputFileName, outputFileName+".temp");
             ofstream out2;
@@ -1147,7 +1147,7 @@ int GetGroupsCommand::readPhylip(){
             util.mothurRemove(outputFileName+".temp");
         }
         
-        m->mothurOut("Selected " + toString(count) + " groups or sequences from your phylip file."); m->mothurOutEndLine();
+        m->mothurOut("Selected " + toString(count) + " groups or sequences from your phylip file.\n");
         
         return 0;
         
@@ -1193,12 +1193,12 @@ int GetGroupsCommand::readColumn(){
         in.close();
         out.close();
         
-        if (foundNames.size() == 0) {  m->mothurOut("Your file does NOT contain distances related to groups or sequences listed in the accnos file."); m->mothurOutEndLine();  }
+        if (foundNames.size() == 0) {  m->mothurOut("Your file does NOT contain distances related to groups or sequences listed in the accnos file.\n");  }
         else if (foundNames.size() != names.size()) {
-            m->mothurOut("[WARNING]: Your accnos file contains " + toString(names.size()) + " groups or sequences, but I only found " + toString(foundNames.size()) + " of them in the column file."); m->mothurOutEndLine();
+            m->mothurOut("[WARNING]: Your accnos file contains " + toString(names.size()) + " groups or sequences, but I only found " + toString(foundNames.size()) + " of them in the column file.\n");
         }
         
-        m->mothurOut("Selected " + toString(foundNames.size()) + " groups or sequences from your column file."); m->mothurOutEndLine();
+        m->mothurOut("Selected " + toString(foundNames.size()) + " groups or sequences from your column file.\n");
         
         return 0;
         

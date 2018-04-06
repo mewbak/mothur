@@ -136,8 +136,8 @@ CooccurrenceCommand::CooccurrenceCommand(string option) {
 			else if (sharedfile == "not found") { 
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else { current->setSharedFile(sharedfile); }
 			
 			
@@ -148,13 +148,13 @@ CooccurrenceCommand::CooccurrenceCommand(string option) {
 			metric = validParameter.validFile(parameters, "metric");				if (metric == "not found") { metric = "cscore"; }
 			
 			if ((metric != "cscore") && (metric != "checker") && (metric != "combo") && (metric != "vratio")) {
-				m->mothurOut("[ERROR]: " + metric + " is not a valid metric option for the cooccurrence command. Choices are cscore, checker, combo, vratio."); m->mothurOutEndLine(); abort = true; 
+				m->mothurOut("[ERROR]: " + metric + " is not a valid metric option for the cooccurrence command. Choices are cscore, checker, combo, vratio.\n"); abort = true; 
 			}
 			
 			matrix = validParameter.valid(parameters, "matrixmodel");				if (matrix == "not found") { matrix = "sim2"; }
 			
 			if ((matrix != "sim1") && (matrix != "sim2") && (matrix != "sim3") && (matrix != "sim4") && (matrix != "sim5" ) && (matrix != "sim6" ) && (matrix != "sim7" ) && (matrix != "sim8" ) && (matrix != "sim9" )) {
-				m->mothurOut("[ERROR]: " + matrix + " is not a valid matrix option for the cooccurrence command. Choices are sim1, sim2, sim3, sim4, sim5, sim6, sim7, sim8, sim9."); m->mothurOutEndLine(); abort = true; 
+				m->mothurOut("[ERROR]: " + matrix + " is not a valid matrix option for the cooccurrence command. Choices are sim1, sim2, sim3, sim4, sim5, sim6, sim7, sim8, sim9.\n"); abort = true; 
 			}
             
             groups = validParameter.valid(parameters, "groups");			
@@ -282,7 +282,7 @@ int CooccurrenceCommand::getCooccurrence(SharedRAbundVectors*& thisLookUp, ofstr
         int numOTUS = thisLookUp->getNumBins();
         
         if(numOTUS < 2) {
-            m->mothurOut("Not enough OTUs for co-occurrence analysis, skipping"); m->mothurOutEndLine();
+            m->mothurOut("Not enough OTUs for co-occurrence analysis, skipping\n");
             return 0;
         }
         
@@ -545,7 +545,7 @@ int CooccurrenceCommand::getCooccurrence(SharedRAbundVectors*& thisLookUp, ofstr
         
         double nullMean = double (total/(double)stats.size());
         
-        m->mothurOutEndLine(); m->mothurOut("average metric score: " + toString(nullMean)); m->mothurOutEndLine();
+        m->mothurOut("\naverage metric score: " + toString(nullMean)); m->mothurOutEndLine();
         
         //calc_p_value is not a statistical p-value, it's just the average that are either > or < the initscore.
         //All it does is show what is expected in a competitively structured community

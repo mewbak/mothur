@@ -207,7 +207,7 @@ void Nast::removeExtraGaps(string& candAln, string tempAln, string newTemplateAl
 //				i -= insertLength;
 				
 				//if i is negative, we want to remove the extra gaps to the right
-				if (i < 0) { m->mothurOut("i is negative"); m->mothurOutEndLine(); } 
+				if (i < 0) { m->mothurOut("i is negative\n"); } 
 			} 
 		}
 	}

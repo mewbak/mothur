@@ -196,11 +196,11 @@ UnifracUnweightedCommand::UnifracUnweightedCommand(string option)  {
 			else { current->setCountFile(countfile); }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
 			
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
 			
 			outputDir = validParameter.valid(parameters, "outputdir");		if (outputDir == "not found"){	outputDir = util.hasPath(treefile);	}
@@ -222,7 +222,7 @@ UnifracUnweightedCommand::UnifracUnweightedCommand(string option)  {
 			else{
                 if (temp=="phylip") { temp = "lt"; }
 				if ((temp == "lt") || (temp == "column") || (temp == "square")) {  phylip = true;  outputForm = temp; }
-				else { m->mothurOut("Options for distance are: lt, square, or column. Using lt."); m->mothurOutEndLine(); phylip = true; outputForm = "lt"; }
+				else { m->mothurOut("Options for distance are: lt, square, or column. Using lt.\n"); phylip = true; outputForm = "lt"; }
 			}
 			
 			temp = validParameter.valid(parameters, "random");					if (temp == "not found") { temp = "f"; }
@@ -394,7 +394,7 @@ int UnifracUnweightedCommand::execute() {
                 
                 if((thisIter+1) % 100 == 0){	m->mothurOutJustToScreen(toString(thisIter+1)+"\n"); 		}
             }
-            if (subsample) { m->mothurOut("It took " + toString(time(NULL) - startSubsample) + " secs to run the subsampling."); m->mothurOutEndLine(); }
+            if (subsample) { m->mothurOut("It took " + toString(time(NULL) - startSubsample) + " secs to run the subsampling.\n"); }
             
             if (m->getControl_pressed()) { break; }
 
@@ -415,7 +415,7 @@ int UnifracUnweightedCommand::execute() {
 		
 		if (m->getControl_pressed()) { for (int i = 0; i < outputNames.size(); i++) {	util.mothurRemove(outputNames[i]);  }	return 0; }
 		
-		m->mothurOut("It took " + toString(time(NULL) - start) + " secs to run unifrac.unweighted."); m->mothurOutEndLine();
+		m->mothurOut("It took " + toString(time(NULL) - start) + " secs to run unifrac.unweighted.\n");
 		
 		//set phylip file as new current phylipfile
 		string currentName = "";

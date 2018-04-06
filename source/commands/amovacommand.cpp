@@ -139,8 +139,8 @@ AmovaCommand::AmovaCommand(string option) {
 			else if (phylipFileName == "not found") { 
 				//if there is a current phylip file, use it
 				phylipFileName = current->getPhylipFile(); 
-				if (phylipFileName != "") { m->mothurOut("Using " + phylipFileName + " as input file for the phylip parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current phylip file and the phylip parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (phylipFileName != "") { m->mothurOut("Using " + phylipFileName + " as input file for the phylip parameter.\n"); }
+				else { 	m->mothurOut("You have no current phylip file and the phylip parameter is required.\n"); abort = true; }
 			}else { current->setPhylipFile(phylipFileName); }
 			
 			//check for required parameters
@@ -149,8 +149,8 @@ AmovaCommand::AmovaCommand(string option) {
 			else if (designFileName == "not found") {
 				//if there is a current design file, use it
 				designFileName = current->getDesignFile(); 
-				if (designFileName != "") { m->mothurOut("Using " + designFileName + " as input file for the design parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current design file and the design parameter is required."); m->mothurOutEndLine(); abort = true; }				
+				if (designFileName != "") { m->mothurOut("Using " + designFileName + " as input file for the design parameter.\n"); }
+				else { 	m->mothurOut("You have no current design file and the design parameter is required.\n"); abort = true; }				
 			}else { current->setDesignFile(designFileName); }	
 
 			string temp = validParameter.valid(parameters, "iters");
@@ -197,7 +197,7 @@ int AmovaCommand::execute(){
                 string group = designMap->get(sampleNames[i]);
                 
                 if (group == "not found") {
-                    m->mothurOut("[ERROR]: " + sampleNames[i] + " is not in your design file, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true);
+                    m->mothurOut("[ERROR]: " + sampleNames[i] + " is not in your design file, please correct.\n"); m->setControl_pressed(true);
                 }else if (!util.inUsersGroups(group, Sets)){  //not in set we want remove it
                     //remove from all other rows
                     for(int j=0;j<distanceMatrix.size();j++){ distanceMatrix[j].erase(distanceMatrix[j].begin()+i); }
@@ -220,7 +220,7 @@ int AmovaCommand::execute(){
 			string group = designMap->get(sampleNames[i]);
 			
 			if (group == "not found") {
-				m->mothurOut("[ERROR]: " + sampleNames[i] + " is not in your design file, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true);
+				m->mothurOut("[ERROR]: " + sampleNames[i] + " is not in your design file, please correct.\n"); m->setControl_pressed(true);
 			}else { origGroupSampleMap[group].push_back(i); }
 			
 		}

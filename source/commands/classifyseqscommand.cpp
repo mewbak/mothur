@@ -181,8 +181,8 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
 			if (fastaFileName == "not found") { 				
 				//if there is a current fasta file, use it
 				string filename = current->getFastaFile(); 
-				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}
 			else { 
 				util.splitAtDash(fastaFileName, fastaFileNames);
@@ -193,9 +193,9 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
 					bool ignore = false;
 					if (fastaFileNames[i] == "current") { 
 						fastaFileNames[i] = current->getFastaFile(); 
-						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							fastaFileNames.erase(fastaFileNames.begin()+i);
 							i--;
@@ -209,7 +209,7 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
                 }
 				
 				//make sure there is at least one valid file left
-				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 
 			namefile = validParameter.valid(parameters, "name");
@@ -222,9 +222,9 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
 					bool ignore = false;
 					if (namefileNames[i] == "current") { 
 						namefileNames[i] = current->getNameFile(); 
-						if (namefileNames[i] != "") {  m->mothurOut("Using " + namefileNames[i] + " as input file for the name parameter where you had given current."); m->mothurOutEndLine(); }
+						if (namefileNames[i] != "") {  m->mothurOut("Using " + namefileNames[i] + " as input file for the name parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current namefile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current namefile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							namefileNames.erase(namefileNames.begin()+i);
 							i--;
@@ -241,7 +241,7 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
             if (namefileNames.size() != 0) { hasName = true; }
             
 			if (namefile != "") {
-				if (namefileNames.size() != fastaFileNames.size()) { abort = true; m->mothurOut("If you provide a name file, you must have one for each fasta file."); m->mothurOutEndLine(); }
+				if (namefileNames.size() != fastaFileNames.size()) { abort = true; m->mothurOut("If you provide a name file, you must have one for each fasta file.\n"); }
 			}
 			
             //check for required parameters
@@ -257,9 +257,9 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
 					bool ignore = false;
 					if (countfileNames[i] == "current") { 
 						countfileNames[i] = current->getCountFile(); 
-						if (countfileNames[i] != "") {  m->mothurOut("Using " + countfileNames[i] + " as input file for the count parameter where you had given current."); m->mothurOutEndLine(); }
+						if (countfileNames[i] != "") {  m->mothurOut("Using " + countfileNames[i] + " as input file for the count parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current count file, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current count file, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							countfileNames.erase(countfileNames.begin()+i);
 							i--;
@@ -273,10 +273,10 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
                 }
 			}
             
-            if (countfileNames.size() != 0) { hasCount = true; if (countfileNames.size() != fastaFileNames.size()) {m->mothurOut("If you provide a count file, you must have one for each fasta file."); m->mothurOutEndLine(); } }
+            if (countfileNames.size() != 0) { hasCount = true; if (countfileNames.size() != fastaFileNames.size()) {m->mothurOut("If you provide a count file, you must have one for each fasta file.\n"); } }
             
 			//make sure there is at least one valid file left
-            if (hasName && hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if (hasName && hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or name.\n"); abort = true; }
 
 			groupfile = validParameter.valid(parameters, "group");
 			if (groupfile == "not found") { groupfile = "";  }
@@ -289,9 +289,9 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
 					bool ignore = false;
 					if (groupfileNames[i] == "current") { 
 						groupfileNames[i] = current->getGroupFile(); 
-						if (groupfileNames[i] != "") {  m->mothurOut("Using " + groupfileNames[i] + " as input file for the group parameter where you had given current."); m->mothurOutEndLine(); }
+						if (groupfileNames[i] != "") {  m->mothurOut("Using " + groupfileNames[i] + " as input file for the group parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current group file, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current group file, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							groupfileNames.erase(groupfileNames.begin()+i);
 							i--;
@@ -306,8 +306,8 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
 			}
 
 			if (groupfile != "") {
-				if (groupfileNames.size() != fastaFileNames.size()) { abort = true; m->mothurOut("If you provide a group file, you must have one for each fasta file."); m->mothurOutEndLine(); }
-                if (hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or group."); m->mothurOutEndLine(); abort = true; }
+				if (groupfileNames.size() != fastaFileNames.size()) { abort = true; m->mothurOut("If you provide a group file, you must have one for each fasta file.\n"); }
+                if (hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or group.\n"); abort = true; }
 			}else {
 				for (int i = 0; i < fastaFileNames.size(); i++) {  groupfileNames.push_back("");  }
 			}
@@ -376,7 +376,7 @@ ClassifySeqsCommand::ClassifySeqsCommand(string option)  {
 			util.mothurConvert(temp, iters); 
             
             output = validParameter.valid(parameters, "output");		if(output == "not found"){	output = "detail"; }
-			if ((output != "simple") && (output != "detail")) { m->mothurOut(output + " is not a valid output form. Options are simple and detail. I will use detail."); m->mothurOutEndLine(); output = "detail"; }
+			if ((output != "simple") && (output != "detail")) { m->mothurOut(output + " is not a valid output form. Options are simple and detail. I will use detail.\n"); output = "detail"; }
             
 			if ((method == "wang") && (search != "kmer"))  { 
 				m->mothurOut("The wang method requires the kmer search. " + search + " will be disregarded, and kmer will be used." ); m->mothurOutEndLine();
@@ -436,7 +436,7 @@ int ClassifySeqsCommand::execute(){
 				
 		for (int s = 0; s < fastaFileNames.size(); s++) {
 		
-			m->mothurOut("Classifying sequences from " + fastaFileNames[s] + " ..." ); m->mothurOutEndLine();
+			m->mothurOut("Classifying sequences from " + fastaFileNames[s] + " ...\n" );
 			
 			string baseTName = util.getSimpleName(taxonomyFileName);
 			
@@ -488,7 +488,7 @@ int ClassifySeqsCommand::execute(){
                 m->mothurOut("Reading " + namefileNames[s] + "..."); cout.flush();
                 nameMap.clear(); //remove old names
                 util.readNames(namefileNames[s], nameMap);
-                m->mothurOut("  Done."); m->mothurOutEndLine();
+                m->mothurOut("  Done.\n");
             }
             
             //output taxonomy with the unclassified bins added
@@ -532,7 +532,7 @@ int ClassifySeqsCommand::execute(){
                     itNames = nameMap.find(name);
                     
                     if (itNames == nameMap.end()) {
-                        m->mothurOut(name + " is not in your name file please correct."); m->mothurOutEndLine(); exit(1);
+                        m->mothurOut(name + " is not in your name file please correct.\n"); exit(1);
                     }else{
                         for (int i = 0; i < itNames->second.size(); i++) {
                             taxaSum->addSeqToTree(itNames->second[i], newTax);  //add it as many times as there are identical seqs

@@ -588,7 +588,7 @@ int SetCurrentCommand::execute(){
 			}
 		}
         
-		m->mothurOutEndLine(); m->mothurOut("Current files saved by mothur:"); m->mothurOutEndLine();
+		m->mothurOut("\nCurrent files saved by mothur:\n");
         
         if (current->hasCurrentFiles()) {
             map<string, string> variables;
@@ -599,7 +599,7 @@ int SetCurrentCommand::execute(){
             outputNames.push_back(filename); outputTypes["summary"].push_back(filename);
             
             m->mothurOutEndLine();
-            m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+            m->mothurOut("Output File Names: \n");
             for (int i = 0; i < outputNames.size(); i++) { m->mothurOut(outputNames[i]); m->mothurOutEndLine(); }
             m->mothurOutEndLine();
         }

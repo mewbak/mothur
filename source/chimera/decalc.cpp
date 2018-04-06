@@ -106,7 +106,7 @@ vector<int>  DeCalculator::findWindows(Sequence* query, int front, int back, int
 		if (size == 0) {  if (cutoff > 1200) {  size = 300; }
 							else{  size = (cutoff / 4); }  } 
 		else if (size > (cutoff / 4)) { 
-				m->mothurOut("You have selected too large a window size for sequence " + query->getName() + ".  I will choose an appropriate window size."); m->mothurOutEndLine();
+				m->mothurOut("You have selected too large a window size for sequence " + query->getName() + ".  I will choose an appropriate window size.\n");
 				size = (cutoff / 4); 
 		}
 	
@@ -488,7 +488,7 @@ void DeCalculator::removeObviousOutliers(vector< vector<float> >& quantiles, int
 		//while you still have guys to eliminate
 		while (contributions.size() > 0) {
 		
-			m->mothurOut("Removing scores contributed by sequence " + toString(largestContrib) + " in your template file."); m->mothurOutEndLine();
+			m->mothurOut("Removing scores contributed by sequence " + toString(largestContrib) + " in your template file.\n");
 			
 			//remove from quantiles all scores that were made using this largestContrib
 			for (int i = 0; i < quantiles.size(); i++) {
@@ -519,7 +519,7 @@ cout << "high = " << high << endl;
 		
 		for(int i = 0; i < marked.size(); i++) {
 			if (marked[i] > high) { 
-				m->mothurOut("Removing scores contributed by sequence " + toString(marked[i]) + " in your template file."); m->mothurOutEndLine();
+				m->mothurOut("Removing scores contributed by sequence " + toString(marked[i]) + " in your template file.\n");
 				for (int i = 0; i < quantiles.size(); i++) {
 					removeContrib(marked[i], quantiles[i]);
 				}

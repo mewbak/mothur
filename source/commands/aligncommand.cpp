@@ -158,8 +158,8 @@ AlignCommand::AlignCommand(string option)  {
 			if (candidateFileName == "not found") { 
 				//if there is a current fasta file, use it
 				string filename = current->getFastaFile();
-				if (filename != "") { candidateFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the candidate parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (filename != "") { candidateFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the candidate parameter is required.\n"); abort = true; }
 			}else { 
 				util.splitAtDash(candidateFileName, candidateFileNames);
 				
@@ -170,9 +170,9 @@ AlignCommand::AlignCommand(string option)  {
 					bool ignore = false;
 					if (candidateFileNames[i] == "current") { 
 						candidateFileNames[i] = current->getFastaFile();
-						if (candidateFileNames[i] != "") {  m->mothurOut("Using " + candidateFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+						if (candidateFileNames[i] != "") {  m->mothurOut("Using " + candidateFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							candidateFileNames.erase(candidateFileNames.begin()+i);
 							i--;
@@ -186,7 +186,7 @@ AlignCommand::AlignCommand(string option)  {
 				}
 				
 				//make sure there is at least one valid file left
-				if (candidateFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (candidateFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 		
 			//check for optional parameter and set defaults
@@ -222,10 +222,10 @@ AlignCommand::AlignCommand(string option)  {
 			util.mothurConvert(temp, threshold); 
 			
 			search = validParameter.valid(parameters, "search");		if (search == "not found"){	search = "kmer";		}
-			if ((search != "suffix") && (search != "kmer") && (search != "blast")) { m->mothurOut("invalid search option: choices are kmer, suffix or blast."); m->mothurOutEndLine(); abort=true; }
+			if ((search != "suffix") && (search != "kmer") && (search != "blast")) { m->mothurOut("invalid search option: choices are kmer, suffix or blast.\n"); abort=true; }
 			
 			align = validParameter.valid(parameters, "align");		if (align == "not found"){	align = "needleman";	}
-			if ((align != "needleman") && (align != "gotoh") && (align != "blast") && (align != "noalign")) { m->mothurOut("invalid align option: choices are needleman, gotoh, blast or noalign."); m->mothurOutEndLine(); abort=true; }
+			if ((align != "needleman") && (align != "gotoh") && (align != "blast") && (align != "noalign")) { m->mothurOut("invalid align option: choices are needleman, gotoh, blast or noalign.\n"); abort=true; }
 
 		}
 		
@@ -254,7 +254,7 @@ int AlignCommand::execute(){
 		for (int s = 0; s < candidateFileNames.size(); s++) {
 			if (m->getControl_pressed()) { outputTypes.clear(); return 0; }
 			
-			m->mothurOut("Aligning sequences from " + candidateFileNames[s] + " ..." ); m->mothurOutEndLine();
+			m->mothurOut("Aligning sequences from " + candidateFileNames[s] + " ...\n"); 
 			
 			if (outputDir == "") {  outputDir += util.hasPath(candidateFileNames[s]); }
             map<string, string> variables; variables["[filename]"] = outputDir + util.getRootName(util.getSimpleName(candidateFileNames[s]));

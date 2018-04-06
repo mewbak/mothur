@@ -283,18 +283,18 @@ CollectCommand::CollectCommand(string option)  {
 				//give priority to shared, then list, then rabund, then sabund
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { inputfile = sharedfile; format = "sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") { inputfile = sharedfile; format = "sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					listfile = current->getListFile(); 
-					if (listfile != "") { inputfile = listfile; format = "list"; m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+					if (listfile != "") { inputfile = listfile; format = "list"; m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
 					else { 
 						rabundfile = current->getRabundFile();
-						if (rabundfile != "") { inputfile = rabundfile; format = "rabund"; m->mothurOut("Using " + rabundfile + " as input file for the rabund parameter."); m->mothurOutEndLine(); }
+						if (rabundfile != "") { inputfile = rabundfile; format = "rabund"; m->mothurOut("Using " + rabundfile + " as input file for the rabund parameter.\n"); }
 						else { 
 							sabundfile = current->getSabundFile(); 
-							if (sabundfile != "") { inputfile = sabundfile; format = "sabund"; m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter."); m->mothurOutEndLine(); }
+							if (sabundfile != "") { inputfile = sabundfile; format = "sabund"; m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter.\n"); }
 							else { 
-								m->mothurOut("No valid current files. You must provide a list, sabund, rabund or shared file before you can use the collect.single command."); m->mothurOutEndLine(); 
+								m->mothurOut("No valid current files. You must provide a list, sabund, rabund or shared file before you can use the collect.single command.\n"); 
 								abort = true;
 							}
 						}
@@ -331,7 +331,7 @@ CollectCommand::CollectCommand(string option)  {
             temp = validParameter.valid(parameters, "alpha");		if (temp == "not found") { temp = "1"; }
 			util.mothurConvert(temp, alpha);
             
-            if ((alpha != 0) && (alpha != 1) && (alpha != 2)) { m->mothurOut("[ERROR]: Not a valid alpha value. Valid values are 0, 1 and 2."); m->mothurOutEndLine(); abort=true; }
+            if ((alpha != 0) && (alpha != 1) && (alpha != 2)) { m->mothurOut("[ERROR]: Not a valid alpha value. Valid values are 0, 1 and 2.\n"); abort=true; }
 			
 			temp = validParameter.valid(parameters, "abund");		if (temp == "not found") { temp = "10"; }
 			util.mothurConvert(temp, abund); 
@@ -367,7 +367,7 @@ int CollectCommand::execute(){
 			//globaldata->inputFileName = inputFileNames[p];
 		
 			if (inputFileNames.size() > 1) {
-				m->mothurOutEndLine(); m->mothurOut("Processing group " + groups[p]); m->mothurOutEndLine(); m->mothurOutEndLine();
+				m->mothurOut("\nProcessing group " + groups[p]); m->mothurOutEndLine(); m->mothurOutEndLine();
 			}
 		
 			ValidCalculators validCalculator;
@@ -542,10 +542,10 @@ int CollectCommand::execute(){
 			for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 				m->mothurOut("Your file does not include the label " + *it); 
 				if (processedLabels.count(lastLabel) != 1) {
-					m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". I will use " + lastLabel + ".\n");
 					needToRun = true;
 				}else {
-					m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". Please refer to " + lastLabel + ".\n");
 				}
 			}
 			

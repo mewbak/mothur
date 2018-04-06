@@ -175,7 +175,7 @@ int SequenceParser::getNumSeqs(string g){
 		
 		it = seqs.find(g);
 		if(it == seqs.end()) {
-			m->mothurOut("[ERROR]: " + g + " is not a valid group, please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: " + g + " is not a valid group, please correct.\n");
 		}else {
 			num = (it->second).size();
 		}
@@ -195,7 +195,7 @@ vector<Sequence> SequenceParser::getSeqs(string g){
 		
 		it = seqs.find(g);
 		if(it == seqs.end()) {
-			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct.\n");
 		}else {
 			seqForThisGroup = it->second;
             if (m->getDebug()) {  m->mothurOut("[DEBUG]: group " + g + " fasta file has " + toString(seqForThisGroup.size()) + " sequences.");  }
@@ -217,7 +217,7 @@ int SequenceParser::getSeqs(string g, string filename, string tag, string tag2, 
 		
 		it = seqs.find(g);
 		if(it == seqs.end()) {
-			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No sequences available for group " + g + ", please correct.\n");
 		}else {
 
 			ofstream out;
@@ -242,7 +242,7 @@ int SequenceParser::getSeqs(string g, string filename, string tag, string tag2, 
 					
 					if (itNameMap == nameMapForThisGroup.end()){
 						error = 1;
-						m->mothurOut("[ERROR]: " + seqForThisGroup[i].getName() + " is in your fastafile, but is not in your namesfile, please correct."); m->mothurOutEndLine();
+						m->mothurOut("[ERROR]: " + seqForThisGroup[i].getName() + " is in your fastafile, but is not in your namesfile, please correct.\n");
 					}else {
 						int num = util.getNumNames(itNameMap->second);
 						
@@ -292,7 +292,7 @@ map<string, string> SequenceParser::getNameMap(string g){
 		
 		it = nameMapPerGroup.find(g);
 		if(it == nameMapPerGroup.end()) {
-			m->mothurOut("[ERROR]: No nameMap available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No nameMap available for group " + g + ", please correct.\n");
 		}else {
 			nameMapForThisGroup = it->second;
             if (m->getDebug()) {  m->mothurOut("[DEBUG]: group " + g + " name file has " + toString(nameMapForThisGroup.size()) + " unique sequences.");  }
@@ -313,7 +313,7 @@ int SequenceParser::getNameMap(string g, string filename){
 		
 		it = nameMapPerGroup.find(g);
 		if(it == nameMapPerGroup.end()) {
-			m->mothurOut("[ERROR]: No nameMap available for group " + g + ", please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: No nameMap available for group " + g + ", please correct.\n");
 		}else {
 			nameMapForThisGroup = it->second;
 			

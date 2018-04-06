@@ -121,7 +121,7 @@ class Command {
 	
 		virtual int execute() = 0;
 		virtual void help() = 0;
-		void citation() { m->mothurOutEndLine(); m->mothurOut(getCitation()); m->mothurOutEndLine(); }
+		void citation() { m->mothurOutEndLine(); m->mothurOut(getCitation() + "\n");  }
 		virtual ~Command() { }
 	
 	protected:

@@ -145,12 +145,12 @@ GetCoreMicroBiomeCommand::GetCoreMicroBiomeCommand(string option)  {
 				//is there are current file available for either of these?
 				//give priority to shared, then relabund
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") {  inputFileName = sharedfile; format="sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") {  inputFileName = sharedfile; format="sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					relabundfile = current->getRelAbundFile(); 
-					if (relabundfile != "") {  inputFileName = relabundfile; format="relabund"; m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter."); m->mothurOutEndLine(); }
+					if (relabundfile != "") {  inputFileName = relabundfile; format="relabund"; m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter.\n"); }
 					else { 
-						m->mothurOut("No valid current files. You must provide a shared or relabund."); m->mothurOutEndLine(); 
+						m->mothurOut("No valid current files. You must provide a shared or relabund.\n"); 
 						abort = true;
 					}
 				}
@@ -174,7 +174,7 @@ GetCoreMicroBiomeCommand::GetCoreMicroBiomeCommand(string option)  {
             
             output = validParameter.valid(parameters, "output");		if(output == "not found"){	output = "fraction"; }
 						
-			if ((output != "fraction") && (output != "count")) { m->mothurOut(output + " is not a valid output form. Options are fraction and count. I will use fraction."); m->mothurOutEndLine(); output = "fraction"; }
+			if ((output != "fraction") && (output != "count")) { m->mothurOut(output + " is not a valid output form. Options are fraction and count. I will use fraction.\n"); output = "fraction"; }
             
             string temp = validParameter.valid(parameters, "abundance");	if (temp == "not found"){	temp = "-1";	}
 			util.mothurConvert(temp, abund);
@@ -280,10 +280,10 @@ int GetCoreMicroBiomeCommand::execute(){
         for (it = userLabels.begin(); it != userLabels.end(); it++) {  
             m->mothurOut("Your file does not include the label " + *it); 
             if (processedLabels.count(lastLabel) != 1) {
-                m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". I will use " + lastLabel + ".\n");
                 needToRun = true;
             }else {
-                m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". Please refer to " + lastLabel + ".\n");
             }
         }
         

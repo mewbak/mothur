@@ -178,18 +178,18 @@ OTUAssociationCommand::OTUAssociationCommand(string option)  {
 				//give priority to shared, then relabund
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { inputFileName = sharedfile; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") { inputFileName = sharedfile; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					relabundfile = current->getRelAbundFile(); 
-					if (relabundfile != "") { inputFileName = relabundfile;  m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter."); m->mothurOutEndLine(); }
+					if (relabundfile != "") { inputFileName = relabundfile;  m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter.\n"); }
 					else { 
-						m->mothurOut("You must provide either a shared or relabund file."); m->mothurOutEndLine(); abort = true; 
+						m->mothurOut("You must provide either a shared or relabund file.\n"); abort = true; 
 					}
 				}
 			}	
 			
 			
-			if ((relabundfile != "") && (sharedfile != "")) { m->mothurOut("You may only use one of the following : shared or relabund file."); m->mothurOutEndLine(); abort = true;  }
+			if ((relabundfile != "") && (sharedfile != "")) { m->mothurOut("You may only use one of the following : shared or relabund file.\n"); abort = true;  }
 			
 			method = validParameter.valid(parameters, "method");		if (method == "not found"){	method = "pearson";		}
 			
@@ -197,7 +197,7 @@ OTUAssociationCommand::OTUAssociationCommand(string option)  {
 			if (temp == "not found") { temp = "10"; }
 			util.mothurConvert(temp, cutoff); 
             
-			if ((method != "pearson") && (method != "spearman") && (method != "kendall")) { m->mothurOut(method + " is not a valid method. Valid methods are pearson, spearman, and kendall."); m->mothurOutEndLine(); abort = true; }
+			if ((method != "pearson") && (method != "spearman") && (method != "kendall")) { m->mothurOut(method + " is not a valid method. Valid methods are pearson, spearman, and kendall.\n"); abort = true; }
 			
 		}
 	}
@@ -355,7 +355,7 @@ int OTUAssociationCommand::process(SharedRAbundVectors*& lookup){
                     if (method == "spearman")		{   coef = linear.calcSpearman(xy[i], xy[k], sig);	}
                     else if (method == "pearson")	{	coef = linear.calcPearson(xy[i], xy[k], sig);	}
                     else if (method == "kendall")	{	coef = linear.calcKendall(xy[i], xy[k], sig);	}                   
-                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall.\n"); m->setControl_pressed(true); }
                     
                     if (sig < cutoff) { out << currentLabels[i] << '\t' << currentLabels[k] << '\t' << coef << '\t' << sig << endl; }
                 }
@@ -372,7 +372,7 @@ int OTUAssociationCommand::process(SharedRAbundVectors*& lookup){
                     if (method == "spearman")		{   coef = linear.calcSpearman(xy[i], metadata[k], sig);	}
                     else if (method == "pearson")	{	coef = linear.calcPearson(xy[i], metadata[k], sig);	}
                     else if (method == "kendall")	{	coef = linear.calcKendall(xy[i], metadata[k], sig);	}                   
-                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall.\n"); m->setControl_pressed(true); }
                     
                     if (sig < cutoff) { out << currentLabels[i] << '\t' << metadataLabels[k] << '\t' << coef << '\t' << sig << endl; }
                 }
@@ -514,7 +514,7 @@ int OTUAssociationCommand::process(SharedRAbundFloatVectors*& lookup){
                     if (method == "spearman")		{   coef = linear.calcSpearman(xy[i], xy[k], sig);	}
                     else if (method == "pearson")	{	coef = linear.calcPearson(xy[i], xy[k], sig);	}
                     else if (method == "kendall")	{	coef = linear.calcKendall(xy[i], xy[k], sig);	}                   
-                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall.\n"); m->setControl_pressed(true); }
                     
                     if (sig < cutoff) { out << currentLabels[i] << '\t' << currentLabels[k] << '\t' << coef << '\t' << sig << endl; }
                 }
@@ -531,7 +531,7 @@ int OTUAssociationCommand::process(SharedRAbundFloatVectors*& lookup){
                     if (method == "spearman")		{   coef = linear.calcSpearman(xy[i], metadata[k], sig);	}
                     else if (method == "pearson")	{	coef = linear.calcPearson(xy[i], metadata[k], sig);	}
                     else if (method == "kendall")	{	coef = linear.calcKendall(xy[i], metadata[k], sig);	}                   
-                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    else { m->mothurOut("[ERROR]: invalid method, choices are spearman, pearson or kendall.\n"); m->setControl_pressed(true); }
                     
                     if (sig < cutoff) { out << currentLabels[i] << '\t' << metadataLabels[k] << '\t' << coef << '\t' << sig << endl; }
                 }

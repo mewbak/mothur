@@ -204,8 +204,8 @@ PcrSeqsCommand::PcrSeqsCommand(string option)  {
 			fastafile = validParameter.validFile(parameters, "fasta");
 			if (fastafile == "not found") { 				
 				fastafile = current->getFastaFile(); 
-				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else if (fastafile == "not open") { fastafile = ""; abort = true; }	
 			else { current->setFastaFile(fastafile); }
 			
@@ -246,11 +246,11 @@ PcrSeqsCommand::PcrSeqsCommand(string option)  {
 			else { current->setCountFile(countfile); }
             
             if ((namefile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
 			
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
             
             taxfile = validParameter.validFile(parameters, "taxonomy");
@@ -359,8 +359,8 @@ int PcrSeqsCommand::execute(){
         string inputString = "accnos=" + outputFileName + inputStringTemp;
         
         if (inputStringTemp != "") {
-            m->mothurOut("/******************************************/"); m->mothurOutEndLine();
-            m->mothurOut("Running command: remove.seqs(" + inputString + ")"); m->mothurOutEndLine();
+            m->mothurOut("/******************************************/\n");
+            m->mothurOut("Running command: remove.seqs(" + inputString + ")\n");
             current->setMothurCalling(true);
             
             Command* removeCommand = new RemoveSeqsCommand(inputString);
@@ -407,7 +407,7 @@ int PcrSeqsCommand::execute(){
                 util.renameFile(filenames["taxonomy"][0], outputFileName);
                 outputNames.push_back(outputFileName); outputTypes["taxonomy"].push_back(outputFileName);
             }
-            m->mothurOut("/******************************************/"); m->mothurOutEndLine();
+            m->mothurOut("/******************************************/\n");
         }
         
         if (m->getControl_pressed()) { for (int i = 0; i < outputNames.size(); i++) {	util.mothurRemove(outputNames[i]); } return 0; }

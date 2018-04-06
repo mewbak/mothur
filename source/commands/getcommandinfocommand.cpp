@@ -61,7 +61,7 @@ GetCommandInfoCommand::GetCommandInfoCommand(string option)  {
 			}
 			
 			output = validParameter.valid(parameters, "output");
-			if (output == "not found") {  output = ""; m->mothurOut("You must provide an output filename."); m->mothurOutEndLine(); abort=true; } 
+			if (output == "not found") {  output = ""; m->mothurOut("You must provide an output filename.\n"); abort=true; } 
 			
 		}
 	}
@@ -93,7 +93,7 @@ int GetCommandInfoCommand::execute(){
 		//loop through each command outputting info
 		for (it = commands.begin(); it != commands.end(); it++) {
 			
-			if (m->getControl_pressed()) { m->mothurOut("[ERROR]: did not complete making the file."); m->mothurOutEndLine(); out.close(); util.mothurRemove((output+".temp")); }
+			if (m->getControl_pressed()) { m->mothurOut("[ERROR]: did not complete making the file.\n"); out.close(); util.mothurRemove((output+".temp")); }
 			
 			Command* thisCommand = commandFactory->getCommand(it->first);
 			
@@ -265,7 +265,7 @@ int GetCommandInfoCommand::getInfo(vector<CommandParameter> para, vector<string>
                     }
 					tempGroups.clear();
 						  
-				}else { m->mothurOut("[ERROR]: " + para[i].type + " is an unknown parameter type, please correct."); m->mothurOutEndLine(); }
+				}else { m->mothurOut("[ERROR]: " + para[i].type + " is an unknown parameter type, please correct.\n"); }
 			}
 		}
 		

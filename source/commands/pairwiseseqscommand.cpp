@@ -136,8 +136,8 @@ PairwiseSeqsCommand::PairwiseSeqsCommand(string option)  {
 			if (fastaFileName == "not found") { 				
 				//if there is a current fasta file, use it
 				string filename = current->getFastaFile(); 
-				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}
 			else { 
 				util.splitAtDash(fastaFileName, fastaFileNames);
@@ -148,9 +148,9 @@ PairwiseSeqsCommand::PairwiseSeqsCommand(string option)  {
 					bool ignore = false;
 					if (fastaFileNames[i] == "current") { 
 						fastaFileNames[i] = current->getFastaFile(); 
-						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+						if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
 						else { 	
-							m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true; 
+							m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true; 
 							//erase from file list
 							fastaFileNames.erase(fastaFileNames.begin()+i);
 							i--;
@@ -164,7 +164,7 @@ PairwiseSeqsCommand::PairwiseSeqsCommand(string option)  {
 				}
 				
 				//make sure there is at least one valid file left
-				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFileNames.size() == 0) { m->mothurOut("no valid files.\n"); abort = true; }
 			}
 		
 			//check for optional parameter and set defaults
@@ -201,7 +201,7 @@ PairwiseSeqsCommand::PairwiseSeqsCommand(string option)  {
 			
 			output = validParameter.valid(parameters, "output");		if(output == "not found"){	output = "column"; }
             if (output=="phylip") { output = "lt"; }
-			if ((output != "column") && (output != "lt") && (output != "square")) { m->mothurOut(output + " is not a valid output form. Options are column, lt and square. I will use column."); m->mothurOutEndLine(); output = "column"; }
+			if ((output != "column") && (output != "lt") && (output != "square")) { m->mothurOut(output + " is not a valid output form. Options are column, lt and square. I will use column.\n"); output = "column"; }
 			
 			calc = validParameter.valid(parameters, "calc");			
 			if (calc == "not found") { calc = "onegap";  }
@@ -230,7 +230,7 @@ int PairwiseSeqsCommand::execute(){
 		for (int s = 0; s < fastaFileNames.size(); s++) {
 			if (m->getControl_pressed()) { outputTypes.clear(); return 0; }
 			
-			m->mothurOut("Processing sequences from " + fastaFileNames[s] + " ..." ); m->mothurOutEndLine();
+			m->mothurOut("Processing sequences from " + fastaFileNames[s] + " ...\n" );
 			
 			if (outputDir == "") {  outputDir += util.hasPath(fastaFileNames[s]); }
 			
@@ -272,13 +272,13 @@ int PairwiseSeqsCommand::execute(){
 			}
 			
 			if (compress) {
-				m->mothurOut("Compressing..."); m->mothurOutEndLine();
-				m->mothurOut("(Replacing " + outputFile + " with " + outputFile + ".gz)"); m->mothurOutEndLine();
+				m->mothurOut("Compressing...\n");
+				m->mothurOut("(Replacing " + outputFile + " with " + outputFile + ".gz)\n");
 				system(("gzip -v " + outputFile).c_str());
 				outputNames.push_back(outputFile + ".gz");
 			}else { outputNames.push_back(outputFile); }
 
-            m->mothurOut("It took " + toString(time(NULL) - startTime) + " to calculate the distances for " + toString(numSeqs) + " sequences."); m->mothurOutEndLine();
+            m->mothurOut("It took " + toString(time(NULL) - startTime) + " to calculate the distances for " + toString(numSeqs) + " sequences.\n");
 			
 			if (m->getControl_pressed()) { outputTypes.clear(); util.mothurRemove(outputFile); return 0; }
 		}

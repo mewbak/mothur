@@ -163,8 +163,8 @@ ClusterFragmentsCommand::ClusterFragmentsCommand(string option) {
 			fastafile = validParameter.validFile(parameters, "fasta");
 			if (fastafile == "not found") { 				
 				fastafile = current->getFastaFile(); 
-				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}
 			else if (fastafile == "not open") { fastafile = ""; abort = true; }	
 			else { current->setFastaFile(fastafile); }
@@ -184,7 +184,7 @@ ClusterFragmentsCommand::ClusterFragmentsCommand(string option) {
 			else if (countfile == "not found") { countfile = ""; }
 			else { ct.readTable(countfile, true, false); current->setCountFile(countfile); }
 			
-            if ((countfile != "") && (namefile != "")) { m->mothurOut("When executing a cluster.fragments command you must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if ((countfile != "") && (namefile != "")) { m->mothurOut("When executing a cluster.fragments command you must enter ONLY ONE of the following: count or name.\n"); abort = true; }
 			
 			string temp;
 			temp = validParameter.valid(parameters, "diffs");		if (temp == "not found"){	temp = "0";				}
@@ -221,7 +221,7 @@ int ClusterFragmentsCommand::execute(){
 		
 		if (m->getControl_pressed()) { return 0; }
 	
-		if (numSeqs == 0) { m->mothurOut("Error reading fasta file...please correct."); m->mothurOutEndLine(); return 0;  }
+		if (numSeqs == 0) { m->mothurOut("Error reading fasta file...please correct.\n"); return 0;  }
 		
 		//sort seqs by length of unaligned sequence
 		sort(alignSeqs.begin(), alignSeqs.end(), comparePriority);
@@ -279,12 +279,12 @@ int ClusterFragmentsCommand::execute(){
 		if (m->getControl_pressed()) { return 0; }
 		
 		m->mothurOutEndLine();
-		m->mothurOut("Total number of sequences before cluster.fragments was " + toString(alignSeqs.size()) + "."); m->mothurOutEndLine();
-		m->mothurOut("cluster.fragments removed " + toString(count) + " sequences."); m->mothurOutEndLine(); m->mothurOutEndLine(); 
+		m->mothurOut("Total number of sequences before cluster.fragments was " + toString(alignSeqs.size()) + ".\n");
+		m->mothurOut("cluster.fragments removed " + toString(count) + " sequences.\n"); m->mothurOutEndLine(); 
 		
 		printData(newFastaFile, newNamesFile);
 		
-		m->mothurOut("It took " + toString(time(NULL) - start) + " secs to cluster " + toString(numSeqs) + " sequences."); m->mothurOutEndLine(); 
+		m->mothurOut("It took " + toString(time(NULL) - start) + " secs to cluster " + toString(numSeqs) + " sequences.\n"); 
 		
 		if (m->getControl_pressed()) { util.mothurRemove(newFastaFile); util.mothurRemove(newNamesFile); return 0; }
 		
@@ -393,7 +393,7 @@ int ClusterFragmentsCommand::readFASTA(){
 				if (namefile != "") {
 					itSize = sizes.find(seq.getName());
 					
-					if (itSize == sizes.end()) { m->mothurOut(seq.getName() + " is not in your names file, please correct."); m->mothurOutEndLine(); exit(1); }
+					if (itSize == sizes.end()) { m->mothurOut(seq.getName() + " is not in your names file, please correct.\n"); exit(1); }
 					else{
 						seqRNode tempNode(itSize->second, seq, names[seq.getName()], seq.getUnaligned().length());
 						alignSeqs.push_back(tempNode);

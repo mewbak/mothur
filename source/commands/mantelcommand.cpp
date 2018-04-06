@@ -129,11 +129,11 @@ MantelCommand::MantelCommand(string option)  {
 			//check for required parameters
 			phylipfile1 = validParameter.validFile(parameters, "phylip1");
 			if (phylipfile1 == "not open") { phylipfile1 = ""; abort = true; }
-			else if (phylipfile1 == "not found") { phylipfile1 = ""; m->mothurOut("phylip1 is a required parameter for the mantel command."); m->mothurOutEndLine(); abort = true;  }	
+			else if (phylipfile1 == "not found") { phylipfile1 = ""; m->mothurOut("phylip1 is a required parameter for the mantel command.\n"); abort = true;  }	
 			
 			phylipfile2 = validParameter.validFile(parameters, "phylip2");
 			if (phylipfile2 == "not open") { phylipfile2 = ""; abort = true; }
-			else if (phylipfile2 == "not found") { phylipfile2 = ""; m->mothurOut("phylip2 is a required parameter for the mantel command."); m->mothurOutEndLine(); abort = true;  }	
+			else if (phylipfile2 == "not found") { phylipfile2 = ""; m->mothurOut("phylip2 is a required parameter for the mantel command.\n"); abort = true;  }	
 			
 			outputDir = validParameter.valid(parameters, "outputdir");		if (outputDir == "not found"){	outputDir = util.hasPath(phylipfile1);	}
 			
@@ -142,7 +142,7 @@ MantelCommand::MantelCommand(string option)  {
 			string temp = validParameter.valid(parameters, "iters");			if (temp == "not found") { temp = "1000"; }
 			util.mothurConvert(temp, iters);
 			
-			if ((method != "pearson") && (method != "spearman") && (method != "kendall")) { m->mothurOut(method + " is not a valid method. Valid methods are pearson, spearman, and kendall."); m->mothurOutEndLine(); abort = true; }
+			if ((method != "pearson") && (method != "spearman") && (method != "kendall")) { m->mothurOut(method + " is not a valid method. Valid methods are pearson, spearman, and kendall.\n"); abort = true; }
 		}
 	}
 	catch(exception& e) {
@@ -178,10 +178,10 @@ int MantelCommand::execute(){
 		//make sure matrix2 and matrix1 are in the same order
 		if (names1 == names2) { //then everything is in same order and same size
 		}else if (names1.size() != names2.size()) { //wrong size no need to order, abort
-			m->mothurOut("[ERROR]: distance matrices are not the same size, aborting."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: distance matrices are not the same size, aborting.\n");
 			m->setControl_pressed(true);
 		}else { //sizes are the same, but either the names are different or they are in different order
-			m->mothurOut("[WARNING]: Names do not match between distance files. Comparing based on order in files."); m->mothurOutEndLine();
+			m->mothurOut("[WARNING]: Names do not match between distance files. Comparing based on order in files.\n");
 		}	
 		
 		if (m->getControl_pressed()) { return 0; }

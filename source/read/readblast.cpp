@@ -93,7 +93,7 @@ int ReadBlast::read(NameAssignment* nameMap) {
                     overlap.push_back(overlapValue);
 				}
 			}
-		}else { m->mothurOut("Error in your blast file, cannot read."); m->mothurOutEndLine(); exit(1); }
+		}else { m->mothurOut("Error in your blast file, cannot read.\n"); exit(1); }
 
        
 		//read file
@@ -314,7 +314,7 @@ int ReadBlast::readNames(NameAssignment* nameMap) {
 		
 		if (m->getControl_pressed()) { return 0; }
 		
-		m->mothurOut(toString(num) + " names read."); m->mothurOutEndLine();
+		m->mothurOut(toString(num) + " names read.\n");
 		
 		return 0;
 		

@@ -57,7 +57,7 @@ KmerDB::~KmerDB(){}
 
 vector<int> KmerDB::findClosestSequences(Sequence* candidateSeq, int num, vector<float>& Scores){
 	try {
-		if (num > numSeqs) { m->mothurOut("[WARNING]: you requested " + toString(num) + " closest sequences, but the template only contains " + toString(numSeqs) + ", adjusting."); m->mothurOutEndLine(); num = numSeqs; }
+		if (num > numSeqs) { m->mothurOut("[WARNING]: you requested " + toString(num) + " closest sequences, but the template only contains " + toString(numSeqs) + ", adjusting.\n"); num = numSeqs; }
 		
 		vector<int> topMatches;
 		Kmer kmer(kmerSize);

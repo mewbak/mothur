@@ -136,8 +136,8 @@ MatrixOutputCommand::MatrixOutputCommand(string option)  {
 			if (sharedfile == "not found") { 			
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else if (sharedfile == "not open") { sharedfile = ""; abort = true; }
 			else { current->setSharedFile(sharedfile); }
 			
@@ -157,10 +157,10 @@ MatrixOutputCommand::MatrixOutputCommand(string option)  {
 			}
 			
 			output = validParameter.valid(parameters, "output");		if(output == "not found"){	output = "lt"; }
-			if ((output != "lt") && (output != "square") && (output != "column")) { m->mothurOut(output + " is not a valid output form. Options are lt, column and square. I will use lt."); m->mothurOutEndLine(); output = "lt"; }
+			if ((output != "lt") && (output != "square") && (output != "column")) { m->mothurOut(output + " is not a valid output form. Options are lt, column and square. I will use lt.\n"); output = "lt"; }
             
             mode = validParameter.valid(parameters, "mode");		if(mode == "not found"){	mode = "average"; }
-			if ((mode != "average") && (mode != "median")) { m->mothurOut(mode + " is not a valid mode. Options are average and medina. I will use average."); m->mothurOutEndLine(); output = "average"; }
+			if ((mode != "average") && (mode != "median")) { m->mothurOut(mode + " is not a valid mode. Options are average and medina. I will use average.\n"); output = "average"; }
 			
 			groups = validParameter.valid(parameters, "groups");			
 			if (groups == "not found") { groups = ""; }
@@ -224,7 +224,7 @@ int MatrixOutputCommand::execute(){
 		set<string> processedLabels;
 		set<string> userLabels = labels;
 					
-        if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine(); delete lookup; return 0;}
+        if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n"); delete lookup; return 0;}
         
         if (subsample) { 
             if (subsampleSize == -1) { //user has not set size, set size = smallest samples size
@@ -234,7 +234,7 @@ int MatrixOutputCommand::execute(){
                 Groups = lookup->getNamesGroups();
             }
             
-            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine(); m->setControl_pressed(true);  return 0; }
+            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n"); m->setControl_pressed(true);  return 0; }
         }
 		numGroups = lookup->size();
         
@@ -282,10 +282,10 @@ int MatrixOutputCommand::execute(){
 		for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 			m->mothurOut("Your file does not include the label " + *it);  
 			if (processedLabels.count(lastLabel) != 1) {
-				m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". I will use " + lastLabel + ".\n");
 				needToRun = true;
 			}else {
-				m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". Please refer to " + lastLabel + ".\n");
 			}
 		}
 		

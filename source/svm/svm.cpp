@@ -1069,7 +1069,7 @@ RankedFeatureList SvmRfe::getOrderedFeatureList(SvmDataset& svmDataset, OneVsOne
         //int labelFieldWidth = 2 + max_element(s->getLabels().begin(), s->getLabels().end())->size();
         //int performanceFieldWidth = 10;
         //int performancePrecision = 3;
-        m->mothurOut("class 1\tclass 2\tprecision\trecall\f\accuracy"); m->mothurOutEndLine();
+        m->mothurOut("class 1\tclass 2\tprecision\trecall\f\accuracy\n");
         for ( SvmVector::const_iterator svm = s->getSvmList().begin(); svm != s->getSvmList().end(); svm++ ) {
             SvmPerformanceSummary sps = s->getSvmPerformanceSummary(**svm);
             m->mothurOut(toString(sps.getPositiveClassLabel())
@@ -1116,7 +1116,7 @@ RankedFeatureList SvmRfe::getOrderedFeatureList(SvmDataset& svmDataset, OneVsOne
         // eliminate the bottom 1/3 features - fast but results slightly different from above
         // how about 1/4?
         int eliminateFeatureCount = ceil(unrankedFeatureList.size() / 4.0);
-        m->mothurOut( "eliminating " + toString(eliminateFeatureCount) + " feature(s) of " + toString(unrankedFeatureList.size()) + " total features"); m->mothurOutEndLine();
+        m->mothurOut( "eliminating " + toString(eliminateFeatureCount) + " feature(s) of " + toString(unrankedFeatureList.size()) + " total features\n");
         m->mothurOutEndLine();
         UnrankedFeatureList featuresToEliminate;
         for ( int i = 0; i < eliminateFeatureCount; i++ ) {

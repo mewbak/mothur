@@ -166,8 +166,8 @@ ConsensusSeqsCommand::ConsensusSeqsCommand(string option)  {
 			if (fastafile == "not open") { abort = true; }
 			else if (fastafile == "not found") { 			
 				fastafile = current->getFastaFile(); 
-				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else { current->setFastaFile(fastafile); }	
 			
 			namefile = validParameter.validFile(parameters, "name");
@@ -180,7 +180,7 @@ ConsensusSeqsCommand::ConsensusSeqsCommand(string option)  {
 			else if (countfile == "not found") { countfile = ""; }
 			else { current->setCountFile(countfile); }
 			
-            if ((countfile != "") && (namefile != "")) { m->mothurOut("You must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if ((countfile != "") && (namefile != "")) { m->mothurOut("You must enter ONLY ONE of the following: count or name.\n"); abort = true; }
             
 			listfile = validParameter.validFile(parameters, "list");
 			if (listfile == "not open") { abort = true; }
@@ -328,7 +328,7 @@ int ConsensusSeqsCommand::execute(){
 				
 				if(allLines == 1 || labels.count(list->getLabel()) == 1){			
 					
-					m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(list->getLabel()+"\n"); 
 					
 					processList(list);
 					
@@ -342,7 +342,7 @@ int ConsensusSeqsCommand::execute(){
 					delete list; 
 					
 					list = input->getListVector(lastLabel);
-					m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(list->getLabel()+"\n"); 
 					
 					processList(list);
 					
@@ -370,10 +370,10 @@ int ConsensusSeqsCommand::execute(){
 			for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 				m->mothurOut("Your file does not include the label " + *it); 
 				if (processedLabels.count(lastLabel) != 1) {
-					m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". I will use " + lastLabel + ".\n");
 					needToRun = true;
 				}else {
-					m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". Please refer to " + lastLabel + ".\n");
 				}
 			}
 			
@@ -383,7 +383,7 @@ int ConsensusSeqsCommand::execute(){
 				
 				list = input->getListVector(lastLabel);
 				
-				m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+				m->mothurOut(list->getLabel()+"\n"); 
 				
 				processList(list);
 				
@@ -489,7 +489,7 @@ string ConsensusSeqsCommand::getConsSeq(string bin, ofstream& outSummary, int bi
                      map<string, string>::iterator itFasta = fastaMap.find(binNames[i]);
                      if (itFasta != fastaMap.end()) {
                          thisSeq = itFasta->second;
-                     }else { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your fasta file, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                     }else { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your fasta file, please correct.\n"); m->setControl_pressed(true); }
                      
                      int size = ct.getNumSeqs(binNames[i]);
                      if (size != 0) {
@@ -504,7 +504,7 @@ string ConsensusSeqsCommand::getConsSeq(string bin, ofstream& outSummary, int bi
                              else { counts[4]++; }
                              totalSize++;
                          }
-                     }else { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your count file, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                     }else { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your count file, please correct.\n"); m->setControl_pressed(true); }
                  }
                 char conBase = '.';
                 if (numDots != totalSize) { conBase = getBase(counts, totalSize); }
@@ -527,8 +527,8 @@ string ConsensusSeqsCommand::getConsSeq(string bin, ofstream& outSummary, int bi
                 map<string, string>::iterator it;
                 it = nameMap.find(binNames[i]);
                 if (it == nameMap.end()) { 
-                    if (namefile == "") { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your fasta file, please correct."); m->mothurOutEndLine(); error = true; }
-                    else { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your fasta or name file, please correct."); m->mothurOutEndLine(); error = true; }
+                    if (namefile == "") { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your fasta file, please correct.\n"); error = true; }
+                    else { m->mothurOut("[ERROR]: " + binNames[i] + " is not in your fasta or name file, please correct.\n"); error = true; }
                     break;
                 }else {
                     //add sequence string to seqs vector to process below
@@ -685,7 +685,7 @@ char ConsensusSeqsCommand::getBase(vector<int> counts, int size){  //A,T,G,C,Gap
 		else if ((counts[0] == 0) && (counts[1] == 0) && (counts[2] == 0) && (counts[3] == 0) && (counts[4] != 0)) {  conBase = '-'; }
 		//cutoff removed all counts
 		else if ((counts[0] == 0) && (counts[1] == 0) && (counts[2] == 0) && (counts[3] == 0) && (counts[4] == 0)) {  conBase = 'N'; }
-		else{ m->mothurOut("[ERROR]: cannot find consensus base."); m->mothurOutEndLine(); }
+		else{ m->mothurOut("[ERROR]: cannot find consensus base.\n"); }
 		
 		return conBase;
 		
@@ -718,7 +718,7 @@ int ConsensusSeqsCommand::readFasta(){
 				nameFileMap[name] = 1;
                 
                 if (seqLength == 0) { seqLength = seq.getAligned().length(); }
-				else if (seqLength != seq.getAligned().length()) { m->mothurOut("[ERROR]: sequence are not the same length, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true); break; }
+				else if (seqLength != seq.getAligned().length()) { m->mothurOut("[ERROR]: sequence are not the same length, please correct.\n"); m->setControl_pressed(true); break; }
 			}
 		}
 		
@@ -756,7 +756,7 @@ int ConsensusSeqsCommand::readNames(){
 				 
 				 for (int i = 0; i < splitRepNames.size(); i++) { nameMap[splitRepNames[i]] = thisname; }
 				 
-			 }else{	m->mothurOut("[ERROR]: " + thisname + " is not in the fasta file, please correct."); m->mothurOutEndLine(); error = true; }
+			 }else{	m->mothurOut("[ERROR]: " + thisname + " is not in the fasta file, please correct.\n"); error = true; }
          }
          
 		 if (error) { m->setControl_pressed(true); }

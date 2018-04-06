@@ -167,10 +167,10 @@ map<string, string> OptionParser::getParameters() {
                     }
                     
                     if (it->second == "") { //no file was saved for that type, warn and remove from parameters
-                        m->mothurOut("[WARNING]: no file was saved for " + it->first + " parameter."); m->mothurOutEndLine();
+                        m->mothurOut("[WARNING]: no file was saved for " + it->first + " parameter.\n");
                         parameters.erase(it++);
                     }else {
-                        m->mothurOut("Using " + it->second + " as input file for the " + it->first + " parameter."); m->mothurOutEndLine();
+                        m->mothurOut("Using " + it->second + " as input file for the " + it->first + " parameter.\n");
                         it++;
                     }
                 }else{ it++; }

@@ -152,12 +152,12 @@ CountSeqsCommand::CountSeqsCommand(string option)  {
             
             if ((namefile == "") && (sharedfile == "")) {
                 namefile = current->getNameFile();
-				if (namefile != "") { m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+				if (namefile != "") { m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
 				else {
                     sharedfile = current->getSharedFile();
-                    if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+                    if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
                     else {
-                        m->mothurOut("You have no current namefile or sharedfile and the name or shared parameter is required."); m->mothurOutEndLine(); abort = true;
+                        m->mothurOut("You have no current namefile or sharedfile and the name or shared parameter is required.\n"); abort = true;
                     }
                 }
 			}
@@ -264,10 +264,10 @@ int CountSeqsCommand::execute(){
             for (it = userLabels.begin(); it != userLabels.end(); it++) {
                 m->mothurOut("Your file does not include the label " + *it);
                 if (processedLabels.count(lastLabel) != 1) {
-                    m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". I will use " + lastLabel + ".\n");
                     needToRun = true;
                 }else {
-                    m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". Please refer to " + lastLabel + ".\n");
                 }
             }
             
@@ -403,7 +403,7 @@ unsigned long long CountSeqsCommand::driver(ofstream& out, GroupMap*& groupMap) 
 				for (int i = 0; i < names.size(); i++) {
 					string group = groupMap->getGroup(names[i]);
 					
-					if (group == "not found") { m->mothurOut("[ERROR]: " + names[i] + " is not in your groupfile, please correct."); m->mothurOutEndLine(); }
+					if (group == "not found") { m->mothurOut("[ERROR]: " + names[i] + " is not in your groupfile, please correct.\n"); }
 					else {
 						map<string, int>::iterator it = groupCounts.find(group);
 						

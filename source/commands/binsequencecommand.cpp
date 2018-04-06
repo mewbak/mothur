@@ -159,8 +159,8 @@ BinSeqCommand::BinSeqCommand(string option) {
 			fastafile = validParameter.validFile(parameters, "fasta");
 			if (fastafile == "not found") { 				//if there is a current phylip file, use it
 				fastafile = current->getFastaFile(); 
-				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fasta file and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastafile != "") { m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fasta file and the fasta parameter is required.\n"); abort = true; }
 			}
 			else if (fastafile == "not open") { abort = true; }	
 			else { current->setFastaFile(fastafile); }
@@ -168,8 +168,8 @@ BinSeqCommand::BinSeqCommand(string option) {
 			listfile = validParameter.validFile(parameters, "list");
 			if (listfile == "not found") { 			
 				listfile = current->getListFile(); 
-				if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current list file and the list parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
+				else { 	m->mothurOut("You have no current list file and the list parameter is required.\n"); abort = true; }
 			}
 			else if (listfile == "not open") { listfile = ""; abort = true; }	
 			else { current->setListFile(listfile); }
@@ -207,11 +207,11 @@ BinSeqCommand::BinSeqCommand(string option) {
 			else { current->setCountFile(countfile); }
             
             if ((namesfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: name or count."); m->mothurOutEndLine(); abort = true;
+                m->mothurOut("[ERROR]: you may only use one of the following: name or count.\n"); abort = true;
             }
 			
             if ((groupfile != "") && (countfile != "")) {
-                m->mothurOut("[ERROR]: you may only use one of the following: group or count."); m->mothurOutEndLine(); abort=true;
+                m->mothurOut("[ERROR]: you may only use one of the following: group or count.\n"); abort=true;
             }
 			
             if (countfile == "") {
@@ -301,11 +301,9 @@ int BinSeqCommand::execute(){
 		for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 			m->mothurOut("Your file does not include the label " + *it); 
 			if (processedLabels.count(lastLabel) != 1) {
-				m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". I will use " + lastLabel + ".\n");
 				needToRun = true;
-			}else {
-				m->mothurOut(". Please refer to " + lastLabel + ".");  m->mothurOutEndLine();
-			}
+			}else { m->mothurOut(". Please refer to " + lastLabel + ".\n");   }
 		}
 		
 		//run last label if you need to
@@ -378,7 +376,7 @@ int BinSeqCommand::process(ListVector* list, FastaMap& fasta, GroupMap& groupMap
         ofstream out; util.openOutputFile(outputFileName, out);
         outputNames.push_back(outputFileName);  outputTypes["fasta"].push_back(outputFileName);
         
-        m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+        m->mothurOut(list->getLabel()+"\n"); 
         
         //for each bin in the list vector
         vector<string> binLabels = list->getLabels();

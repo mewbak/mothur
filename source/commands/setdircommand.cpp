@@ -124,7 +124,7 @@ SetDirectoryCommand::SetDirectoryCommand(string option)  {
             }
             
 			if ((input == "") && (output == "") && (tempdefault == "") && (blastLocation == "") && nodebug && nomod && !seed) {
-				m->mothurOut("[ERROR]: You must provide either an input, output, tempdefault, blastdir, debug or modifynames for the set.dir command."); m->mothurOutEndLine(); abort = true;
+				m->mothurOut("[ERROR]: You must provide either an input, output, tempdefault, blastdir, debug or modifynames for the set.dir command.\n"); abort = true;
 			}else if((input == "") && (output == "") && (tempdefault == "") && (blastLocation == "")) { debugorSeedOnly = true; }
 		}
 	}
@@ -141,7 +141,7 @@ int SetDirectoryCommand::execute(){
 		
         if (debugorSeedOnly) {  }
         else {
-            m->mothurOut("Mothur's directories:"); m->mothurOutEndLine();
+            m->mothurOut("Mothur's directories:\n");
             
             //redirect output
             if ((output == "clear") || (output == "")) {  output = "";  current->setOutputDir(output);  }

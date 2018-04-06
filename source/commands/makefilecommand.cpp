@@ -109,7 +109,7 @@ MakeFileCommand::MakeFileCommand(string option)  {
             
             //if the user changes the input directory command factory will send this info to us in the output parameter
             inputDir = validParameter.valid(parameters, "inputdir");
-            if (inputDir == "not found"){	inputDir = "";	m->mothurOut("[ERROR]: The inputdir parameter is required, aborting."); m->mothurOutEndLine(); abort = true;	}
+            if (inputDir == "not found"){	inputDir = "";	m->mothurOut("[ERROR]: The inputdir parameter is required, aborting.\n"); abort = true;	}
             else {
                 if (util.dirCheck(inputDir)) {} // all set
                 else { abort = true; }
@@ -123,10 +123,10 @@ MakeFileCommand::MakeFileCommand(string option)  {
             typeFile = validParameter.valid(parameters, "type");
             if (typeFile == "not found"){	typeFile = "fastq";		}
             
-            if ((typeFile != "fastq") && (typeFile != "gz")) { m->mothurOut(typeFile + " is not a valid type. Options are fastq or gz. I will use fastq."); m->mothurOutEndLine(); typeFile = "fastq"; }
+            if ((typeFile != "fastq") && (typeFile != "gz")) { m->mothurOut(typeFile + " is not a valid type. Options are fastq or gz. I will use fastq.\n"); typeFile = "fastq"; }
             
             string temp = validParameter.valid(parameters, "numcols");		if(temp == "not found"){	temp = "3"; }
-            if ((temp != "2") && (temp != "3")) { m->mothurOut(temp + " is not a valid numcols. Options are 2 or 3. I will use 3."); m->mothurOutEndLine(); temp = "3";  }
+            if ((temp != "2") && (temp != "3")) { m->mothurOut(temp + " is not a valid numcols. Options are 2 or 3. I will use 3.\n"); temp = "3";  }
             util.mothurConvert(temp, numCols);
             
             prefix = validParameter.valid(parameters, "prefix");		if (prefix == "not found") { prefix = "stability"; }

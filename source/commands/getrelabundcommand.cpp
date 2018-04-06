@@ -125,8 +125,8 @@ GetRelAbundCommand::GetRelAbundCommand(string option) {
 			else if (sharedfile == "not found") { 
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else { current->setSharedFile(sharedfile); }
 			
 			
@@ -153,7 +153,7 @@ GetRelAbundCommand::GetRelAbundCommand(string option) {
 			scale = validParameter.valid(parameters, "scale");				if (scale == "not found") { scale = "totalgroup"; }
 			
 			if ((scale != "totalgroup") && (scale != "totalotu") && (scale != "averagegroup") && (scale != "averageotu")) {
-				m->mothurOut(scale + " is not a valid scaling option for the get.relabund command. Choices are totalgroup, totalotu, averagegroup, averageotu."); m->mothurOutEndLine(); abort = true; 
+				m->mothurOut(scale + " is not a valid scaling option for the get.relabund command. Choices are totalgroup, totalotu, averagegroup, averageotu.\n"); abort = true; 
 			}
 		}
 
@@ -295,7 +295,7 @@ int GetRelAbundCommand::getRelAbundance(SharedRAbundVectors*& thisLookUp, ofstre
 					float averageOtu = totalOtu / (float) thisLookUp->size();
 					
 					relabund = abund / (float) averageOtu;
-				}else{ m->mothurOut(scale + " is not a valid scaling option."); m->mothurOutEndLine(); m->setControl_pressed(true); return 0; }
+				}else{ m->mothurOut(scale + " is not a valid scaling option.\n"); m->setControl_pressed(true); return 0; }
 				
 				out  << '\t' << relabund;
 			}

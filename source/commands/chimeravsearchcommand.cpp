@@ -147,8 +147,8 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
             if (fastafile == "not found") {
                 //if there is a current fasta file, use it
                 string filename = current->getFastaFile();
-                if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-                else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+                if (filename != "") { fastaFileNames.push_back(filename); m->mothurOut("Using " + filename + " as input file for the fasta parameter.\n"); }
+                else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
             }else {
                 util.splitAtDash(fastafile, fastaFileNames);
                 
@@ -158,9 +158,9 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
                     bool ignore = false;
                     if (fastaFileNames[i] == "current") {
                         fastaFileNames[i] = current->getFastaFile();
-                        if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current."); m->mothurOutEndLine(); }
+                        if (fastaFileNames[i] != "") {  m->mothurOut("Using " + fastaFileNames[i] + " as input file for the fasta parameter where you had given current.\n"); }
                         else {
-                            m->mothurOut("You have no current fastafile, ignoring current."); m->mothurOutEndLine(); ignore=true;
+                            m->mothurOut("You have no current fastafile, ignoring current.\n"); ignore=true;
                             //erase from file list
                             fastaFileNames.erase(fastaFileNames.begin()+i);
                             i--;
@@ -174,7 +174,7 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
                 }
                 
                 //make sure there is at least one valid file left
-                if (fastaFileNames.size() == 0) { m->mothurOut("[ERROR]: no valid files."); m->mothurOutEndLine(); abort = true; }
+                if (fastaFileNames.size() == 0) { m->mothurOut("[ERROR]: no valid files.\n"); abort = true; }
             }
             
             
@@ -190,9 +190,9 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
                     bool ignore = false;
                     if (nameFileNames[i] == "current") {
                         nameFileNames[i] = current->getNameFile();
-                        if (nameFileNames[i] != "") {  m->mothurOut("Using " + nameFileNames[i] + " as input file for the name parameter where you had given current."); m->mothurOutEndLine(); }
+                        if (nameFileNames[i] != "") {  m->mothurOut("Using " + nameFileNames[i] + " as input file for the name parameter where you had given current.\n"); }
                         else {
-                            m->mothurOut("You have no current namefile, ignoring current."); m->mothurOutEndLine(); ignore=true;
+                            m->mothurOut("You have no current namefile, ignoring current.\n"); ignore=true;
                             //erase from file list
                             nameFileNames.erase(nameFileNames.begin()+i);
                             i--;
@@ -222,9 +222,9 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
                     bool ignore = false;
                     if (countfileNames[i] == "current") {
                         countfileNames[i] = current->getCountFile();
-                        if (nameFileNames[i] != "") {  m->mothurOut("Using " + countfileNames[i] + " as input file for the count parameter where you had given current."); m->mothurOutEndLine(); }
+                        if (nameFileNames[i] != "") {  m->mothurOut("Using " + countfileNames[i] + " as input file for the count parameter where you had given current.\n"); }
                         else {
-                            m->mothurOut("You have no current count file, ignoring current."); m->mothurOutEndLine(); ignore=true;
+                            m->mothurOut("You have no current count file, ignoring current.\n"); ignore=true;
                             //erase from file list
                             countfileNames.erase(countfileNames.begin()+i);
                             i--;
@@ -241,11 +241,11 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
             if (countfileNames.size() != 0) { hasCount = true; }
             
             //make sure there is at least one valid file left
-            if (hasName && hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if (hasName && hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or name.\n"); abort = true; }
             
             if (!hasName && hasCount) { nameFileNames = countfileNames; }
             
-            if ((hasCount || hasName) && (nameFileNames.size() != fastaFileNames.size())) { m->mothurOut("[ERROR]: The number of name or count files does not match the number of fastafiles, please correct."); m->mothurOutEndLine(); abort=true; }
+            if ((hasCount || hasName) && (nameFileNames.size() != fastaFileNames.size())) { m->mothurOut("[ERROR]: The number of name or count files does not match the number of fastafiles, please correct.\n"); abort=true; }
             
             bool hasGroup = true;
             groupfile = validParameter.valid(parameters, "group");
@@ -259,9 +259,9 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
                     bool ignore = false;
                     if (groupFileNames[i] == "current") {
                         groupFileNames[i] = current->getGroupFile();
-                        if (groupFileNames[i] != "") {  m->mothurOut("Using " + groupFileNames[i] + " as input file for the group parameter where you had given current."); m->mothurOutEndLine(); }
+                        if (groupFileNames[i] != "") {  m->mothurOut("Using " + groupFileNames[i] + " as input file for the group parameter where you had given current.\n"); }
                         else {
-                            m->mothurOut("You have no current namefile, ignoring current."); m->mothurOutEndLine(); ignore=true;
+                            m->mothurOut("You have no current namefile, ignoring current.\n"); ignore=true;
                             //erase from file list
                             groupFileNames.erase(groupFileNames.begin()+i);
                             i--;
@@ -275,12 +275,12 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
                 }
                 
                 //make sure there is at least one valid file left
-                if (groupFileNames.size() == 0) { m->mothurOut("[ERROR]: no valid group files."); m->mothurOutEndLine(); abort = true; }
+                if (groupFileNames.size() == 0) { m->mothurOut("[ERROR]: no valid group files.\n"); abort = true; }
             }
             
-            if (hasGroup && (groupFileNames.size() != fastaFileNames.size())) { m->mothurOut("[ERROR]: The number of groupfiles does not match the number of fastafiles, please correct."); m->mothurOutEndLine(); abort=true; }
+            if (hasGroup && (groupFileNames.size() != fastaFileNames.size())) { m->mothurOut("[ERROR]: The number of groupfiles does not match the number of fastafiles, please correct.\n"); abort=true; }
             
-            if (hasGroup && hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or group."); m->mothurOutEndLine(); abort = true; }
+            if (hasGroup && hasCount) { m->mothurOut("[ERROR]: You must enter ONLY ONE of the following: count or group.\n"); abort = true; }
             //if the user changes the output directory command factory will send this info to us in the output parameter
             outputDir = validParameter.valid(parameters, "outputdir");		if (outputDir == "not found"){	outputDir = "";	}
             
@@ -316,7 +316,7 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
             processors = current->setProcessors(temp);
             
             abskew = validParameter.valid(parameters, "abskew");	if (abskew == "not found"){	useAbskew = false;  abskew = "1.9";	}else{  useAbskew = true;  }
-            if (useAbskew && templatefile != "self") { m->mothurOut("The abskew parameter is only valid with template=self, ignoring."); m->mothurOutEndLine(); useAbskew = false; }
+            if (useAbskew && templatefile != "self") { m->mothurOut("The abskew parameter is only valid with template=self, ignoring.\n"); useAbskew = false; }
             
             temp = validParameter.valid(parameters, "chimealns");			if (temp == "not found") { temp = "f"; }
             chimealns = util.isTrue(temp);
@@ -332,9 +332,9 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
             dups = util.isTrue(temp);
             
             
-            if (hasName && (templatefile != "self")) { m->mothurOut("You have provided a namefile and the reference parameter is not set to self. I am not sure what reference you are trying to use, aborting."); m->mothurOutEndLine(); abort=true; }
-            if (hasCount && (templatefile != "self")) { m->mothurOut("You have provided a countfile and the reference parameter is not set to self. I am not sure what reference you are trying to use, aborting."); m->mothurOutEndLine(); abort=true; }
-            if (hasGroup && (templatefile != "self")) { m->mothurOut("You have provided a group file and the reference parameter is not set to self. I am not sure what reference you are trying to use, aborting."); m->mothurOutEndLine(); abort=true; }
+            if (hasName && (templatefile != "self")) { m->mothurOut("You have provided a namefile and the reference parameter is not set to self. I am not sure what reference you are trying to use, aborting.\n"); abort=true; }
+            if (hasCount && (templatefile != "self")) { m->mothurOut("You have provided a countfile and the reference parameter is not set to self. I am not sure what reference you are trying to use, aborting.\n"); abort=true; }
+            if (hasGroup && (templatefile != "self")) { m->mothurOut("You have provided a group file and the reference parameter is not set to self. I am not sure what reference you are trying to use, aborting.\n"); abort=true; }
             
             //look for uchime exe
             path = current->getProgramPath();         
@@ -343,11 +343,11 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
             vsearchCommand = path + "vsearch";	//	format the database, -o option gives us the ability
             if (m->getDebug()) {
                 m->mothurOut("[DEBUG]: vsearch location using \"which vsearch\" = ");
-                Command* newCommand = new SystemCommand("which vsearch"); m->mothurOutEndLine();
+                Command* newCommand = new SystemCommand("which vsearch\n");
                 newCommand->execute();
                 delete newCommand;
                 m->mothurOut("[DEBUG]: Mothur's location using \"which mothur\" = ");
-                newCommand = new SystemCommand("which mothur"); m->mothurOutEndLine();
+                newCommand = new SystemCommand("which mothur\n");
                 newCommand->execute();
                 delete newCommand;
             }
@@ -369,7 +369,7 @@ ChimeraVsearchCommand::ChimeraVsearchCommand(string option)  {
                 uLocation += programName;
                 ableToOpen = util.openInputFile(uLocation, in2, "no error"); in2.close();
                 
-                if(!ableToOpen) { m->mothurOut("[ERROR]: " + uLocation + " file does not exist. mothur requires the vsearch executable."); m->mothurOutEndLine(); abort = true; }
+                if(!ableToOpen) { m->mothurOut("[ERROR]: " + uLocation + " file does not exist. mothur requires the vsearch executable.\n"); abort = true; }
                 else {  m->mothurOut("Found vsearch in your path, using " + uLocation + "\n");vsearchLocation = uLocation; }
             }else {  vsearchLocation = vsearchCommand; }
             
@@ -392,7 +392,7 @@ int ChimeraVsearchCommand::execute(){
         
         for (int s = 0; s < fastaFileNames.size(); s++) {
             
-            m->mothurOut("Checking sequences from " + fastaFileNames[s] + " ..." ); m->mothurOutEndLine();
+            m->mothurOut("Checking sequences from " + fastaFileNames[s] + " ...\n" );
             
             long start = time(NULL);
             string nameFile = "";
@@ -422,7 +422,7 @@ int ChimeraVsearchCommand::execute(){
             //setup fasta file if denovo and no groups
             if ((templatefile == "self") && (!hasGroup)) { //you want to run uchime with a template=self and no groups
                 
-                if (processors != 1) { m->mothurOut("When using template=self, mothur can only use 1 processor, continuing."); m->mothurOutEndLine(); processors = 1; }
+                if (processors != 1) { m->mothurOut("When using template=self, mothur can only use 1 processor, continuing.\n"); processors = 1; }
                 if (nameFileNames.size() != 0) { //you provided a namefile and we don't need to create one
                     nameFile = nameFileNames[s];
                 }else { nameFile = getNamesFile(fastaFileNames[s]); }
@@ -442,7 +442,7 @@ int ChimeraVsearchCommand::execute(){
                     }
                 }else { error = util.readNames(nameFile, nameMapCount, seqs); if (m->getControl_pressed() || (error == 1)) { for (int j = 0; j < outputNames.size(); j++) {	util.mothurRemove(outputNames[j]);	}return 0; }
                 }
-                if (seqs.size() != nameMapCount.size()) { m->mothurOut( "The number of sequences in your fastafile does not match the number of sequences in your namefile, aborting."); m->mothurOutEndLine(); for (int j = 0; j < outputNames.size(); j++) {	util.mothurRemove(outputNames[j]);	}  return 0; }
+                if (seqs.size() != nameMapCount.size()) { m->mothurOut( "The number of sequences in your fastafile does not match the number of sequences in your namefile, aborting.\n"); for (int j = 0; j < outputNames.size(); j++) {	util.mothurRemove(outputNames[j]);	}  return 0; }
                 
                 util.printVsearchFile(nameMapCount, newFasta, ";size=", ";");
                 fastaFileNames[s] = newFasta;
@@ -501,8 +501,8 @@ int ChimeraVsearchCommand::execute(){
                 if (!dups) {
                     int totalChimeras = deconvoluteResults(uniqueNames, outputFileName, accnosFileName, alnsFileName);
                     
-                    m->mothurOutEndLine(); m->mothurOut("It took " + toString(time(NULL) - start) + " secs to check " + toString(uniqueNames.size()) + " sequences. " + toString(totalChimeras) + " chimeras were found.");	m->mothurOutEndLine();
-                    m->mothurOut("The number of sequences checked may be larger than the number of unique sequences because some sequences are found in several samples."); m->mothurOutEndLine();
+                    m->mothurOut("\nIt took " + toString(time(NULL) - start) + " secs to check " + toString(uniqueNames.size()) + " sequences. " + toString(totalChimeras) + " chimeras were found.\n");
+                    m->mothurOut("The number of sequences checked may be larger than the number of unique sequences because some sequences are found in several samples.\n");
                 }else {
                     
                     if (hasCount) {
@@ -554,7 +554,7 @@ int ChimeraVsearchCommand::execute(){
                 //remove file made for uchime
                 if (templatefile == "self") {  util.mothurRemove(fastaFileNames[s]); }
                 
-                m->mothurOutEndLine(); m->mothurOut("It took " + toString(time(NULL) - start) + " secs to check your sequences. " + toString(numChimeras) + " chimeras were found.");	m->mothurOutEndLine();
+                m->mothurOut("\nIt took " + toString(time(NULL) - start) + " secs to check your sequences. " + toString(numChimeras) + " chimeras were found.\n");
             }
             
             outputNames.push_back(outputFileName); outputTypes["chimera"].push_back(outputFileName);
@@ -575,7 +575,7 @@ int ChimeraVsearchCommand::execute(){
         }
         
         m->mothurOutEndLine();
-        m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+        m->mothurOut("Output File Names: \n");
         for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
         m->mothurOutEndLine();
         
@@ -615,7 +615,7 @@ int ChimeraVsearchCommand::deconvoluteResults(map<string, string>& uniqueNames, 
                 //find unique name
                 itUnique = uniqueNames.find(name);
                 
-                if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing accnos results. Cannot find " + name + "."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing accnos results. Cannot find " + name + ".\n"); m->setControl_pressed(true); }
                 else {
                     itChimeras = chimerasInFile.find((itUnique->second));
                     
@@ -679,7 +679,7 @@ int ChimeraVsearchCommand::deconvoluteResults(map<string, string>& uniqueNames, 
             //find unique name
             itUnique = uniqueNames.find(name);
             
-            if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find "+ name + "."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+            if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find "+ name + ".\n"); m->setControl_pressed(true); }
             else {
                 name = itUnique->second;
                 //is this name already in the file
@@ -710,7 +710,7 @@ int ChimeraVsearchCommand::deconvoluteResults(map<string, string>& uniqueNames, 
                     }
                     
                     itUnique = uniqueNames.find(parent1);
-                    if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find parentA "+ parent1 + "."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find parentA "+ parent1 + ".\n"); m->setControl_pressed(true); }
                     else {	out << itUnique->second << restOfName << '\t';	}
                 }else { out << parent1 << '\t'; }
                 
@@ -724,7 +724,7 @@ int ChimeraVsearchCommand::deconvoluteResults(map<string, string>& uniqueNames, 
                     }
                     
                     itUnique = uniqueNames.find(parent2);
-                    if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find parentB "+ parent2 + "."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find parentB "+ parent2 + ".\n"); m->setControl_pressed(true); }
                     else {	out << itUnique->second << restOfName << '\t';	}
                 }else { out << parent2 << '\t'; }
                 
@@ -738,7 +738,7 @@ int ChimeraVsearchCommand::deconvoluteResults(map<string, string>& uniqueNames, 
                     }
                     
                     itUnique = uniqueNames.find(parent3);
-                    if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find parentC "+ parent3 + "."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing chimera results. Cannot find parentC "+ parent3 + ".\n"); m->setControl_pressed(true); }
                     else {	out << itUnique->second << restOfName << '\t';	}
                 }else { out << parent3 << '\t'; }
                 
@@ -815,8 +815,8 @@ int ChimeraVsearchCommand::deconvoluteResults(map<string, string>& uniqueNames, 
                             else { out3 << line[i]; }
                         }
                         
-                        if (spot == (line.length() - 1)) { m->mothurOut("[ERROR]: could not line sequence name in line " + line + "."); m->mothurOutEndLine(); m->setControl_pressed(true); }
-                        else if ((spot+2) > (line.length() - 1)) { m->mothurOut("[ERROR]: could not line sequence name in line " + line + "."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                        if (spot == (line.length() - 1)) { m->mothurOut("[ERROR]: could not line sequence name in line " + line + ".\n"); m->setControl_pressed(true); }
+                        else if ((spot+2) > (line.length() - 1)) { m->mothurOut("[ERROR]: could not line sequence name in line " + line + ".\n"); m->setControl_pressed(true); }
                         else {
                             out << line[spot] << line[spot+1];
                             
@@ -833,7 +833,7 @@ int ChimeraVsearchCommand::deconvoluteResults(map<string, string>& uniqueNames, 
                             //find unique name
                             itUnique = uniqueNames.find(name);
                             
-                            if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing alns results. Cannot find "+ name + "."); m->mothurOutEndLine();m->setControl_pressed(true);  }
+                            if (itUnique == uniqueNames.end()) { m->mothurOut("[ERROR]: trouble parsing alns results. Cannot find "+ name + ".\n");m->setControl_pressed(true);  }
                             else {
                                 //only limit repeats on query names
                                 if (temp == "Query") {
@@ -899,12 +899,12 @@ string ChimeraVsearchCommand::getNamesFile(string& inputFile){
     try {
         string nameFile = "";
         
-        m->mothurOutEndLine(); m->mothurOut("No namesfile given, running unique.seqs command to generate one."); m->mothurOutEndLine(); m->mothurOutEndLine();
+        m->mothurOut("\nNo namesfile given, running unique.seqs command to generate one.\n"); m->mothurOutEndLine();
         
         //use unique.seqs to create new name and fastafile
         string inputString = "fasta=" + inputFile;
-        m->mothurOut("/******************************************/"); m->mothurOutEndLine();
-        m->mothurOut("Running command: unique.seqs(" + inputString + ")"); m->mothurOutEndLine();
+        m->mothurOut("/******************************************/\n");
+        m->mothurOut("Running command: unique.seqs(" + inputString + ")\n");
         current->setMothurCalling(true);
         
         Command* uniqueCommand = new DeconvoluteCommand(inputString);
@@ -914,7 +914,7 @@ string ChimeraVsearchCommand::getNamesFile(string& inputFile){
         
         delete uniqueCommand;
         current->setMothurCalling(false);
-        m->mothurOut("/******************************************/"); m->mothurOutEndLine();
+        m->mothurOut("/******************************************/\n");
         
         nameFile = filenames["name"][0];
         inputFile = filenames["fasta"][0];
@@ -994,7 +994,7 @@ int ChimeraVsearchCommand::driverGroups(string outputFName, string filename, str
             util.appendFiles((accnos+groups[i]), accnos); util.mothurRemove((accnos+groups[i]));
             if (chimealns) { util.appendFiles((alns+groups[i]), alns); util.mothurRemove((alns+groups[i])); }
             
-            m->mothurOutEndLine(); m->mothurOut("It took " + toString(time(NULL) - start) + " secs to check " + toString(thisGroupsSeqs) + " sequences from group " + groups[i] + ".");	m->mothurOutEndLine();
+            m->mothurOut("\nIt took " + toString(time(NULL) - start) + " secs to check " + toString(thisGroupsSeqs) + " sequences from group " + groups[i] + ".\n");
         }
         
         if (hasCount && dups) { outCountList.close(); }

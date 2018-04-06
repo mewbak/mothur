@@ -291,33 +291,33 @@ ClusterSplitCommand::ClusterSplitCommand(string option)  {
 				//is there are current file available for either of these?
 				//give priority to column, then phylip, then fasta
 				columnfile = current->getColumnFile(); 
-				if (columnfile != "") {  format = "column"; m->mothurOut("Using " + columnfile + " as input file for the column parameter."); m->mothurOutEndLine(); }
+				if (columnfile != "") {  format = "column"; m->mothurOut("Using " + columnfile + " as input file for the column parameter.\n"); }
 				else { 
 					phylipfile = current->getPhylipFile(); 
-					if (phylipfile != "") {  format = "phylip"; m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter."); m->mothurOutEndLine(); }
+					if (phylipfile != "") {  format = "phylip"; m->mothurOut("Using " + phylipfile + " as input file for the phylip parameter.\n"); }
 					else { 
 						fastafile = current->getFastaFile(); 
-						if (fastafile != "") {   m->mothurOut("Using " + fastafile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
+						if (fastafile != "") {   m->mothurOut("Using " + fastafile + " as input file for the fasta parameter.\n"); }
 						else { 
-							m->mothurOut("No valid current files. When executing a cluster.split command you must enter a file, phylip or a column or fastafile."); m->mothurOutEndLine();
+							m->mothurOut("No valid current files. When executing a cluster.split command you must enter a file, phylip or a column or fastafile.\n");
 							abort = true; 
 						}
 					}
 				}
 			}
-			else if ((phylipfile != "") && (columnfile != "") && (fastafile != "") && (file != "")) { m->mothurOut("When executing a cluster.split command you must enter ONLY ONE of the following: file, fasta, phylip or column."); m->mothurOutEndLine(); abort = true; }
+			else if ((phylipfile != "") && (columnfile != "") && (fastafile != "") && (file != "")) { m->mothurOut("When executing a cluster.split command you must enter ONLY ONE of the following: file, fasta, phylip or column.\n"); abort = true; }
             
-            if ((countfile != "") && (namefile != "")) { m->mothurOut("When executing a cluster.split command you must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if ((countfile != "") && (namefile != "")) { m->mothurOut("When executing a cluster.split command you must enter ONLY ONE of the following: count or name.\n"); abort = true; }
             
 			if (columnfile != "") {
 				if ((namefile == "") && (countfile == "")) { 
 					namefile = current->getNameFile(); 
-					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
 					else { 
 						countfile = current->getCountFile();
-                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                         else { 
-                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format."); m->mothurOutEndLine(); 
+                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the column format.\n"); 
                             abort = true; 
                         }	
 					}	
@@ -327,21 +327,21 @@ ClusterSplitCommand::ClusterSplitCommand(string option)  {
 			if (fastafile != "") {
 				if (taxFile == "") { 
 					taxFile = current->getTaxonomyFile(); 
-					if (taxFile != "") {  m->mothurOut("Using " + taxFile + " as input file for the taxonomy parameter."); m->mothurOutEndLine(); }
+					if (taxFile != "") {  m->mothurOut("Using " + taxFile + " as input file for the taxonomy parameter.\n"); }
 					else { 
-						m->mothurOut("You need to provide a taxonomy file if you are if you are using a fasta file to generate the split."); m->mothurOutEndLine(); 
+						m->mothurOut("You need to provide a taxonomy file if you are if you are using a fasta file to generate the split.\n"); 
 						abort = true; 
 					}	
 				}
 				
 				if ((namefile == "") && (countfile == "")) { 
 					namefile = current->getNameFile(); 
-					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+					if (namefile != "") {  m->mothurOut("Using " + namefile + " as input file for the name parameter.\n"); }
 					else { 
 						countfile = current->getCountFile();
-                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                         else { 
-                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the fasta file to generate the split."); m->mothurOutEndLine(); 
+                            m->mothurOut("You need to provide a namefile or countfile if you are going to use the fasta file to generate the split.\n"); 
                             abort = true; 
                         }	
 					}	
@@ -391,17 +391,17 @@ ClusterSplitCommand::ClusterSplitCommand(string option)  {
             metricName = validParameter.valid(parameters, "metric");		if (metricName == "not found") { metricName = "mcc"; }
             
             if ((metricName == "mcc") || (metricName == "sens") || (metricName == "spec") || (metricName == "tptn") || (metricName == "tp") || (metricName == "tn") || (metricName == "fp") || (metricName == "fn") || (metricName == "f1score") || (metricName == "accuracy") || (metricName == "ppv") || (metricName == "npv") || (metricName == "fdr") || (metricName == "fpfn") ){ }
-            else { m->mothurOut("[ERROR]: Not a valid metric.  Valid metrics are mcc, sens, spec, tp, tn, fp, fn, tptn, fpfn, f1score, accuracy, ppv, npv, fdr."); m->mothurOutEndLine(); abort = true; }
+            else { m->mothurOut("[ERROR]: Not a valid metric.  Valid metrics are mcc, sens, spec, tp, tn, fp, fn, tptn, fpfn, f1score, accuracy, ppv, npv, fdr.\n"); abort = true; }
             
             initialize = validParameter.valid(parameters, "initialize");		if (initialize == "not found") { initialize = "singleton"; }
             
             if ((initialize == "singleton") || (initialize == "oneotu")){ }
-            else { m->mothurOut("[ERROR]: Not a valid initialization.  Valid initializations are singleton and oneotu."); m->mothurOutEndLine(); abort = true; }
+            else { m->mothurOut("[ERROR]: Not a valid initialization.  Valid initializations are singleton and oneotu.\n"); abort = true; }
 
 			method = validParameter.valid(parameters, "method");		if (method == "not found") { method = "opti";  }
 			
             if ((method == "furthest") || (method == "nearest") || (method == "average") || (method == "weighted") || (method == "agc") || (method == "dgc") || (method == "opti")) { }
-            else { m->mothurOut("[ERROR]: Not a valid clustering method.  Valid clustering algorithms are furthest, nearest, average, weighted, agc, dgc and opti."); m->mothurOutEndLine(); abort = true; }
+            else { m->mothurOut("[ERROR]: Not a valid clustering method.  Valid clustering algorithms are furthest, nearest, average, weighted, agc, dgc and opti.\n"); abort = true; }
             
             if ((method == "agc") || (method == "dgc")) {
                 if (fastafile == "") { m->mothurOut("[ERROR]: You must provide a fasta file when using the agc or dgc clustering methods, aborting\n."); abort = true;}
@@ -414,9 +414,9 @@ ClusterSplitCommand::ClusterSplitCommand(string option)  {
             util.mothurConvert(temp, cutoff);
             
 			if ((splitmethod == "distance") || (splitmethod == "classify") || (splitmethod == "fasta")) { }
-			else { m->mothurOut("[ERROR]: " + splitmethod + " is not a valid splitting method.  Valid splitting algorithms are distance, classify or fasta."); m->mothurOutEndLine(); abort = true; }
+			else { m->mothurOut("[ERROR]: " + splitmethod + " is not a valid splitting method.  Valid splitting algorithms are distance, classify or fasta.\n"); abort = true; }
 			
-			if ((splitmethod == "classify") && (taxFile == "")) {  m->mothurOut("[ERROR]: You need to provide a taxonomy file if you are going to use the classify splitmethod."); m->mothurOutEndLine(); abort = true;  }
+			if ((splitmethod == "classify") && (taxFile == "")) {  m->mothurOut("[ERROR]: You need to provide a taxonomy file if you are going to use the classify splitmethod.\n"); abort = true;  }
 
 			temp = validParameter.valid(parameters, "showabund");
 			if (temp == "not found") { temp = "T"; }
@@ -476,7 +476,7 @@ int ClusterSplitCommand::execute(){
                 }
                 
                 m->mothurOutEndLine();
-                m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+                m->mothurOut("Output File Names: \n");
                 for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
                 m->mothurOutEndLine();
                 
@@ -490,7 +490,7 @@ int ClusterSplitCommand::execute(){
                 //if user gave a phylip file convert to column file
                 if (format == "phylip") {
                     estart = time(NULL);
-                    m->mothurOut("Converting to column format..."); m->mothurOutEndLine();
+                    m->mothurOut("Converting to column format...\n");
                     
                     ReadCluster* convert = new ReadCluster(distfile, cutoff, outputDir, false);
                     
@@ -517,12 +517,12 @@ int ClusterSplitCommand::execute(){
                     delete listToMakeNameFile;
                     delete convert;
                     
-                    m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to convert the distance file."); m->mothurOutEndLine();
+                    m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to convert the distance file.\n");
                 }
                 if (m->getControl_pressed()) { return 0; }
                 
                 estart = time(NULL);
-                m->mothurOut("Splitting the file..."); m->mothurOutEndLine();
+                m->mothurOut("Splitting the file...\n");
                 current->setMothurCalling(true);
             
                 //split matrix into non-overlapping groups
@@ -537,7 +537,7 @@ int ClusterSplitCommand::execute(){
                         split = new SplitMatrix(fastafile, namefile, countfile, taxFile, taxLevelCutoff, cutoff, splitmethod, processors, classic, outputDir, "distance");
                     }
                 }
-                else { m->mothurOut("Not a valid splitting method.  Valid splitting algorithms are distance, classify or fasta."); m->mothurOutEndLine(); return 0;		}
+                else { m->mothurOut("Not a valid splitting method.  Valid splitting algorithms are distance, classify or fasta.\n"); return 0;		}
                 split->split();
                 if (fastafile != "") {  current->setFastaFile(fastafile);  }
 
@@ -555,14 +555,14 @@ int ClusterSplitCommand::execute(){
 				
                 if (m->getControl_pressed()) { return 0; }
                 
-                m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to split the distance file."); m->mothurOutEndLine();
+                m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to split the distance file.\n");
                 estart = time(NULL);
 
                 if (!runCluster) {
                     string filename = printFile(singletonName, distName);
                     
                     m->mothurOutEndLine();
-                    m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+                    m->mothurOut("Output File Names: \n");
                     m->mothurOutEndLine(); m->mothurOut(filename); m->mothurOutEndLine();
                     for (int i = 0; i < distName.size(); i++) {	m->mothurOut(distName[i].begin()->first); m->mothurOutEndLine(); m->mothurOut(distName[i].begin()->second); m->mothurOutEndLine();	}
                     m->mothurOutEndLine();
@@ -580,11 +580,11 @@ int ClusterSplitCommand::execute(){
 		
 		if (saveCutoff != cutoff) { m->mothurOut("\nCutoff was " + toString(saveCutoff) + " changed cutoff to " + toString(cutoff)); m->mothurOutEndLine();  }
 		
-		m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to cluster"); m->mothurOutEndLine();
+		m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to cluster\n");
 		
 		//****************** merge list file and create rabund and sabund files ******************************//
 		estart = time(NULL);
-		m->mothurOut("Merging the clustered files..."); m->mothurOutEndLine();
+		m->mothurOut("Merging the clustered files...\n");
 
 		ListVector* listSingle;
 		map<double, int> labelBins = completeListFile(listFileNames, singletonName, labels, listSingle); //returns map of label to numBins
@@ -598,7 +598,7 @@ int ClusterSplitCommand::execute(){
         //delete after all are complete incase a crash happens
         if (!deleteFiles) { for (int i = 0; i < distName.size(); i++) {	util.mothurRemove(distName[i].begin()->first); util.mothurRemove(distName[i].begin()->second); 	} }
 		
-		m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to merge."); m->mothurOutEndLine();
+		m->mothurOut("It took " + toString(time(NULL) - estart) + " seconds to merge.\n");
         
         if ((method == "opti") && (runsensSpec)) { runSensSpec();  }
         
@@ -1611,8 +1611,8 @@ int ClusterSplitCommand::runSensSpec() {
         else if (countfile != "")   { inputString += ", count=" + countfile; }
         else { m->mothurOut("[WARNING]: Cannot run sens.spec analysis without a name or count file, skipping."); return 0;  }
         
-        m->mothurOut("/******************************************/"); m->mothurOutEndLine();
-        m->mothurOut("Running command: sens.spec(" + inputString + ")"); m->mothurOutEndLine();
+        m->mothurOut("/******************************************/\n");
+        m->mothurOut("Running command: sens.spec(" + inputString + ")\n");
         current->setMothurCalling(true);
         
         Command* sensspecCommand = new SensSpecCommand(inputString);
@@ -1627,8 +1627,8 @@ int ClusterSplitCommand::runSensSpec() {
         
         outputTypes["sensspec"].push_back(outputFileName);  outputNames.push_back(outputFileName);
         
-        m->mothurOut("/******************************************/"); m->mothurOutEndLine();
-        m->mothurOut("Done.\n\n"); m->mothurOutEndLine();
+        m->mothurOut("/******************************************/\n");
+        m->mothurOut("Done.\n\n\n");
         
         ifstream in;
         util.openInputFile(outputFileName, in);
@@ -1788,10 +1788,10 @@ bool ClusterSplitCommand::findVsearch(){
 #if defined NON_WINDOWS
         if (m->getDebug()) {
             m->mothurOut("[DEBUG]: vsearch location using \"which vsearch\" = ");
-            Command* newCommand = new SystemCommand("which vsearch"); m->mothurOutEndLine();
+            Command* newCommand = new SystemCommand("which vsearch\n");
             newCommand->execute(); delete newCommand;
             m->mothurOut("[DEBUG]: Mothur's location using \"which mothur\" = ");
-            newCommand = new SystemCommand("which mothur"); m->mothurOutEndLine();
+            newCommand = new SystemCommand("which mothur\n");
             newCommand->execute(); delete newCommand;
         }
 #endif

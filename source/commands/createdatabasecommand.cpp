@@ -193,24 +193,24 @@ CreateDatabaseCommand::CreateDatabaseCommand(string option)  {
 				//is there are current file available for either of these?
 				//give priority to list, then shared
 				listfile = current->getListFile(); 
-				if (listfile != "") {  m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+				if (listfile != "") {  m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
 				else { 
 					sharedfile = current->getSharedFile(); 
-					if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+					if (sharedfile != "") {  m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 					else { 
-						m->mothurOut("[ERROR]: No valid current files. You must provide a shared or list file before you can use the create.database command."); m->mothurOutEndLine();
+						m->mothurOut("[ERROR]: No valid current files. You must provide a shared or list file before you can use the create.database command.\n");
 						abort = true;
 					}
 				}
 			}
-			else if ((sharedfile != "") && (listfile != "")) { m->mothurOut("When executing a create.database command you must enter ONLY ONE of the following: shared or list."); m->mothurOutEndLine(); abort = true; }
+			else if ((sharedfile != "") && (listfile != "")) { m->mothurOut("When executing a create.database command you must enter ONLY ONE of the following: shared or list.\n"); abort = true; }
             
             if (sharedfile != "") { if (outputDir == "") { outputDir = util.hasPath(sharedfile); } }
             else { if (outputDir == "") { outputDir = util.hasPath(listfile); } }
 			
 			contaxonomyfile = validParameter.validFile(parameters, "constaxonomy");
 			if (contaxonomyfile == "not found") {  //if there is a current list file, use it
-               contaxonomyfile = "";  m->mothurOut("The constaxonomy parameter is required, aborting."); m->mothurOutEndLine(); abort = true;
+               contaxonomyfile = "";  m->mothurOut("The constaxonomy parameter is required, aborting.\n"); abort = true;
 			}
 			else if (contaxonomyfile == "not open") { contaxonomyfile = ""; abort = true; }
 
@@ -222,7 +222,7 @@ CreateDatabaseCommand::CreateDatabaseCommand(string option)  {
 			if (repnamesfile == "not found") {  repnamesfile = "";  			}
 			else if (repnamesfile == "not open") { repnamesfile = ""; abort = true; }
             
-            if ((repnamesfile != "") && (repfastafile == "")) { m->mothurOut("[ERROR]: You must provide a repfasta file if you are using a repnames file."); m->mothurOutEndLine();
+            if ((repnamesfile != "") && (repfastafile == "")) { m->mothurOut("[ERROR]: You must provide a repfasta file if you are using a repnames file.\n");
                 abort = true; }
             
             countfile = validParameter.validFile(parameters, "count");

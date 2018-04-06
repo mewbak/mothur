@@ -222,7 +222,7 @@ ListSeqsCommand::ListSeqsCommand(string option)  {
 			if (fastqfile == "not open") { abort = true; }
 			else if (fastqfile == "not found") {  fastqfile = "";  }
 			
-			if ((fastqfile == "") && (countfile == "") && (fastafile == "") && (namefile == "") && (listfile == "") && (groupfile == "") && (alignfile == "") && (taxfile == ""))  { m->mothurOut("You must provide a file."); m->mothurOutEndLine(); abort = true; }
+			if ((fastqfile == "") && (countfile == "") && (fastafile == "") && (namefile == "") && (listfile == "") && (groupfile == "") && (alignfile == "") && (taxfile == ""))  { m->mothurOut("You must provide a file.\n"); abort = true; }
             
             bool formatFound = true;
             format = validParameter.valid(parameters, "format");		if (format == "not found"){	formatFound = false; format = "illumina1.8+";	}
@@ -237,7 +237,7 @@ ListSeqsCommand::ListSeqsCommand(string option)  {
             if (inputDir != "") { okay++; }
             if (formatFound) { okay++; }
 			
-			if (parameters.size() > okay) { m->mothurOut("You may only enter one file."); m->mothurOutEndLine(); abort = true;  }
+			if (parameters.size() > okay) { m->mothurOut("You may only enter one file.\n"); abort = true;  }
 		}
 
 	}

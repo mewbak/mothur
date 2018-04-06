@@ -121,7 +121,7 @@ vector<Sequence*> MothurChimera::readSeqs(string file) {
         }
         in.close();
         
-        m->mothurOut("Done."); m->mothurOutEndLine();
+        m->mothurOut("Done.\n");
         
         filterString = (string(container[0]->getAligned().length(), '1'));
 		
@@ -151,7 +151,7 @@ void MothurChimera::setMask(string filename) {
                 Sequence temp(infile);
                 seqMask = temp.getAligned();
             }else {
-                m->mothurOut("Problem with mask."); m->mothurOutEndLine();
+                m->mothurOut("Problem with mask.\n");
                 seqMask = "";
             }
             infile.close();
@@ -176,7 +176,7 @@ Sequence* MothurChimera::getSequence(string name) {
 			}
 		}
 		
-		if(spot == -1) { m->mothurOut("Error: Could not find sequence."); m->mothurOutEndLine(); return NULL; }
+		if(spot == -1) { m->mothurOut("Error: Could not find sequence.\n"); return NULL; }
 		
 		temp = new Sequence(templateSeqs[spot]->getName(), templateSeqs[spot]->getAligned());
 		

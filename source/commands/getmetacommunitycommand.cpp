@@ -148,8 +148,8 @@ GetMetaCommunityCommand::GetMetaCommunityCommand(string option)  {
 			else if (sharedfile == "not found") {
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile();
-				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+				else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
 			}else { current->setSharedFile(sharedfile); }
             
             //if the user changes the output directory command factory will send this info to us in the output parameter
@@ -181,7 +181,7 @@ GetMetaCommunityCommand::GetMetaCommunityCommand(string option)  {
 			if (method == "not found") { method = "dmm"; }
 			
 			if ((method == "dmm") || (method == "kmeans") || (method == "pam")) { }
-			else { m->mothurOut("[ERROR]: " + method + " is not a valid method.  Valid algorithms are dmm, kmeans and pam."); m->mothurOutEndLine(); abort = true; }
+			else { m->mothurOut("[ERROR]: " + method + " is not a valid method.  Valid algorithms are dmm, kmeans and pam.\n"); abort = true; }
             
             calc = validParameter.valid(parameters, "calc");
 			if (calc == "not found") { calc = "rjsd";  }
@@ -239,7 +239,7 @@ int GetMetaCommunityCommand::execute(){
                 Groups = lookup->getNamesGroups();
             }
             
-            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine(); m->setControl_pressed(true);  return 0; }
+            if (lookup->size() < 2) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n"); m->setControl_pressed(true);  return 0; }
         }
 
         
@@ -292,10 +292,10 @@ int GetMetaCommunityCommand::execute(){
         for (it = userLabels.begin(); it != userLabels.end(); it++) {
             m->mothurOut("Your file does not include the label " + *it);
             if (processedLabels.count(lastLabel) != 1) {
-                m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". I will use " + lastLabel + ".\n");
                 needToRun = true;
             }else {
-                m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". Please refer to " + lastLabel + ".\n");
             }
         }
         

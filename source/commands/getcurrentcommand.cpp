@@ -195,34 +195,34 @@ int GetCurrentCommand::execute(){
             variables["[filename]"] = util.getFullPathName(outputDir);
             string filename = getOutputFileName("summary", variables);
             
-			m->mothurOutEndLine(); m->mothurOut("Current files saved by mothur:"); m->mothurOutEndLine();
+			m->mothurOut("\nCurrent files saved by mothur:\n");
 			current->printCurrentFiles(filename);
             outputNames.push_back(filename); outputTypes["summary"].push_back(filename);
 		}
         
         string inputDir = current->getInputDir();
         if (inputDir != "") {
-            m->mothurOutEndLine(); m->mothurOut("Current input directory saved by mothur: " + inputDir); m->mothurOutEndLine();
+            m->mothurOut("\nCurrent input directory saved by mothur: " + inputDir); m->mothurOutEndLine();
         }
         
         string outputDir = current->getOutputDir();
         if (outputDir != "") {
-            m->mothurOutEndLine(); m->mothurOut("Current output directory saved by mothur: " + outputDir); m->mothurOutEndLine();
+            m->mothurOut("\nCurrent output directory saved by mothur: " + outputDir); m->mothurOutEndLine();
         }
         string defaultPath = current->getDefaultPath();
         if (defaultPath != "") {
-            m->mothurOutEndLine(); m->mothurOut("Current default directory saved by mothur: " + defaultPath); m->mothurOutEndLine();
+            m->mothurOut("\nCurrent default directory saved by mothur: " + defaultPath); m->mothurOutEndLine();
         }
         
         
         string temp = "."; temp += PATH_SEPARATOR;
 
         temp = util.getFullPathName(temp);
-        m->mothurOutEndLine(); m->mothurOut("Current working directory: " + temp); m->mothurOutEndLine();
+        m->mothurOut("\nCurrent working directory: " + temp); m->mothurOutEndLine();
         
         if (current->hasCurrentFiles()) {
             m->mothurOutEndLine();
-            m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+            m->mothurOut("Output File Names: \n");
             for (int i = 0; i < outputNames.size(); i++) { m->mothurOut(outputNames[i]); m->mothurOutEndLine(); }
             m->mothurOutEndLine();
         }

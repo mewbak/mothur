@@ -189,34 +189,34 @@ SharedCommand::SharedCommand(string option)  {
              else {
                  current->setCountFile(countfile);
                  CountTable temp;
-                 if (!temp.testGroups(countfile)) { m->mothurOut("[ERROR]: Your count file does not have group info, aborting."); m->mothurOutEndLine(); abort=true; }
+                 if (!temp.testGroups(countfile)) { m->mothurOut("[ERROR]: Your count file does not have group info, aborting.\n"); abort=true; }
              }
 
             if ((biomfile == "") && (listfile == "")) {
 				//is there are current file available for either of these?
 				//give priority to list, then biom
 				listfile = current->getListFile();
-				if (listfile != "") {  m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+				if (listfile != "") {  m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
 				else {
 					biomfile = current->getBiomFile();
-					if (biomfile != "") {  m->mothurOut("Using " + biomfile + " as input file for the biom parameter."); m->mothurOutEndLine(); }
+					if (biomfile != "") {  m->mothurOut("Using " + biomfile + " as input file for the biom parameter.\n"); }
 					else {
-						m->mothurOut("No valid current files. You must provide a list or biom file before you can use the make.shared command."); m->mothurOutEndLine();
+						m->mothurOut("No valid current files. You must provide a list or biom file before you can use the make.shared command.\n");
 						abort = true;
 					}
 				}
 			}
-			else if ((biomfile != "") && (listfile != "")) { m->mothurOut("When executing a make.shared command you must enter ONLY ONE of the following: list or biom."); m->mothurOutEndLine(); abort = true; }
+			else if ((biomfile != "") && (listfile != "")) { m->mothurOut("When executing a make.shared command you must enter ONLY ONE of the following: list or biom.\n"); abort = true; }
 
 			if (listfile != "") {
 				if ((groupfile == "") && (countfile == "")) {
 					groupfile = current->getGroupFile();
-					if (groupfile != "") {  m->mothurOut("Using " + groupfile + " as input file for the group parameter."); m->mothurOutEndLine(); }
+					if (groupfile != "") {  m->mothurOut("Using " + groupfile + " as input file for the group parameter.\n"); }
 					else {
 						countfile = current->getCountFile();
-                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
+                        if (countfile != "") {  m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
                         else {
-                            m->mothurOut("You need to provide a groupfile or countfile if you are going to use the list format."); m->mothurOutEndLine();
+                            m->mothurOut("You need to provide a groupfile or countfile if you are going to use the list format.\n");
                             abort = true;
                         }
 					}
@@ -759,7 +759,7 @@ int SharedCommand::createSharedFromListGroup() {
         int error = ListGroupSameSeqs(namesSeqs, SharedList);
 
         if ((!pickedGroups) && (SharedList->getNumSeqs() != numGroupNames)) {  //if the user has not specified any groups and their files don't match exit with error
-            m->mothurOut("Your group file contains " + toString(numGroupNames) + " sequences and list file contains " + toString(SharedList->getNumSeqs()) + " sequences. Please correct."); m->mothurOutEndLine(); m->setControl_pressed(true);
+            m->mothurOut("Your group file contains " + toString(numGroupNames) + " sequences and list file contains " + toString(SharedList->getNumSeqs()) + " sequences. Please correct.\n"); m->setControl_pressed(true);
 
             out.close(); if (!pickedGroups) { util.mothurRemove(filename); } //remove blank shared file you made
 
@@ -988,7 +988,7 @@ void SharedCommand::printSharedData(SharedRAbundVectors*& thislookup, ofstream& 
 
 					Groups.push_back((myIt->second)->getGroup());
 				}else{
-					m->mothurOut("Can't find shared info for " + order[i] + ", skipping."); m->mothurOutEndLine();
+					m->mothurOut("Can't find shared info for " + order[i] + ", skipping.\n");
 				}
 			}
 
@@ -1026,15 +1026,15 @@ int SharedCommand::ListGroupSameSeqs(vector<string>& groupMapsSeqs, SharedListVe
 				if (num == 0) {
                     error = 1;
                     if (groupfile != "") {
-                        m->mothurOut("[ERROR]: " + listNames[j] + " is in your listfile and not in your groupfile. Please correct."); m->mothurOutEndLine();	}
-                    else{ m->mothurOut("[ERROR]: " + listNames[j] + " is in your listfile and not in your count file. Please correct."); m->mothurOutEndLine();	}
+                        m->mothurOut("[ERROR]: " + listNames[j] + " is in your listfile and not in your groupfile. Please correct.\n");	}
+                    else{ m->mothurOut("[ERROR]: " + listNames[j] + " is in your listfile and not in your count file. Please correct.\n");	}
                 }else { groupNamesSeqs.erase(listNames[j]); }
 			}
 		}
 
 		for (set<string>::iterator itGroupSet = groupNamesSeqs.begin(); itGroupSet != groupNamesSeqs.end(); itGroupSet++) {
 			error = 1;
-			m->mothurOut("[ERROR]: " + (*itGroupSet) + " is in your groupfile and not your listfile. Please correct."); m->mothurOutEndLine();
+			m->mothurOut("[ERROR]: " + (*itGroupSet) + " is in your groupfile and not your listfile. Please correct.\n");
 		}
 
 		return error;

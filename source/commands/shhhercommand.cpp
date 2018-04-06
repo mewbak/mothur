@@ -243,12 +243,12 @@ ShhherCommand::ShhherCommand(string option) {
                         fName = tryPath;
                     }
                     
-                    if (!ableToOpen) {  m->mothurOut("Unable to open " + fName + ". Disregarding. "); m->mothurOutEndLine();  }
+                    if (!ableToOpen) {  m->mothurOut("Unable to open " + fName + ". Disregarding. \n");  }
                     else { flowFileVector.push_back(fName); }
                     util.gobble(flowFilesFile);
                 }
                 flowFilesFile.close();
-                if (flowFileVector.size() == 0) {  m->mothurOut("[ERROR]: no valid files."); m->mothurOutEndLine(); abort = true; }
+                if (flowFileVector.size() == 0) {  m->mothurOut("[ERROR]: no valid files.\n"); abort = true; }
             }
             else{
                 if (outputDir == "") { outputDir = util.hasPath(flowFileName); }
@@ -316,7 +316,7 @@ ShhherCommand::ShhherCommand(string option) {
 					lookupFileName = tryPath;
 				}
 				
-				if (!ableToOpen) {  m->mothurOut("Unable to open " + lookupFileName + "."); m->mothurOutEndLine(); abort=true;  }
+				if (!ableToOpen) {  m->mothurOut("Unable to open " + lookupFileName + ".\n"); abort=true;  }
 			}
 			else if(temp == "not open")	{	
 				
@@ -335,7 +335,7 @@ ShhherCommand::ShhherCommand(string option) {
 				in2.close();
 				lookupFileName = tryPath;
 				
-				if (!ableToOpen) {  m->mothurOut("Unable to open " + lookupFileName + "."); m->mothurOutEndLine(); abort=true;  }
+				if (!ableToOpen) {  m->mothurOut("Unable to open " + lookupFileName + ".\n"); abort=true;  }
 			}else						{	lookupFileName = temp;	}
 			
 			temp = validParameter.valid(parameters, "cutoff");	if (temp == "not found"){	temp = "0.01";		}
@@ -745,7 +745,7 @@ int ShhherCommand::getFlowData(string filename, vector<string>& thisSeqNameVecto
 		string numFlowTest;
         flowFile >> numFlowTest;
         
-        if (!util.isContainingOnlyDigits(numFlowTest)) { m->mothurOut("[ERROR]: expected a number and got " + numFlowTest + ", quitting. Did you use the flow parameter instead of the file parameter?"); m->mothurOutEndLine(); exit(1); }
+        if (!util.isContainingOnlyDigits(numFlowTest)) { m->mothurOut("[ERROR]: expected a number and got " + numFlowTest + ", quitting. Did you use the flow parameter instead of the file parameter?\n"); exit(1); }
         else { convert(numFlowTest, numFlowCells); }
         
         if (m->getDebug()) { m->mothurOut("[DEBUG]: numFlowCells = " + toString(numFlowCells) + ".\n"); }

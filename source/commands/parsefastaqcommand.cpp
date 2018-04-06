@@ -177,7 +177,7 @@ ParseFastaQCommand::ParseFastaQCommand(string option){
 			else if (file == "not open")	{	file = ""; abort = true;	}
             else { inputfile = file; fileOption = true; }
             
-            if ((file == "") && (fastaQFile == "")) {  m->mothurOut("You must provide a file or fastq option."); m->mothurOutEndLine(); abort = true;  }
+            if ((file == "") && (fastaQFile == "")) {  m->mothurOut("You must provide a file or fastq option.\n"); abort = true;  }
 
             
             oligosfile = validParameter.validFile(parameters, "oligos");
@@ -190,7 +190,7 @@ ParseFastaQCommand::ParseFastaQCommand(string option){
 			else if (groupfile == "not open")	{	groupfile = ""; abort = true;	}
             else { current->setGroupFile(groupfile); split = 2; }
             
-            if ((groupfile != "") && (oligosfile != "")) { m->mothurOut("You must enter ONLY ONE of the following: oligos or group."); m->mothurOutEndLine(); abort = true;  }
+            if ((groupfile != "") && (oligosfile != "")) { m->mothurOut("You must enter ONLY ONE of the following: oligos or group.\n"); abort = true;  }
 			
 			//if the user changes the output directory command factory will send this info to us in the output parameter 
 			outputDir = validParameter.valid(parameters, "outputdir");	if (outputDir == "not found"){	outputDir = util.hasPath(inputfile); 	}
@@ -230,7 +230,7 @@ ParseFastaQCommand::ParseFastaQCommand(string option){
 				abort=true;
 			}
 
-            if ((!fasta) && (!qual) && (file == "") && (fastaQFile == "") && (oligosfile == "")) { m->mothurOut("[ERROR]: no outputs selected. Aborting."); m->mothurOutEndLine(); abort=true; }
+            if ((!fasta) && (!qual) && (file == "") && (fastaQFile == "") && (oligosfile == "")) { m->mothurOut("[ERROR]: no outputs selected. Aborting.\n"); abort=true; }
             temp = validParameter.valid(parameters, "checkorient");		if (temp == "not found") { temp = "F"; }
 			reorient = util.isTrue(temp);
 
@@ -1541,7 +1541,7 @@ bool ParseFastaQCommand::readOligos(string oligoFile){
         }
         
         if (allBlank) {
-            m->mothurOut("[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile."); m->mothurOutEndLine();
+            m->mothurOut("[WARNING]: your oligos file does not contain any group names.  mothur will not create a groupfile.\n");
             return false;
         }
        

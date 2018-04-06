@@ -125,7 +125,7 @@ string PhyloTree::getNextTaxon(string& heirarchy, string seqname){
 			if (pos == -1) { //you can't find another ;
 				currentLevel = heirarchy;
 				heirarchy = "";
-				m->mothurOut(seqname + " is missing a ;, please check for other errors."); m->mothurOutEndLine();
+				m->mothurOut(seqname + " is missing a ;, please check for other errors.\n");
 			}else{
 				currentLevel=heirarchy.substr(0,pos);
 				if (pos != (heirarchy.length()-1)) {  heirarchy=heirarchy.substr(pos+1);  }
@@ -161,7 +161,7 @@ vector<string> PhyloTree::getSeqs(string seqTaxonomy){
             
             if (m->getDebug()) { m->mothurOut(taxon +'\n'); }
 			
-			if (taxon == "") {  m->mothurOut(taxCopy + " has an error in the taxonomy.  This may be due to a ;;"); m->mothurOutEndLine(); break;  }
+			if (taxon == "") {  m->mothurOut(taxCopy + " has an error in the taxonomy.  This may be due to a ;;\n"); break;  }
 			
 			childPointer = tree[currentNode].children.find(taxon);
 			
@@ -169,7 +169,7 @@ vector<string> PhyloTree::getSeqs(string seqTaxonomy){
 				currentNode = childPointer->second;
 			}
 			else{											//otherwise, error this taxonomy is not in tree
-				m->mothurOut("[ERROR]: " + taxCopy + " is not in taxonomy tree, please correct."); m->mothurOutEndLine(); m->setControl_pressed(true); return names;
+				m->mothurOut("[ERROR]: " + taxCopy + " is not in taxonomy tree, please correct.\n"); m->setControl_pressed(true); return names;
 			}
             
 			if (seqTaxonomy == "") {   names = tree[currentNode].accessions;	}
@@ -210,7 +210,7 @@ int PhyloTree::addSeqToTree(string seqName, string seqTaxonomy){
             
             if (m->getDebug()) { m->mothurOut(seqName +'\t' + taxon +'\n'); }
 			
-			if (taxon == "") {  m->mothurOut(seqName + " has an error in the taxonomy.  This may be due to a ;;"); m->mothurOutEndLine(); if (currentNode != 0) {  uniqueTaxonomies.insert(currentNode); } break;  }
+			if (taxon == "") {  m->mothurOut(seqName + " has an error in the taxonomy.  This may be due to a ;;\n"); if (currentNode != 0) {  uniqueTaxonomies.insert(currentNode); } break;  }
 			
 			childPointer = tree[currentNode].children.find(taxon);
 			
@@ -515,7 +515,7 @@ void PhyloTree::printTreeNodes(string treefilename) {
 TaxNode PhyloTree::get(int i ){
 	try {
 		if (i < tree.size()) {  return tree[i];	 }
-		else {  cout << i << '\t' << tree.size() << endl ; m->mothurOut("Mismatch with taxonomy and template files. Cannot continue."); m->mothurOutEndLine(); exit(1); }
+		else {  cout << i << '\t' << tree.size() << endl ; m->mothurOut("Mismatch with taxonomy and template files. Cannot continue.\n"); exit(1); }
 	}
 	catch(exception& e) {
 		m->errorOut(e, "PhyloTree", "get");
@@ -528,7 +528,7 @@ TaxNode PhyloTree::get(string seqName){
 		map<string, int>::iterator itFind = name2Taxonomy.find(seqName);
 	
 		if (itFind != name2Taxonomy.end()) {  return tree[name2Taxonomy[seqName]];  }
-		else { m->mothurOut("Cannot find " + seqName + ". Mismatch with taxonomy and template files. Cannot continue."); m->mothurOutEndLine(); exit(1);}
+		else { m->mothurOut("Cannot find " + seqName + ". Mismatch with taxonomy and template files. Cannot continue.\n"); exit(1);}
 	}
 	catch(exception& e) {
 		m->errorOut(e, "PhyloTree", "get");
@@ -539,7 +539,7 @@ TaxNode PhyloTree::get(string seqName){
 string PhyloTree::getName(int i ){
 	try {
 		if (i < tree.size()) {  return tree[i].name;	 }
-		else { m->mothurOut("Mismatch with taxonomy and template files. Cannot continue."); m->mothurOutEndLine(); exit(1); }
+		else { m->mothurOut("Mismatch with taxonomy and template files. Cannot continue.\n"); exit(1); }
 	}
 	catch(exception& e) {
 		m->errorOut(e, "PhyloTree", "get");
@@ -552,7 +552,7 @@ int PhyloTree::getGenusIndex(string seqName){
 		map<string, int>::iterator itFind = name2GenusNodeIndex.find(seqName);
 	
 		if (itFind != name2GenusNodeIndex.end()) {  return itFind->second;  }
-		else { m->mothurOut("Cannot find " + seqName + ". Could be a mismatch with taxonomy and template files. Cannot continue."); m->mothurOutEndLine(); exit(1);}
+		else { m->mothurOut("Cannot find " + seqName + ". Could be a mismatch with taxonomy and template files. Cannot continue.\n"); exit(1);}
 	}
 	catch(exception& e) {
 		m->errorOut(e, "PhyloTree", "get");
@@ -577,7 +577,7 @@ bool PhyloTree::ErrorCheck(vector<string> templateFileNames){
 			if (itFind != taxonomyFileNames.end()) { //found it so erase it
 				taxonomyFileNames.erase(itFind);
 			}else {
-				m->mothurOut("'" +templateFileNames[i] + "' is in your template file and is not in your taxonomy file. Please correct."); m->mothurOutEndLine();
+				m->mothurOut("'" +templateFileNames[i] + "' is in your template file and is not in your taxonomy file. Please correct.\n");
 				okay = false;
 			}
 			
@@ -590,7 +590,7 @@ bool PhyloTree::ErrorCheck(vector<string> templateFileNames){
 			okay = false;
 			
 			for (itFind = taxonomyFileNames.begin(); itFind != taxonomyFileNames.end(); itFind++) {
-				m->mothurOut(itFind->first + " is in your taxonomy file and is not in your template file. Please correct."); m->mothurOutEndLine();
+				m->mothurOut(itFind->first + " is in your taxonomy file and is not in your template file. Please correct.\n");
 			}
 		}
 		

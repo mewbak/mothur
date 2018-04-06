@@ -208,18 +208,18 @@ SummaryCommand::SummaryCommand(string option)  {
 				//give priority to shared, then list, then rabund, then sabund
 				//if there is a current shared file, use it
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") { inputfile = sharedfile; format = "sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") { inputfile = sharedfile; format = "sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					listfile = current->getListFile(); 
-					if (listfile != "") { inputfile = listfile; format = "list"; m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+					if (listfile != "") { inputfile = listfile; format = "list"; m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
 					else { 
 						rabundfile = current->getRabundFile(); 
-						if (rabundfile != "") { inputfile = rabundfile; format = "rabund"; m->mothurOut("Using " + rabundfile + " as input file for the rabund parameter."); m->mothurOutEndLine(); }
+						if (rabundfile != "") { inputfile = rabundfile; format = "rabund"; m->mothurOut("Using " + rabundfile + " as input file for the rabund parameter.\n"); }
 						else { 
 							sabundfile = current->getSabundFile(); 
-							if (sabundfile != "") { inputfile = sabundfile; format = "sabund"; m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter."); m->mothurOutEndLine(); }
+							if (sabundfile != "") { inputfile = sabundfile; format = "sabund"; m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter.\n"); }
 							else { 
-								m->mothurOut("No valid current files. You must provide a list, sabund, rabund or shared file before you can use the collect.single command."); m->mothurOutEndLine(); 
+								m->mothurOut("No valid current files. You must provide a list, sabund, rabund or shared file before you can use the collect.single command.\n"); 
 								abort = true;
 							}
 						}
@@ -274,7 +274,7 @@ SummaryCommand::SummaryCommand(string option)  {
             temp = validParameter.valid(parameters, "alpha");		if (temp == "not found") { temp = "1"; }
 			util.mothurConvert(temp, alpha);
             
-            if ((alpha != 0) && (alpha != 1) && (alpha != 2)) { m->mothurOut("[ERROR]: Not a valid alpha value. Valid values are 0, 1 and 2."); m->mothurOutEndLine(); abort=true; }
+            if ((alpha != 0) && (alpha != 1) && (alpha != 2)) { m->mothurOut("[ERROR]: Not a valid alpha value. Valid values are 0, 1 and 2.\n"); abort=true; }
             
             if (subsample == false) { iters = 0; }
             else {
@@ -318,7 +318,7 @@ int SummaryCommand::execute(){
             outputNames.push_back(fileNameRoot); outputTypes["summary"].push_back(fileNameRoot);
             
 			if (inputFileNames.size() > 1) {
-				m->mothurOutEndLine(); m->mothurOut("Processing group " + groups[p]); m->mothurOutEndLine(); m->mothurOutEndLine();
+				m->mothurOut("\nProcessing group " + groups[p]); m->mothurOutEndLine(); m->mothurOutEndLine();
                 groupIndex[fileNameRoot] = groups[p];
 			}
 			
@@ -437,7 +437,7 @@ int SummaryCommand::execute(){
 				
 				if(allLines == 1 || labels.count(sabund->getLabel()) == 1){			
 					
-					m->mothurOut(sabund->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(sabund->getLabel()+"\n"); 
 					processedLabels.insert(sabund->getLabel());
 					userLabels.erase(sabund->getLabel());
 					
@@ -453,7 +453,7 @@ int SummaryCommand::execute(){
 					delete sabund;
 					sabund = input.getSAbundVector(lastLabel);
 					
-					m->mothurOut(sabund->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(sabund->getLabel()+"\n"); 
 					processedLabels.insert(sabund->getLabel());
 					userLabels.erase(sabund->getLabel());
 					
@@ -480,10 +480,10 @@ int SummaryCommand::execute(){
 			for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 				m->mothurOut("Your file does not include the label " + *it); 
 				if (processedLabels.count(lastLabel) != 1) {
-					m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". I will use " + lastLabel + ".\n");
 					needToRun = true;
 				}else {
-					m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+					m->mothurOut(". Please refer to " + lastLabel + ".\n");
 				}
 			}
 			
@@ -492,7 +492,7 @@ int SummaryCommand::execute(){
 				if (sabund != NULL) {	delete sabund;	}
 				sabund = input.getSAbundVector(lastLabel);
 				
-				m->mothurOut(sabund->getLabel()); m->mothurOutEndLine();
+				m->mothurOut(sabund->getLabel()+"\n"); 
                 process(sabund, outputFileHandle, outAve);
                 
                 if (m->getControl_pressed()) { outputFileHandle.close(); outAve.close(); for (int i = 0; i < outputNames.size(); i++) {	util.mothurRemove(outputNames[i]);  } for(int i=0;i<sumCalculators.size();i++){  delete sumCalculators[i]; }  delete sabund;  return 0;  }
@@ -645,7 +645,7 @@ vector<string> SummaryCommand::parseSharedFile(string filename) {
             if (subsampleSize == -1) { subsampleSize = lookup->getNumSeqsSmallestGroup(); }
             else { lookup->removeGroups(subsampleSize); }
             
-            if (lookup->size() < 1) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command."); m->mothurOutEndLine(); m->setControl_pressed(true);  return filenames; }
+            if (lookup->size() < 1) { m->mothurOut("You have not provided enough valid groups.  I cannot run the command.\n"); m->setControl_pressed(true);  return filenames; }
         }
 		/******************************************************/
         

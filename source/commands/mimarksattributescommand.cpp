@@ -110,7 +110,7 @@ MimarksAttributesCommand::MimarksAttributesCommand(string option)  {
             //check for required parameters
             xmlFile = validParameter.validFile(parameters, "xml");
             if (xmlFile == "not open") { abort = true; }
-            else if (xmlFile == "not found") {  xmlFile = ""; abort=true; m->mothurOut("You must provide an xml file. It is required."); m->mothurOutEndLine();  }
+            else if (xmlFile == "not found") {  xmlFile = ""; abort=true; m->mothurOut("You must provide an xml file. It is required.\n");  }
             
             selectedPackage = validParameter.valid(parameters, "package");
             if (selectedPackage == "not found") { selectedPackage = "MIMARKS.survey."; }
@@ -340,7 +340,7 @@ int MimarksAttributesCommand::execute(){
         out.close();
         
         m->mothurOutEndLine();
-        m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+        m->mothurOut("Output File Names: \n");
         for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}	
         m->mothurOutEndLine();
         

@@ -141,8 +141,8 @@ DeUniqueSeqsCommand::DeUniqueSeqsCommand(string option)  {
 			if (fastaFile == "not open") { abort = true; }
 			else if (fastaFile == "not found") { 				
 				fastaFile = current->getFastaFile(); 
-				if (fastaFile != "") { m->mothurOut("Using " + fastaFile + " as input file for the fasta parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (fastaFile != "") { m->mothurOut("Using " + fastaFile + " as input file for the fasta parameter.\n"); }
+				else { 	m->mothurOut("You have no current fastafile and the fasta parameter is required.\n"); abort = true; }
 			}else { current->setFastaFile(fastaFile); }	
 			
 			//if the user changes the output directory command factory will send this info to us in the output parameter 
@@ -160,16 +160,16 @@ DeUniqueSeqsCommand::DeUniqueSeqsCommand(string option)  {
 			else if (countfile == "not found") { countfile = ""; }
 			else { current->setCountFile(countfile); }
 			
-            if ((countfile != "") && (nameFile != "")) { m->mothurOut("When executing a deunique.seqs command you must enter ONLY ONE of the following: count or name."); m->mothurOutEndLine(); abort = true; }
+            if ((countfile != "") && (nameFile != "")) { m->mothurOut("When executing a deunique.seqs command you must enter ONLY ONE of the following: count or name.\n"); abort = true; }
 			
             
 			if ((countfile == "") && (nameFile == "")) { //look for currents
                 nameFile = current->getNameFile();
-				if (nameFile != "") { m->mothurOut("Using " + nameFile + " as input file for the name parameter."); m->mothurOutEndLine(); }
+				if (nameFile != "") { m->mothurOut("Using " + nameFile + " as input file for the name parameter.\n"); }
 				else {
                     countfile = current->getCountFile();
-                    if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter."); m->mothurOutEndLine(); }
-                    else {  m->mothurOut("[ERROR]: You have no current name or count files one is required."); m->mothurOutEndLine(); abort = true; }
+                    if (countfile != "") { m->mothurOut("Using " + countfile + " as input file for the count parameter.\n"); }
+                    else {  m->mothurOut("[ERROR]: You have no current name or count files one is required.\n"); abort = true; }
                 }
             }
 
@@ -235,7 +235,7 @@ int DeUniqueSeqsCommand::execute() {
                     //look for sequence name in nameMap
                     map<string, string>::iterator it = nameMap.find(seq.getName());
                     
-                    if (it == nameMap.end()) {	m->mothurOut("[ERROR]: Your namefile does not contain " + seq.getName() + ", aborting."); m->mothurOutEndLine(); m->setControl_pressed(true); }
+                    if (it == nameMap.end()) {	m->mothurOut("[ERROR]: Your namefile does not contain " + seq.getName() + ", aborting.\n"); m->setControl_pressed(true); }
                     else {
                         vector<string> names;
                         util.splitAtComma(it->second, names);

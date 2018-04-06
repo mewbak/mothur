@@ -148,8 +148,8 @@ ClassifyRFSharedCommand::ClassifyRFSharedCommand(string option) {
       else if (sharedfile == "not found") {
           //if there is a current shared file, use it
         sharedfile = current->getSharedFile();
-        if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
-        else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required."); m->mothurOutEndLine(); abort = true; }
+        if (sharedfile != "") { m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
+        else { 	m->mothurOut("You have no current sharedfile and the shared parameter is required.\n"); abort = true; }
       }else { current->setSharedFile(sharedfile); }
       
         //get design file, it is required
@@ -158,8 +158,8 @@ ClassifyRFSharedCommand::ClassifyRFSharedCommand(string option) {
       else if (designfile == "not found") {
           //if there is a current shared file, use it
         designfile = current->getDesignFile();
-        if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter."); m->mothurOutEndLine(); }
-        else { 	m->mothurOut("You have no current designfile and the design parameter is required."); m->mothurOutEndLine(); abort = true; }
+        if (designfile != "") { m->mothurOut("Using " + designfile + " as input file for the design parameter.\n"); }
+        else { 	m->mothurOut("You have no current designfile and the design parameter is required.\n"); abort = true; }
       }else { current->setDesignFile(designfile); }
 
       
@@ -303,10 +303,10 @@ int ClassifyRFSharedCommand::execute() {
     for (it = userLabels.begin(); it != userLabels.end(); it++) {
       m->mothurOut("Your file does not include the label " + *it);
       if (processedLabels.count(lastLabel) != 1) {
-        m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+        m->mothurOut(". I will use " + lastLabel + ".\n");
         needToRun = true;
       }else {
-        m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+        m->mothurOut(". Please refer to " + lastLabel + ".\n");
       }
     }
     
@@ -326,7 +326,7 @@ int ClassifyRFSharedCommand::execute() {
     }
 
       m->mothurOutEndLine();
-      m->mothurOut("Output File Names: "); m->mothurOutEndLine();
+      m->mothurOut("Output File Names: \n");
       for (int i = 0; i < outputNames.size(); i++) {	m->mothurOut(outputNames[i]); m->mothurOutEndLine();	}
       m->mothurOutEndLine();
       

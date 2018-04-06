@@ -328,15 +328,15 @@ int HelpCommand::execute(){
                 delete command;
                 
             }else {
-                m->mothurOut("[ERROR]: " + commandName + " is not a valid command."); m->mothurOutEndLine();
+                m->mothurOut("[ERROR]: " + commandName + " is not a valid command.\n");
                 validCommands->printCommands(cout);
             }
         }else {
             validCommands->printCommands(cout);
-            m->mothurOut("For more information about a specific command type 'commandName(help)' i.e. 'cluster(help)'"); m->mothurOutEndLine();
+            m->mothurOut("For more information about a specific command type 'commandName(help)' i.e. 'cluster(help)'\n");
         }
 		
-        m->mothurOutEndLine(); m->mothurOut("For further assistance please refer to the Mothur manual on our wiki at http://www.mothur.org/wiki, or contact Pat Schloss at mothur.bugs@gmail.com.\n");
+        m->mothurOut("\nFor further assistance please refer to the Mothur manual on our wiki at http://www.mothur.org/wiki, or contact Pat Schloss at mothur.bugs@gmail.com.\n");
 	
 		return 0;
 	}

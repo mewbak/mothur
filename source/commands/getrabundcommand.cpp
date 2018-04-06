@@ -172,12 +172,12 @@ GetRAbundCommand::GetRAbundCommand(string option)  {
 				//give priority to shared, then list, then rabund, then sabund
 				//if there is a current shared file, use it
 				listfile = current->getListFile(); 
-				if (listfile != "") { inputfile = listfile; format = "list"; m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+				if (listfile != "") { inputfile = listfile; format = "list"; m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
 				else { 
 					sabundfile = current->getSabundFile(); 
-					if (sabundfile != "") { inputfile = sabundfile; format = "sabund"; m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter."); m->mothurOutEndLine(); }
+					if (sabundfile != "") { inputfile = sabundfile; format = "sabund"; m->mothurOut("Using " + sabundfile + " as input file for the sabund parameter.\n"); }
 					else { 
-						m->mothurOut("No valid current files. You must provide a list or sabund file."); m->mothurOutEndLine(); 
+						m->mothurOut("No valid current files. You must provide a list or sabund file.\n"); 
 						abort = true;
 					}
 				}
@@ -225,7 +225,7 @@ int GetRAbundCommand::execute(){
             while((rabund != NULL) && ((allLines == 1) || (userLabels.size() != 0))) {
                 
                 if(allLines == 1 || labels.count(rabund->getLabel()) == 1){
-					m->mothurOut(rabund->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(rabund->getLabel()+"\n"); 
 					
 					if (m->getControl_pressed()) {   outputTypes.clear(); out.close(); util.mothurRemove(filename);   delete rabund;  return 0;  }
 					
@@ -242,7 +242,7 @@ int GetRAbundCommand::execute(){
 					delete rabund;
 					rabund = input.getRAbundVector(lastLabel);
 					
-					m->mothurOut(rabund->getLabel()); m->mothurOutEndLine();
+					m->mothurOut(rabund->getLabel()+"\n"); 
 					
 					if (m->getControl_pressed()) {   outputTypes.clear(); out.close(); util.mothurRemove(filename);  delete rabund;  return 0;  }
 					
@@ -268,10 +268,10 @@ int GetRAbundCommand::execute(){
             for (it = userLabels.begin(); it != userLabels.end(); it++) {
                 m->mothurOut("Your file does not include the label " + *it);
                 if (processedLabels.count(lastLabel) != 1) {
-                    m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". I will use " + lastLabel + ".\n");
                     needToRun = true;
                 }else {
-                    m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". Please refer to " + lastLabel + ".\n");
                 }
             }
             
@@ -280,7 +280,7 @@ int GetRAbundCommand::execute(){
                 if (rabund != NULL) {	delete rabund;	}
                 rabund = input.getRAbundVector(lastLabel);
                 
-                m->mothurOut(rabund->getLabel()); m->mothurOutEndLine();
+                m->mothurOut(rabund->getLabel()+"\n"); 
                 
                 if (m->getControl_pressed()) {  outputTypes.clear(); out.close(); util.mothurRemove(filename);   delete rabund;  return 0; }
                 
@@ -333,7 +333,7 @@ int GetRAbundCommand::processList(ofstream& out){
         while((list != NULL) && ((allLines == 1) || (userLabels.size() != 0))) {
             
             if(allLines == 1 || labels.count(list->getLabel()) == 1){
-                m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+                m->mothurOut(list->getLabel()+"\n"); 
                 
                 if (m->getControl_pressed()) {   delete list;  return 0;  }
                 
@@ -354,7 +354,7 @@ int GetRAbundCommand::processList(ofstream& out){
                 delete list;
                 list = input.getListVector(lastLabel);
                 
-                m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+                m->mothurOut(list->getLabel()+"\n"); 
                 
                 if (m->getControl_pressed()) {    delete list;  return 0;  }
                 
@@ -384,10 +384,10 @@ int GetRAbundCommand::processList(ofstream& out){
         for (it = userLabels.begin(); it != userLabels.end(); it++) {
             m->mothurOut("Your file does not include the label " + *it);
             if (processedLabels.count(lastLabel) != 1) {
-                m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". I will use " + lastLabel + ".\n");
                 needToRun = true;
             }else {
-                m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                m->mothurOut(". Please refer to " + lastLabel + ".\n");
             }
         }
         
@@ -396,7 +396,7 @@ int GetRAbundCommand::processList(ofstream& out){
             if (list != NULL) {	delete list;	}
             list = input.getListVector(lastLabel);
             
-            m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+            m->mothurOut(list->getLabel()+"\n"); 
             
             if (m->getControl_pressed()) {   delete list;  return 0; }
             

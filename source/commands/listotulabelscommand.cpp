@@ -158,15 +158,15 @@ ListOtuLabelsCommand::ListOtuLabelsCommand(string option)  {
 				//is there are current file available for either of these?
 				//give priority to shared, then relabund
 				sharedfile = current->getSharedFile(); 
-				if (sharedfile != "") {  inputFileName = sharedfile; format="sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter."); m->mothurOutEndLine(); }
+				if (sharedfile != "") {  inputFileName = sharedfile; format="sharedfile"; m->mothurOut("Using " + sharedfile + " as input file for the shared parameter.\n"); }
 				else { 
 					relabundfile = current->getRelAbundFile(); 
-					if (relabundfile != "") {  inputFileName = relabundfile; format="relabund"; m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter."); m->mothurOutEndLine(); }
+					if (relabundfile != "") {  inputFileName = relabundfile; format="relabund"; m->mothurOut("Using " + relabundfile + " as input file for the relabund parameter.\n"); }
 					else { 
                         listfile = current->getListFile();
-						if (listfile != "") {  inputFileName = listfile; format="list"; m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
+						if (listfile != "") {  inputFileName = listfile; format="list"; m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
                         else { 
-                            m->mothurOut("No valid current files. You must provide a shared, list or relabund."); m->mothurOutEndLine(); 
+                            m->mothurOut("No valid current files. You must provide a shared, list or relabund.\n"); 
                             abort = true;
                         }
 					}
@@ -263,10 +263,10 @@ int ListOtuLabelsCommand::execute(){
             for (it = userLabels.begin(); it != userLabels.end(); it++) {  
                 m->mothurOut("Your file does not include the label " + *it); 
                 if (processedLabels.count(lastLabel) != 1) {
-                    m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". I will use " + lastLabel + ".\n");
                     needToRun = true;
                 }else {
-                    m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". Please refer to " + lastLabel + ".\n");
                 }
             }
             
@@ -340,10 +340,10 @@ int ListOtuLabelsCommand::execute(){
             for (it = userLabels.begin(); it != userLabels.end(); it++) {  
                 m->mothurOut("Your file does not include the label " + *it); 
                 if (processedLabels.count(lastLabel) != 1) {
-                    m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". I will use " + lastLabel + ".\n");
                     needToRun = true;
                 }else {
-                    m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". Please refer to " + lastLabel + ".\n");
                 }
             }
             
@@ -373,7 +373,7 @@ int ListOtuLabelsCommand::execute(){
                 
                 if(allLines == 1 || labels.count(list->getLabel()) == 1){			
                     
-                    m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+                    m->mothurOut(list->getLabel()+"\n"); 
                     
                     createList(list);
                     
@@ -386,7 +386,7 @@ int ListOtuLabelsCommand::execute(){
                     
                     delete list; 
                     list = input.getListVector(lastLabel);
-                    m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+                    m->mothurOut(list->getLabel()+"\n"); 
                     
                     createList(list);
                     
@@ -415,10 +415,10 @@ int ListOtuLabelsCommand::execute(){
             for (it = userLabels.begin(); it != userLabels.end(); it++) {  
                 m->mothurOut("Your file does not include the label " + *it); 
                 if (processedLabels.count(lastLabel) != 1) {
-                    m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". I will use " + lastLabel + ".\n");
                     needToRun = true;
                 }else {
-                    m->mothurOut(". Please refer to " + lastLabel + "."); m->mothurOutEndLine();
+                    m->mothurOut(". Please refer to " + lastLabel + ".\n");
                 }
             }
             
@@ -427,7 +427,7 @@ int ListOtuLabelsCommand::execute(){
                 delete list;  
                 list = input.getListVector(lastLabel);
                 
-                m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+                m->mothurOut(list->getLabel()+"\n"); 
                 
                 createList(list);
                 

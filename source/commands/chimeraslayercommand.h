@@ -55,7 +55,7 @@ private:
     int setUpForSelfReference(SequenceCountParser*&, map<string, string>&, map<string, map<string, int> >&, int);
 	int driverGroups(string, string, string, map<string, map<string, int> >&, map<string, string>&, string);
 
-	bool abort, realign, trim, trimera, save, hasName, hasCount, dups;
+	bool abort, realign, trim, trimera, hasName, hasCount, dups;
 	string fastafile, groupfile, templatefile, outputDir, search, namefile, countfile, blastlocation;
 	int window, iters, increment, numwanted, ksize, match, mismatch, parents, minSimilarity, minCoverage, minBS, minSNP, templateSeqsLength;
     long long numSeqs;

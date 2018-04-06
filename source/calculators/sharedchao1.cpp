@@ -138,7 +138,7 @@ void SharedChao1::initialTree(int n) {
 		setCoef(f2root, 0);
 	}
 	catch(exception& e) {
-		if ((toString(e.what()) == "vector::_M_fill_insert") || (toString(e.what()) == "St9bad_alloc")) { m->mothurOut("You are using " + toString(n) + " groups which creates 2^" + toString(n+1) + " nodes. Try reducing the number of groups you selected. "); m->mothurOutEndLine(); exit(1); }
+		if ((toString(e.what()) == "vector::_M_fill_insert") || (toString(e.what()) == "St9bad_alloc")) { m->mothurOut("You are using " + toString(n) + " groups which creates 2^" + toString(n+1) + " nodes. Try reducing the number of groups you selected. \n"); exit(1); }
 		m->errorOut(e, "SharedChao1", "initialTree");
 		exit(1);
 	}
@@ -222,10 +222,10 @@ void SharedChao1::setCoef(IntNode* node, int coef) {
 //for debugging purposes
 void SharedChao1::printTree() {
 	
-	m->mothurOut("F1 leaves"); m->mothurOutEndLine();
+	m->mothurOut("F1 leaves\n");
 	printBranch(f1root);
 	
-	m->mothurOut("F2 leaves"); m->mothurOutEndLine();
+	m->mothurOut("F2 leaves\n");
 	printBranch(f2root);
 
 

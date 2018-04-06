@@ -126,8 +126,8 @@ GetListCountCommand::GetListCountCommand(string option)  {
 			listfile = validParameter.validFile(parameters, "list");
 			if (listfile == "not found")  { 				
 				listfile = current->getListFile(); 
-				if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter."); m->mothurOutEndLine(); }
-				else { 	m->mothurOut("You have no current list file and the list parameter is required."); m->mothurOutEndLine(); abort = true; }
+				if (listfile != "") { m->mothurOut("Using " + listfile + " as input file for the list parameter.\n"); }
+				else { 	m->mothurOut("You have no current list file and the list parameter is required.\n"); abort = true; }
 			}
 			else if (listfile == "not open") { abort = true; }	
 			else { current->setListFile(listfile); }
@@ -136,7 +136,7 @@ GetListCountCommand::GetListCountCommand(string option)  {
 			//check for optional parameter and set defaults
 			// ...at some point should added some additional type checking...
 			sort = validParameter.valid(parameters, "sort");	  if (sort == "not found") { sort = "otu"; }
-			if ((sort != "otu") && (sort != "name")) { m->mothurOut( sort + " is not a valid sort option. Options are otu and name. I will use otu."); m->mothurOutEndLine(); sort = "otu"; }
+			if ((sort != "otu") && (sort != "name")) { m->mothurOut( sort + " is not a valid sort option. Options are otu and name. I will use otu.\n"); sort = "otu"; }
 			
 			label = validParameter.valid(parameters, "label");			
 			if (label == "not found") { label = ""; }
@@ -210,10 +210,10 @@ int GetListCountCommand::execute(){
 		for (it = userLabels.begin(); it != userLabels.end(); it++) {  
 			m->mothurOut("Your file does not include the label " + *it); 
 			if (processedLabels.count(lastLabel) != 1) {
-				m->mothurOut(". I will use " + lastLabel + "."); m->mothurOutEndLine();
+				m->mothurOut(". I will use " + lastLabel + ".\n");
 				needToRun = true;
 			}else {
-				m->mothurOut(". Please refer to " + lastLabel + ".");  m->mothurOutEndLine();
+				m->mothurOut(". Please refer to " + lastLabel + ".\n");  
 			}
 		}
 		
@@ -256,7 +256,7 @@ void GetListCountCommand::process(ListVector* list) {
 		util.openOutputFile(outputFileName, out);
 		outputNames.push_back(outputFileName); outputTypes["otu"].push_back(outputFileName);
 		
-		m->mothurOut(list->getLabel()); m->mothurOutEndLine();
+		m->mothurOut(list->getLabel()+"\n"); 
 		
 		//for each bin in the list vector
         vector<string> binLabels = list->getLabels();
